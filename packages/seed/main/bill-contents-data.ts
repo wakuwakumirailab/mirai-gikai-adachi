@@ -12,7 +12,7 @@ interface BillContentWithBillName {
 export const billContentsWithBillName: BillContentWithBillName[] = [
   // ===== 川崎市子ども医療費助成条例の一部改正 =====
   {
-    bill_name: "川崎市子ども医療費助成条例の一部改正",
+    bill_name: "福岡市子ども医療費助成条例の一部改正",
     difficulty_level: "normal",
     title: "子どもの医療費助成を拡充する条例改正",
     summary:
@@ -82,7 +82,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 この条例改正により、川崎市で育つすべての子どもが18歳まで安心して医療を受けられるようになります。子育て世帯の経済的な安心につながる重要な施策です。`,
   },
   {
-    bill_name: "川崎市子ども医療費助成条例の一部改正",
+    bill_name: "福岡市子ども医療費助成条例の一部改正",
     difficulty_level: "hard",
     title: "川崎市子ども医療費助成条例の一部を改正する条例案",
     summary:
@@ -167,7 +167,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 
   // ===== 川崎市地域包括ケアシステム推進条例 =====
   {
-    bill_name: "川崎市地域包括ケアシステム推進条例",
+    bill_name: "福岡市地域包括ケアシステム推進条例",
     difficulty_level: "normal",
     title: "地域で支え合う仕組みをつくる条例",
     summary:
@@ -236,7 +236,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 この条例は、川崎市に住むすべての人が、年齢や障害の有無にかかわらず、安心して暮らし続けられるまちをつくるための基盤となるものです。行政だけでなく、市民・企業・医療機関が一体となって取り組むことが重要です。`,
   },
   {
-    bill_name: "川崎市地域包括ケアシステム推進条例",
+    bill_name: "福岡市地域包括ケアシステム推進条例",
     difficulty_level: "hard",
     title: "川崎市地域包括ケアシステムの推進に関する条例案",
     summary:
@@ -311,7 +311,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 
   // ===== 川崎市公園条例の一部改正 =====
   {
-    bill_name: "川崎市公園条例の一部改正",
+    bill_name: "福岡市公園条例の一部改正",
     difficulty_level: "normal",
     title: "公園をもっと使いやすくする条例改正",
     summary:
@@ -394,7 +394,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 この条例改正で、川崎市の公園が「ただの空き地」から「地域の交流拠点」「防災拠点」として生まれ変わります。子どもからお年寄りまで、誰もが楽しめる公園づくりを目指します。`,
   },
   {
-    bill_name: "川崎市公園条例の一部改正",
+    bill_name: "福岡市公園条例の一部改正",
     difficulty_level: "hard",
     title: "川崎市都市公園条例の一部を改正する条例案",
     summary:
@@ -490,7 +490,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 
   // ===== 川崎市学校給食費の無償化に関する条例 =====
   {
-    bill_name: "川崎市学校給食費の無償化に関する条例",
+    bill_name: "福岡市学校給食費の無償化に関する条例",
     difficulty_level: "normal",
     title: "学校給食を無料にする条例",
     summary:
@@ -560,7 +560,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 学校給食の無償化は、子育て世帯への直接的な経済支援であると同時に、すべての子どもの健やかな成長を社会全体で支える仕組みです。川崎市に住む子どもたちが、お金の心配なく毎日おいしい給食を食べられるようになります。`,
   },
   {
-    bill_name: "川崎市学校給食費の無償化に関する条例",
+    bill_name: "福岡市学校給食費の無償化に関する条例",
     difficulty_level: "hard",
     title: "川崎市学校給食費の無償化に関する条例案",
     summary:
@@ -655,7 +655,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 
   // ===== 川崎市防災対策基本条例の一部改正 =====
   {
-    bill_name: "川崎市防災対策基本条例の一部改正",
+    bill_name: "福岡市防災対策基本条例の一部改正",
     difficulty_level: "normal",
     title: "防災対策を強化する条例改正（否決）",
     summary:
@@ -739,7 +739,7 @@ export const billContentsWithBillName: BillContentWithBillName[] = [
 条例改正は否決されましたが、川崎市の防災力強化の必要性は変わりません。マンション住民の負担に配慮しながら、実効性のある防災対策を進めることが求められています。`,
   },
   {
-    bill_name: "川崎市防災対策基本条例の一部改正",
+    bill_name: "福岡市防災対策基本条例の一部改正",
     difficulty_level: "hard",
     title: "川崎市防災対策基本条例の一部を改正する条例案（否決）",
     summary:
