@@ -104,6 +104,9 @@
   --color-mirai-badge-yellow: #fffd96;
   --color-mirai-info-blue: #b2d3e8;
 
+  /* ヒーローバナーのレターボックス背景 */
+  --color-mirai-hero-bg: #e0f2fe;
+
   /* Progress */
   --color-mirai-progress-track: #d9d9d9;
   --color-mirai-progress-fill: #dbd3f9;
