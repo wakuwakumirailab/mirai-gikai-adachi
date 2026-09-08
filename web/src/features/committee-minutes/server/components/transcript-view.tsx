@@ -42,7 +42,7 @@ export function TranscriptView({ meeting }: Props) {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1 text-primary-accent hover:underline"
         >
-          福岡市議会 会議録検索システム
+          足立区議会 会議録検索システム
           <ExternalLink className="size-3" />
         </a>
       </p>

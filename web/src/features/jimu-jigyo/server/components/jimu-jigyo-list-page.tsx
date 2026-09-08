@@ -42,7 +42,7 @@ export async function JimuJigyoListPage({
           事務事業 分析（{getYearLabel(year)}）
         </h1>
         <p className="text-sm text-mirai-text-secondary mt-1">
-          福岡市 {summary.total}事業のKPI・予算・効率の動向を分析します。
+          足立区 {summary.total}事業のKPI・予算・効率の動向を分析します。
         </p>
         <div className="mt-2">
           <Link

@@ -4,25 +4,28 @@
  * @see docs/kawasaki/20260304_1000_別地域向けfork手順.md
  */
 export const siteConfig = {
-  siteName: "みらい議会＠福岡市",
+  siteName: "みらい議会＠足立区",
   siteDescription:
-    "福岡市議会で今どんな議案が検討されているか、わかりやすく伝えるプラットフォームです",
-  cityName: "福岡市",
-  councilName: "福岡市議会",
+    "足立区議会で今どんな議案が検討されているか、わかりやすく伝えるプラットフォームです",
+  cityName: "足立区",
+  councilName: "足立区議会",
   keywords: [
-    "みらい議会ー福岡市版",
+    "みらい議会ー足立区版",
     "議案",
-    "福岡市",
-    "市議会",
+    "足立区",
+    "区議会",
     "地方政治",
     "政策",
     "解説",
   ],
-  councilBaseUrl: "https://gikai.city.fukuoka.lg.jp/",
+  councilBaseUrl: "https://www.city.adachi.tokyo.jp/kugikai/",
   /** 議案・議決結果の一覧ページ */
-  councilBillsDetailUrl: "https://gikai.city.fukuoka.lg.jp/result/result/",
-  twitterHashtag: "みらい議会福岡市版", // # なし
+  // TODO: 足立区議会の議案・議決結果一覧ページの正確なURLに更新する
+  councilBillsDetailUrl:
+    "https://www.city.adachi.tokyo.jp/kugikai/gikai/gikai/",
+  twitterHashtag: "みらい議会足立区版", // # なし
   externalLinks: {
+    // TODO: 足立区版の問題報告フォームURLに差し替える（現状は福岡市版のフォーム）
     report: "https://forms.gle/PbZdpdRzTrsAuDST7",
     aboutNote: "",
     donation: "https://team-mir.ai/support/donation",
@@ -41,10 +44,11 @@ export const siteConfig = {
    * 利用規約や問い合わせ先に使用します。
    */
   operator: {
+    // TODO: 足立区版の運営者名・問い合わせ先に差し替える（現状は福岡市版の値）
     name: "バクモン" as string,
     contactUrl: "https://x.com/bakumon0907" as string,
     /** 利用規約の準拠法・管轄裁判所（第一審の専属的合意管轄） */
-    jurisdiction: "福岡地方裁判所" as string,
+    jurisdiction: "東京地方裁判所" as string,
   },
   /**
    * AI機能の有効/無効設定

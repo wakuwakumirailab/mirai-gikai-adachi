@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `事務事業分析（${getYearLabel(year)}）`,
     description:
-      "福岡市の事務事業マネジメントシートをもとに、KPI・予算・効率の動向を分析したページです。",
+      "足立区の事務事業マネジメントシートをもとに、KPI・予算・効率の動向を分析したページです。",
   };
 }
 

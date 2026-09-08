@@ -88,7 +88,7 @@ function ChatMessages({
         {/* 初期メッセージ */}
         <div className="flex flex-col gap-1">
           <p className="text-sm font-bold leading-[1.8] text-mirai-text">
-            市議会や議案について、気になることをAIに質問してください。
+            区議会や議案について、気になることをAIに質問してください。
           </p>
           {billContext && (
             <p className="text-sm font-bold leading-[1.8] text-mirai-text">
@@ -103,7 +103,7 @@ function ChatMessages({
             ? [`この議案のポイントは？`, "この議案は私にどんな影響がある？"]
             : [
                 `${siteConfig.siteName}って何？`,
-                "市議会って何をするところ？",
+                "区議会って何をするところ？",
                 "注目の議案について教えて",
               ]
           ).map((question) => {

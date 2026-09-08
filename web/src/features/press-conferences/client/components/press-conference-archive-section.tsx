@@ -16,10 +16,10 @@ export function PressConferenceArchiveSection({ pressConferences }: Props) {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
         <h2 className="text-[22px] font-bold text-black leading-[1.48]">
-          市長記者会見
+          区長記者会見
         </h2>
         <p className="text-xs text-mirai-text-secondary">
-          高島市長が記者の皆さんと直接やりとりした内容をわかりやすくお届けします
+          足立区長が記者の皆さんと直接やりとりした内容をわかりやすくお届けします
         </p>
       </div>
 
@@ -47,7 +47,7 @@ export function PressConferenceArchiveSection({ pressConferences }: Props) {
 
       <div className="flex justify-center">
         <Button variant="outline" size="lg" asChild className="rounded-full">
-          <Link href="/press-conferences">市長記者会見を一覧で表示</Link>
+          <Link href="/press-conferences">区長記者会見を一覧で表示</Link>
         </Button>
       </div>
     </div>

@@ -74,7 +74,7 @@ export default async function Home() {
       {/* 本日の定例会セクション */}
       <CurrentCouncilSession session={currentSession} />
 
-      {/* 市長記者会見バナー */}
+      {/* 区長記者会見バナー */}
       {latestPressConference && (
         <Container className="pt-4">
           <PressConferenceNoticeBanner
@@ -98,7 +98,7 @@ export default async function Home() {
       {/* 予算・事務事業評価・お金の使い道（まとめてアコーディオン） */}
       <Container className="pt-3">
         <BannerAccordion
-          title="福岡市の予算・評価・お金の使い道"
+          title="足立区の予算・評価・お金の使い道"
           description="各局の重点施策、事務事業評価、財政の状況をまとめて見る"
         >
           {latestBudgetSession?.slug && (
@@ -122,7 +122,7 @@ export default async function Home() {
         </div>
       </Container>
 
-      {/* Archive セクション（過去の定例会・過去の予算・市長記者会見） */}
+      {/* Archive セクション（過去の定例会・過去の予算・区長記者会見） */}
       <div className="bg-mirai-surface-muted py-10">
         <Container>
           <div className="flex flex-col gap-8">

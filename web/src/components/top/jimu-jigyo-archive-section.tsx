@@ -10,7 +10,7 @@ export function JimuJigyoArchiveSection() {
           事務事業評価
         </h2>
         <p className="text-xs text-mirai-text-secondary">
-          市が実施する事業のKPI・予算・効率の動向を年度ごとに分析します
+          区が実施する事業のKPI・予算・効率の動向を年度ごとに分析します
         </p>
       </div>
 
