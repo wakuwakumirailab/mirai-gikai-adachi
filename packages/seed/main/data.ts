@@ -25,7 +25,7 @@ export const councilSessions: CouncilSessionInsert[] = [
   {
     name: "令和8年 第1回定例会（2・3月）",
     slug: "r8-1",
-    council_url: "https://www.city.adachi.tokyo.jp/kugikai/",
+    council_url: "https://www.gikai-adachi.jp/",
     start_date: "2026-02-17",
     end_date: "2026-03-27",
     is_active: true,
@@ -33,7 +33,7 @@ export const councilSessions: CouncilSessionInsert[] = [
   {
     name: "令和7年 第4回定例会（11・12月）",
     slug: "r7-4",
-    council_url: "https://www.city.adachi.tokyo.jp/kugikai/",
+    council_url: "https://www.gikai-adachi.jp/",
     start_date: "2025-11-25",
     end_date: "2025-12-12",
     is_active: false,

@@ -18,11 +18,9 @@ export const siteConfig = {
     "政策",
     "解説",
   ],
-  councilBaseUrl: "https://www.city.adachi.tokyo.jp/kugikai/",
-  /** 議案・議決結果の一覧ページ */
-  // TODO: 足立区議会の議案・議決結果一覧ページの正確なURLに更新する
-  councilBillsDetailUrl:
-    "https://www.city.adachi.tokyo.jp/kugikai/gikai/gikai/",
+  councilBaseUrl: "https://www.gikai-adachi.jp/",
+  /** 議案・議決結果の一覧ページ（平成14年第4回定例会以降の議決結果） */
+  councilBillsDetailUrl: "https://www.gikai-adachi.jp/g07_giketsu.asp?Sflg=2",
   twitterHashtag: "みらい議会足立区版", // # なし
   externalLinks: {
     report: "https://forms.gle/ipRL17jxKVc7z4nL9",
