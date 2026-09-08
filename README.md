@@ -20,21 +20,24 @@
 
 ### このリポジトリの構造
 
-このリポジトリはチームみらいが開発する「みらい議会」をベースにした **Fork（派生版）** です。
+このリポジトリはチームみらいが開発する「みらい議会」の福岡市版をさらに Fork した **足立区版** です。
 
 ```
-【チームみらい（上流）】
+【チームみらい（最上流）】team-mirai/mirai-gikai
   kawasaki/develop
        ↓ 良い更新があれば取り込む
-【このリポジトリ】bakumon1107/mirai-gikai-fukuoka-city
-  kawasaki/develop     ← 上流のコピー（コントリビューターは触らない）
-  fukuoka-city/develop ← 福岡市版の開発ブランチ ★ PRの送り先はここ
+【福岡市版（上流）】bakumon1107/mirai-gikai-fukuoka-city
+  fukuoka-city/develop
+       ↓ 良い更新があれば取り込む
+【このリポジトリ】wakuwakumirailab/mirai-gikai-adachi
+  fukuoka-city/develop ← 上流（福岡市版）のコピー（コントリビューターは触らない）
+  adachi/develop       ← 足立区版の開発ブランチ ★ PRの送り先はここ
        ↑ PR を送る
-【コントリビューター】your-name/mirai-gikai-fukuoka-city（Fork）
+【コントリビューター】your-name/mirai-gikai-adachi（Fork）
   feature/your-feature  ← ブランチ名は自由
 ```
 
-**`kawasaki/develop` はチームみらいの更新を取り込む専用レーンです。コントリビューターは `fukuoka-city/develop` だけ意識してください。**
+**`fukuoka-city/develop` は福岡市版の更新を取り込む専用レーンです。コントリビューターは `adachi/develop` だけ意識してください。**
 
 ### ローカル環境のセットアップ
 
@@ -42,8 +45,8 @@
 
 ```bash
 # 1. クローン
-git clone https://github.com/bakumon1107/mirai-gikai-fukuoka-city.git
-cd mirai-gikai-fukuoka-city
+git clone https://github.com/wakuwakumirailab/mirai-gikai-adachi.git
+cd mirai-gikai-adachi
 
 # 2. 環境変数を設定
 cp .env.example .env
@@ -69,13 +72,13 @@ pnpm dev   # web(:3000) + admin(:3001)
 
 #### Step 1 — このリポジトリを Fork する
 
-GitHub 右上の「Fork」ボタンで自分のアカウントにコピーを作ります（`your-name/mirai-gikai-fukuoka-city`）。Fork 先があなたの作業場所になります。
+GitHub 右上の「Fork」ボタンで自分のアカウントにコピーを作ります（`your-name/mirai-gikai-adachi`）。Fork 先があなたの作業場所になります。
 
 #### Step 2 — Fork したリポジトリをクローンしてセットアップ
 
 ```bash
-git clone https://github.com/<your-name>/mirai-gikai-fukuoka-city.git
-cd mirai-gikai-fukuoka-city
+git clone https://github.com/<your-name>/mirai-gikai-adachi.git
+cd mirai-gikai-adachi
 cp .env.example .env
 pnpm install
 npx supabase start && pnpm db:reset
@@ -102,8 +105,8 @@ push すると GitHub 上に「Compare & pull request」ボタンが表示され
 
 | 項目 | 値 |
 |------|-----|
-| base repository | `bakumon1107/mirai-gikai-fukuoka-city` |
-| base branch | `fukuoka-city/develop` |
+| base repository | `wakuwakumirailab/mirai-gikai-adachi` |
+| base branch | `adachi/develop` |
 
 > [!TIP]
 > 「Compare & pull request」ボタンを使うと base repository が自動で上記に設定されます。自分の Fork 内で PR を確認してから送ることも可能です。

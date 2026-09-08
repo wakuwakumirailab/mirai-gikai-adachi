@@ -5,7 +5,7 @@ on:
     paths:
       - '.github/workflows/**'
   push:
-    branches: [fukuoka-city/develop]
+    branches: [adachi/develop]
     paths:
       - '.github/workflows/**'
 
