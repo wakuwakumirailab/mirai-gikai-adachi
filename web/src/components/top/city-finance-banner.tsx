@@ -1,7 +1,7 @@
 import { Coins, ExternalLink } from "lucide-react";
 
-// TODO: entity（自治体コード）が足立区のものか確認する。pref=13 は東京都、
-// entity=131211 は足立区の想定（JIS 市区町村コード）。
+// pref=13（東京都）、entity=131211（足立区の全国地方公共団体コード）。
+// 上記URLを開くと「東京都 足立区」の歳入・歳出が表示されることを確認済み。
 const TAX_MAP_URL =
   "https://inshatancountry-jpn-tax-map.com/local-tax/?pref=13&entity=131211";
 
