@@ -25,8 +25,7 @@ export const siteConfig = {
     "https://www.city.adachi.tokyo.jp/kugikai/gikai/gikai/",
   twitterHashtag: "みらい議会足立区版", // # なし
   externalLinks: {
-    // TODO: 足立区版の問題報告フォームURLに差し替える（現状は福岡市版のフォーム）
-    report: "https://forms.gle/PbZdpdRzTrsAuDST7",
+    report: "https://forms.gle/ipRL17jxKVc7z4nL9",
     aboutNote: "",
     donation: "https://team-mir.ai/support/donation",
     teamAbout: "https://team-mir.ai/about",
