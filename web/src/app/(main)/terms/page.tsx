@@ -39,11 +39,15 @@ export default function TermsPage() {
               `${siteConfig.operator.name}（以下「当団体」といいます。）または第三者の権利・利益を侵害する行為`,
               "サーバへの過剰な負荷、システムへの妨害・改ざん・侵入行為",
               "自動化ツール、ボット等による操作",
-              "本サービスの提供するAIチャット機能に個人情報を入力する行為",
+              // AIチャット機能は現在無効（site.config.ts の features.aiChat = false）のため除外。
+              // 有効化する際は次の行を戻すこと:
+              // "本サービスの提供するAIチャット機能に個人情報を入力する行為",
               "その他、当団体が不適切と判断する一切の行為",
             ]}
           />
 
+          {/* AIチャット機能は現在無効（site.config.ts の features.aiChat = false）のため非表示。
+              有効化する際は以下のブロックのコメントアウトを解除すること。
           <div className="space-y-3">
             <LegalParagraph>
               特に、ユーザーは、本サービスの提供するAIチャット機能を不正に利用してはならず、以下の行為を行ってはなりません。
@@ -59,6 +63,7 @@ export default function TermsPage() {
               ]}
             />
           </div>
+          */}
         </section>
 
         <section className="space-y-4">

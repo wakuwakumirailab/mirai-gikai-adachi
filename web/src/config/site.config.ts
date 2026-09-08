@@ -44,7 +44,7 @@ export const siteConfig = {
     /** 運営者（＝当団体。利用規約・プライバシーポリシー・コピーライト表記に使用） */
     name: "ワクワクみらい政策ラボ" as string,
     /** 開発者（トップ・FAQの「開発者（◯◯）にご連絡」表記に使用） */
-    developerName: "@miyuki_miru0707" as string,
+    developerName: "みる" as string,
     /** 問い合わせ先（開発者のXアカウント） */
     contactUrl: "https://x.com/miyuki_miru0707" as string,
     /** 利用規約の準拠法・管轄裁判所（第一審の専属的合意管轄） */
