@@ -25,14 +25,14 @@ export function Hero() {
       <h1 className="sr-only">{siteConfig.siteName}</h1>
 
       {/*
-        キャッチコピー。
+        キャッチコピー。イラストの上でも読めるよう白の半透明地を敷く。
         md 未満は固定ヘッダーがヒーロー上部（約80px）に重なるため、
-        ヘッダーを避けた位置に下げ、可読性確保のため白の半透明地を敷く。
+        ヘッダーを避けた位置まで下げる。
         md 以上はレイアウト側の mt-24 でヘッダーと重ならないので、
-        空が開いている右上にそのまま載せる。
+        空が開いていて木の葉ともぶつからない右上に配置する。
       */}
-      <div className="absolute right-[3%] top-[44%] w-[64%] md:top-[8%] md:w-[66%]">
-        <p className="whitespace-nowrap rounded-lg bg-white/70 px-2 py-1 text-center font-bold leading-[1.9] text-mirai-text drop-shadow-sm text-[clamp(0.6rem,3.5cqw,1.75rem)] md:bg-transparent md:px-0 md:py-0">
+      <div className="absolute right-[3%] top-[44%] w-[64%] md:top-[10%] md:right-[2%] md:w-[58%]">
+        <p className="whitespace-nowrap rounded-lg bg-white/70 px-2 py-1 text-center font-bold leading-[1.9] text-mirai-text drop-shadow-sm text-[clamp(0.6rem,3.5cqw,1.75rem)] md:px-4 md:py-2 md:text-[clamp(0.6rem,3.2cqw,1.6rem)]">
           いま{siteConfig.councilName}で話されていることを
           <br />
           やさしい言葉で説明します
