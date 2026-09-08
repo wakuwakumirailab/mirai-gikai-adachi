@@ -41,12 +41,15 @@ export const siteConfig = {
   managingParty: "" as string,
   /**
    * サービス運営者情報
-   * 利用規約や問い合わせ先に使用します。
+   * 利用規約・プライバシーポリシー・著作権表示に使用します。
    */
   operator: {
-    // TODO: 足立区版の運営者名・問い合わせ先に差し替える（現状は福岡市版の値）
-    name: "バクモン" as string,
-    contactUrl: "https://x.com/bakumon0907" as string,
+    /** 運営者（＝当団体。利用規約・プライバシーポリシー・コピーライト表記に使用） */
+    name: "ワクワクみらい政策ラボ" as string,
+    /** 開発者（トップ・FAQの「開発者（◯◯）にご連絡」表記に使用） */
+    developerName: "@miyuki_miru0707" as string,
+    /** 問い合わせ先（開発者のXアカウント） */
+    contactUrl: "https://x.com/miyuki_miru0707" as string,
     /** 利用規約の準拠法・管轄裁判所（第一審の専属的合意管轄） */
     jurisdiction: "東京地方裁判所" as string,
   },

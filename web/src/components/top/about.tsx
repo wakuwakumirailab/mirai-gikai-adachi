@@ -100,7 +100,7 @@ export function About() {
                     rel="noreferrer"
                     className="underline underline-offset-2 hover:opacity-70 transition-opacity"
                   >
-                    {siteConfig.operator.name}
+                    {siteConfig.operator.developerName}
                   </Link>
                   にご連絡お願いします。
                 </p>

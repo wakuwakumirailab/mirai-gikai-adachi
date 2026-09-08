@@ -42,7 +42,7 @@ const faqs: FaqItem[] = [
           rel="noreferrer"
           className="underline underline-offset-2"
         >
-          {siteConfig.operator.name}
+          {siteConfig.operator.developerName}
         </Link>
         ）にご連絡ください。
       </>
@@ -92,7 +92,7 @@ const faqs: FaqItem[] = [
           rel="noreferrer"
           className="underline underline-offset-2"
         >
-          {siteConfig.operator.name}
+          {siteConfig.operator.developerName}
         </Link>
         ）までご連絡ください。なお、チームみらいの公式窓口への連絡はご遠慮ください。
       </>
