@@ -7,6 +7,9 @@ node_modules
 # sample files
 docs/fukuoka/sample/
 
+# 福岡市版メンテナへ直接手渡す報告メモ（リポジトリには含めない）
+docs/adachi/20260908_福岡市版seedバグ報告.md
+
 # env files
 .env
 .env.*
