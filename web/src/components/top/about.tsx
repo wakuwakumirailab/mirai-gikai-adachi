@@ -64,10 +64,11 @@ export function About() {
                   <LinkButton
                     href="https://team-mir.ai/"
                     icon={{
-                      src: "/icons/sns/icon_web.svg",
+                      // 縦横比 42:36 のため高さは 21 で指定する
+                      src: "/icons/team-mirai-mark.svg",
                       alt: "",
-                      width: 22,
-                      height: 22,
+                      width: 24,
+                      height: 21,
                     }}
                   >
                     「チームみらい」について
