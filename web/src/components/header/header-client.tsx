@@ -42,7 +42,7 @@ export function HeaderClient({ difficultyLevel }: HeaderClientProps) {
                 width={800}
                 height={86}
                 priority
-                className="h-auto w-[36vw] min-[420px]:w-[34vw] sm:h-7 sm:w-auto"
+                className="h-auto w-[30vw] min-[420px]:w-[28vw] sm:h-5 sm:w-auto"
               />
             </Link>
           </div>
