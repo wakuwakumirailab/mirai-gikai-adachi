@@ -31,13 +31,18 @@ export function HeaderClient({ difficultyLevel }: HeaderClientProps) {
               className="flex items-center space-x-2"
               aria-label="ホーム"
             >
+              {/*
+                ロゴは横長（約9.3:1）でヘッダーの幅を大きく使うため、
+                狭い画面では高さ固定ではなく画面幅に追従させ、
+                右側のナビ（詳しく・検索・メニュー）が折り返さないようにする。
+              */}
               <Image
                 src="/img/brand-logo.png"
                 alt={siteConfig.siteName}
                 width={800}
-                height={97}
+                height={86}
                 priority
-                className="h-4 w-auto min-[420px]:h-5 sm:h-7"
+                className="h-auto w-[36vw] min-[420px]:w-[34vw] sm:h-7 sm:w-auto"
               />
             </Link>
           </div>
