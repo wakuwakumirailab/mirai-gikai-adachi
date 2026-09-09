@@ -22,6 +22,7 @@ export function Footer() {
         <FooterPrimaryLinks />
         <FooterPolicies />
         <FooterDisclaimer />
+        <FooterOperator />
         {siteConfig.features.showTeamMiraiSection && <FooterCopyright />}
       </div>
     </footer>
@@ -94,8 +95,19 @@ function FooterPolicies() {
 
 function FooterDisclaimer() {
   return (
-    <p className="text-[11px] text-slate-500 text-center mt-1 mb-3">
+    <p className="text-[11px] text-slate-500 text-center mt-1 mb-3 leading-relaxed">
       このサービスは政党チームみらいが運営しているものではありません
+      <br />
+      また、{siteConfig.cityName}、{siteConfig.councilName}
+      の公式サイトではありません。
+    </p>
+  );
+}
+
+function FooterOperator() {
+  return (
+    <p className="text-[12px] font-medium text-slate-700 text-center mb-2">
+      運営：{siteConfig.operator.name}
     </p>
   );
 }
