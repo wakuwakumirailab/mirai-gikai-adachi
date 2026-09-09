@@ -1,15 +1,20 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Lexend_Giga, Noto_Sans_JP } from "next/font/google";
+import { BIZ_UDPGothic, Lexend_Giga } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { siteConfig } from "@/config/site.config";
 import type { ReactNode } from "react";
 import { env } from "@/lib/env";
 
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
+/**
+ * 本文フォント。モリサワのユニバーサルデザイン書体 BIZ UDPGothic を使用する。
+ * 字面が大きく字形の判別がしやすいため、弱視・ディスレクシアの方にも読みやすい。
+ * ウェイトは 400 / 700 の2種のみ提供されている点に注意。
+ */
+const bizUDPGothic = BIZ_UDPGothic({
+  variable: "--font-ud-gothic",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "700"],
 });
 
 const lexendGiga = Lexend_Giga({
@@ -85,7 +90,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSansJP.variable} ${lexendGiga.variable} font-sans antialiased bg-mirai-surface-light`}
+        className={`${bizUDPGothic.variable} ${lexendGiga.variable} font-sans antialiased bg-mirai-surface-light`}
       >
         <NextTopLoader showSpinner={false} color="#408cba" />
         {children}

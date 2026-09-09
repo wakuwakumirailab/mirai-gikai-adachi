@@ -12,7 +12,7 @@ export function About() {
           <h2>
             <Image
               src="/icons/about-typography.svg"
-              alt="About"
+              alt="このサイトについて"
               width={143}
               height={36}
               priority

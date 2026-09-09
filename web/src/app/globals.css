@@ -16,8 +16,15 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-noto-sans-jp);
+  --font-sans: var(--font-ud-gothic);
   --font-lexend: var(--font-lexend-giga);
+
+  /* 日本語の可読性のため、本文系の行間をUD指針（1.7〜1.8）に広げる。
+     Tailwind 既定は text-sm=1.43 / text-base=1.5 と日本語には狭い */
+  --text-xs--line-height: 1.7;
+  --text-sm--line-height: 1.75;
+  --text-base--line-height: 1.75;
+  --text-lg--line-height: 1.7;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -135,7 +142,9 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #6fa9cc;
-  --primary-accent: #408cba;
+  /* ロゴの青(#408cba)より一段濃い。文字・フォーカスリングで
+     WCAG AA（文字4.5:1 / 非テキスト3:1）を満たすための値 */
+  --primary-accent: #33769e;
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -208,7 +217,7 @@
   }
 
   *:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary-accent);
     outline-offset: 2px;
   }
 
@@ -218,7 +227,7 @@
   }
 
   button:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary-accent);
     outline-offset: 2px;
   }
 
@@ -228,7 +237,7 @@
   }
 
   a:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary-accent);
     outline-offset: 2px;
   }
 
@@ -238,7 +247,7 @@
   }
 
   table:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid var(--primary-accent);
     outline-offset: 2px;
   }
 

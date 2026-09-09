@@ -40,7 +40,7 @@ export function PreviousSessionSection({
         <h2>
           <Image
             src="/icons/archive-typography.svg"
-            alt="Archive"
+            alt="アーカイブ"
             width={156}
             height={36}
             priority
