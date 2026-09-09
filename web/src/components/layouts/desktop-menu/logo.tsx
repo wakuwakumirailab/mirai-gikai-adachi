@@ -9,42 +9,28 @@ export function DesktopMenuLogo() {
   return (
     <Link
       href="/"
-      className="fixed top-6 left-6 z-50 flex items-center gap-6 hover:opacity-90 transition-opacity"
+      className="fixed top-6 left-6 z-50 flex flex-col gap-2 hover:opacity-90 transition-opacity"
     >
-      {/* ロゴ */}
-      <div className="relative w-[116px] h-[98.38px]">
-        <Image
-          src="/img/logo.svg"
-          alt={`${siteConfig.siteName}ロゴ`}
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
+      {/* ロゴ（サイト名を含むワードマーク） */}
+      <Image
+        src="/img/brand-logo.png"
+        alt={`${siteConfig.siteName}ロゴ`}
+        width={800}
+        height={97}
+        priority
+        className="h-10 w-auto"
+      />
 
-      {/* テキスト */}
-      <div className="flex flex-col gap-1.5">
-        <h1
-          className="font-extrabold text-black"
-          style={{
-            fontSize: "36px",
-            lineHeight: "1em",
-            letterSpacing: "0.1em",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {siteConfig.siteName}
-        </h1>
-        <p
-          className="font-bold text-black"
-          style={{
-            fontSize: "16px",
-            lineHeight: "2em",
-          }}
-        >
-          区議会の議論をわかりやすく
-        </p>
-      </div>
+      {/* キャッチコピー */}
+      <p
+        className="font-bold text-black"
+        style={{
+          fontSize: "16px",
+          lineHeight: "1.6em",
+        }}
+      >
+        区議会の議論をわかりやすく
+      </p>
     </Link>
   );
 }

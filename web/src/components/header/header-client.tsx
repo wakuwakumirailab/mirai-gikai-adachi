@@ -31,17 +31,14 @@ export function HeaderClient({ difficultyLevel }: HeaderClientProps) {
               className="flex items-center space-x-2"
               aria-label="ホーム"
             >
-              {siteConfig.features.showTeamMiraiSection && (
-                <Image
-                  src="/img/logo.svg"
-                  alt={siteConfig.siteName}
-                  width={42}
-                  height={36}
-                />
-              )}
-              <div className="text-sm sm:text-base font-bold whitespace-nowrap">
-                {siteConfig.siteName}
-              </div>
+              <Image
+                src="/img/brand-logo.png"
+                alt={siteConfig.siteName}
+                width={800}
+                height={97}
+                priority
+                className="h-4 w-auto min-[420px]:h-5 sm:h-7"
+              />
             </Link>
           </div>
 

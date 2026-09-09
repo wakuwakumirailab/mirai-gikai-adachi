@@ -17,7 +17,8 @@ export function Footer() {
   return (
     <footer className="bg-mirai-gradient text-slate-900">
       <div className="mx-auto flex w-full max-w-[500px] flex-col items-center px-6 py-14 pb-20 text-center">
-        {siteConfig.features.showTeamMiraiSection && <FooterLogoSection />}
+        {/* サイト自身のワードマークのため、チームみらい表記のフラグとは切り離して常に表示する */}
+        <FooterLogoSection />
         <FooterPrimaryLinks />
         <FooterPolicies />
         <FooterDisclaimer />
@@ -32,11 +33,11 @@ function FooterLogoSection() {
     <div className="flex flex-col items-center text-center mb-9">
       <Link href="/" aria-label={`${siteConfig.siteName} トップページ`}>
         <Image
-          src="/img/logo.svg"
+          src="/img/brand-logo.png"
           alt={siteConfig.siteName}
-          width={150}
-          height={128}
-          className="h-auto"
+          width={800}
+          height={97}
+          className="h-8 w-auto"
         />
       </Link>
     </div>

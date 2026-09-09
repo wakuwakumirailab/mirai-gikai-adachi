@@ -64,9 +64,9 @@ export function About() {
                   <LinkButton
                     href="https://team-mir.ai/"
                     icon={{
-                      src: "/img/logo.svg",
+                      src: "/icons/sns/icon_web.svg",
                       alt: "",
-                      width: 23,
+                      width: 22,
                       height: 22,
                     }}
                   >
