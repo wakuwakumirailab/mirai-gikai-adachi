@@ -31,8 +31,15 @@ export const metadata: Metadata = {
   description: siteConfig.siteDescription,
   keywords: [...siteConfig.keywords],
   icons: {
-    icon: "/icons/pwa/icon_adachi.svg",
-    apple: "/icons/pwa/icon_adachi.svg",
+    icon: [
+      {
+        url: "/icons/pwa/icon_adachi_192.png",
+        type: "image/png",
+        sizes: "192x192",
+      },
+    ],
+    // iOS は apple-touch-icon の SVG に非対応のため PNG を指定する
+    apple: [{ url: "/icons/pwa/icon_adachi_apple_180.png", sizes: "180x180" }],
   },
   manifest: "/manifest.json",
   openGraph: {
