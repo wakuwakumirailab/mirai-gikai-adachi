@@ -95,7 +95,7 @@ export default async function Home() {
       <Container className="pt-3">
         <BannerAccordion
           title="足立区の予算・評価・お金の使い道"
-          description="各局の重点施策、事務事業評価、財政の状況をまとめて見る"
+          description="各部の重点施策、事務事業評価、財政の状況をまとめて見る"
         >
           {latestBudgetSession?.slug && (
             <BudgetOverviewBanner sessionSlug={latestBudgetSession.slug} />

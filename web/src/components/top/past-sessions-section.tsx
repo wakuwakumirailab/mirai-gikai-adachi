@@ -14,9 +14,9 @@ const MAX_VISIBLE_SESSIONS = 5;
 function toBudgetLabel(sessionName: string): string {
   const match = sessionName.match(/令和(\d+)年/);
   if (match) {
-    return `令和${match[1]}年度 各局の重点施策`;
+    return `令和${match[1]}年度 各部の重点施策`;
   }
-  return `${sessionName} 各局の重点施策`;
+  return `${sessionName} 各部の重点施策`;
 }
 
 export function PastSessionsSection({
@@ -89,7 +89,7 @@ export function PastSessionsSection({
             過去の予算
           </h2>
           <p className="text-xs text-mirai-text-secondary">
-            各局の重点施策・方向性をわかりやすく解説しています
+            各部の重点施策・方向性をわかりやすく解説しています
           </p>
         </div>
 

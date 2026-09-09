@@ -138,7 +138,7 @@ export default function TopicsDPage() {
         パターン D：市民向けキャッチー型
       </p>
       <h1 className="text-2xl font-bold text-mirai-text mb-1">
-        市議会で何が決まった？
+        区議会で何が決まった？
       </h1>
       <p className="text-sm text-mirai-text-secondary mb-8">
         議員が問い、市が答えた。あなたの暮らしに関わる取り組みをまとめました。
