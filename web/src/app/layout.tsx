@@ -24,7 +24,7 @@ const lexendGiga = Lexend_Giga({
 });
 
 const ogImage = {
-  url: "/ogp.jpg",
+  url: "/img/ogp-adachi.png",
   width: 1200,
   height: 630,
   alt: `${siteConfig.siteName}のOGPイメージ`,
