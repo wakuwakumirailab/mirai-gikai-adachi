@@ -3,6 +3,7 @@
 import { ExternalLink, Menu } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/config/site.config";
 import {
   Popover,
   PopoverContent,
@@ -52,7 +53,7 @@ export function HamburgerMenu() {
           </div>
           <div className="pt-3 mt-3 border-t border-mirai-border">
             <a
-              href="https://inshatancountry-jpn-tax-map.com/local-tax/?pref=40&entity=401307"
+              href={siteConfig.externalLinks.taxMap}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-2 py-2 text-sm text-mirai-text-secondary hover:text-primary-accent transition-colors"

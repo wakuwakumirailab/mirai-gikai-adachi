@@ -30,6 +30,14 @@ export const siteConfig = {
     terms: "https://team-mir.ai/terms",
     privacy: "https://team-mir.ai/privacy",
     faq: "https://team-mirai.notion.site/FAQ-28cf6f56bae180bd84e7f7ae80f806a1",
+    /**
+     * 税金の使い道マップ（外部サイト）。
+     * pref=13 は東京都、entity=131211 は足立区の全国地方公共団体コード。
+     * トップのバナーとハンバーガーメニューの両方から参照するため、
+     * URLはここに集約する（別地域向けにForkする場合はここだけ変更する）。
+     */
+    taxMap:
+      "https://inshatancountry-jpn-tax-map.com/local-tax/?pref=13&entity=131211",
   },
   /**
    * ページを管理する政党名（空文字列の場合は政党名を省略した汎用表現を使用）
