@@ -41,59 +41,56 @@ export const councilSessions: CouncilSessionInsert[] = [
 ];
 
 // 会派データ（足立区議会 サンプル）
+// 注: 「みらい」会派は足立区議会には存在しないため含めない。
+// これにより run.ts の faction_stances 投入（name === "mirai" を参照）は
+// スキップされ、実データ投入まで「会派の賛否」は非表示になる。
 export const factions: FactionInsert[] = [
-  {
-    name: "mirai",
-    display_name: "みらい",
-    sort_order: 1,
-    is_active: true,
-  },
   {
     name: "jimin-adachi",
     display_name: "自由民主党足立区議団",
-    sort_order: 2,
+    sort_order: 1,
     is_active: true,
   },
   {
     name: "komei",
     display_name: "公明党",
-    sort_order: 3,
+    sort_order: 2,
     is_active: true,
   },
   {
     name: "adachi-club",
     display_name: "足立区議会民主クラブ",
-    sort_order: 4,
+    sort_order: 3,
     is_active: true,
   },
   {
     name: "kyosan",
     display_name: "日本共産党足立区議団",
-    sort_order: 5,
+    sort_order: 4,
     is_active: true,
   },
   {
     name: "rikken-adachi",
     display_name: "立憲民主党・無所属の会",
-    sort_order: 6,
+    sort_order: 5,
     is_active: true,
   },
   {
     name: "ishin",
     display_name: "日本維新の会",
-    sort_order: 7,
+    sort_order: 6,
     is_active: true,
   },
   {
     name: "tomin-first",
     display_name: "都民ファーストの会あだち",
-    sort_order: 8,
+    sort_order: 7,
     is_active: true,
   },
   {
     name: "mushozoku",
     display_name: "無所属",
-    sort_order: 9,
+    sort_order: 8,
     is_active: true,
   },
 ];

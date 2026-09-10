@@ -184,7 +184,9 @@ async function seedDatabase() {
 
     console.log(`✅ Inserted ${insertedContents.length} bill contents`);
 
-    // Insert faction_stances (みらい会派の見解)
+    // Insert faction_stances
+    // 注: 足立区版では "mirai" 会派を seed しないため、このブロックは実行されない。
+    // 実データの会派別賛否は admin から取り込む。
     console.log("🎯 Inserting faction stances...");
     const miraiFaction = insertedFactions.find((f) => f.name === "mirai");
     let insertedStancesCount = 0;
