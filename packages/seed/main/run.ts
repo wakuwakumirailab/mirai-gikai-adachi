@@ -1,9 +1,9 @@
 import {
-  bills,
   tags,
   councilSessions,
   factions,
   committees,
+  createBills,
   createCouncilMembers,
   createCouncilMemberCommittees,
   createFactionStances,
@@ -64,7 +64,7 @@ async function seedDatabase() {
       await supabase
         .from("council_sessions")
         .insert(councilSessions)
-        .select("id");
+        .select("id, slug");
 
     if (councilSessionsError) {
       throw new Error(
@@ -159,8 +159,10 @@ async function seedDatabase() {
       `✅ Inserted ${councilMemberCommittees.length} council member-committee relations`
     );
 
-    // Insert bills
+    // Insert bills（足立区議会公式サイトの実データ。council_session_id は
+    // スラッグ経由で挿入済みセッションのIDへ解決してから挿入する）
     console.log("📄 Inserting bills...");
+    const bills = createBills(insertedCouncilSessions);
     const { data: insertedBills, error: billsError } = await supabase
       .from("bills")
       .insert(bills)
@@ -176,56 +178,29 @@ async function seedDatabase() {
 
     console.log(`✅ Inserted ${insertedBills.length} bills`);
 
-    // Link first 3 bills to the current council session
-    const currentSessionId = insertedCouncilSessions[0]?.id;
-    if (currentSessionId) {
-      const billsToLink = insertedBills.slice(0, 3);
-      for (const bill of billsToLink) {
-        await supabase
-          .from("bills")
-          .update({ council_session_id: currentSessionId })
-          .eq("id", bill.id);
-      }
-      console.log(
-        `🔗 Linked ${billsToLink.length} bills to current council session`
-      );
-    }
-
-    // Link last 5 bills to the previous council session
-    const previousSessionId = insertedCouncilSessions[1]?.id;
-    if (previousSessionId) {
-      const previousBills = insertedBills.slice(-5);
-      for (const bill of previousBills) {
-        await supabase
-          .from("bills")
-          .update({ council_session_id: previousSessionId })
-          .eq("id", bill.id);
-      }
-      console.log(
-        `🔗 Linked ${previousBills.length} bills to previous council session`
-      );
-    }
-
     // Insert bill_contents
+    // 注: 実データ投入（165件）に伴い、旧・仮議案向けのAI解説データは削除済み。
+    // わかりやすい解説（bill_contents）はレビューを経て別途投入する。
     console.log("📚 Inserting bill contents...");
     const billContents = createBillContents(insertedBills);
+    let insertedContentsCount = 0;
 
-    const { data: insertedContents, error: contentsError } = await supabase
-      .from("bill_contents")
-      .insert(billContents)
-      .select("id");
+    if (billContents.length > 0) {
+      const { data: insertedContents, error: contentsError } = await supabase
+        .from("bill_contents")
+        .insert(billContents)
+        .select("id");
 
-    if (contentsError) {
-      throw new Error(
-        `Failed to insert bill contents: ${contentsError.message}`
-      );
+      if (contentsError) {
+        throw new Error(
+          `Failed to insert bill contents: ${contentsError.message}`
+        );
+      }
+
+      insertedContentsCount = insertedContents?.length ?? 0;
     }
 
-    if (!insertedContents) {
-      throw new Error("No bill contents were inserted");
-    }
-
-    console.log(`✅ Inserted ${insertedContents.length} bill contents`);
+    console.log(`✅ Inserted ${insertedContentsCount} bill contents`);
 
     // Insert faction_stances
     // 注: 足立区版では "mirai" 会派を seed しないため、このブロックは実行されない。
@@ -595,7 +570,7 @@ async function seedDatabase() {
     console.log(`  Council Members: ${insertedCouncilMembers.length}`);
     console.log(`  Tags: ${insertedTags.length}`);
     console.log(`  Bills: ${insertedBills.length}`);
-    console.log(`  Bill Contents: ${insertedContents.length}`);
+    console.log(`  Bill Contents: ${insertedContentsCount}`);
     console.log(`  Faction Stances: ${insertedStancesCount}`);
     console.log(`  Bills-Tags Relations: ${insertedBillsTags.length}`);
     console.log(`  Interview Config: ${interviewConfigData ? 1 : 0}`);

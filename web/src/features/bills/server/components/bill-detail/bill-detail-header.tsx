@@ -73,7 +73,7 @@ export async function BillDetailHeader({
             className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-4"
           >
             <ExternalLink className="h-3.5 w-3.5" />
-            議案原文（PDF）
+            出典を見る
           </a>
         )}
 

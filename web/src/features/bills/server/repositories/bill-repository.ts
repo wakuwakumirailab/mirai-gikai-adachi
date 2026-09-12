@@ -224,6 +224,7 @@ export async function findPublishedBillsByDietSession(
     )
     .eq("council_session_id", councilSessionId)
     .eq("publish_status", "published")
+    .eq("is_procedural", false)
     .eq("bill_contents.difficulty_level", difficultyLevel)
     .order("status_order", { ascending: true })
     .order("published_at", { ascending: false });
@@ -235,6 +236,29 @@ export async function findPublishedBillsByDietSession(
   }
 
   return data;
+}
+
+/**
+ * 会期に紐づく「その他の議案」（事務手続き議案 is_procedural = true）を取得。
+ * わかりやすい解説は付けず、一覧表示のみで公式サイトへリンクする。
+ */
+export async function findProceduralBillsByCouncilSession(
+  councilSessionId: string
+) {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("bills")
+    .select("id, bill_number, name, status, status_note, published_at")
+    .eq("council_session_id", councilSessionId)
+    .eq("publish_status", "published")
+    .eq("is_procedural", true)
+    .order("published_at", { ascending: true });
+
+  if (error) {
+    throw new Error(`Failed to fetch procedural bills: ${error.message}`);
+  }
+
+  return data ?? [];
 }
 
 /**

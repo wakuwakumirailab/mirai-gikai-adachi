@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import { ChevronRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import { BillListWithStatusFilter } from "@/features/council-sessions/client/components/bill-list-with-status-filter";
 import { groupBillsByTag } from "../../shared/utils/group-bills-by-tag";
@@ -10,9 +11,15 @@ import { BillsByTagSection } from "./bills-by-tag-section";
 interface SessionBillsPageProps {
   session: CouncilSession;
   bills: BillWithContent[];
+  /** 指定管理者の指定・契約等、解説なしで一覧のみ表示する議案の件数 */
+  proceduralBillCount?: number;
 }
 
-export function SessionBillsPage({ session, bills }: SessionBillsPageProps) {
+export function SessionBillsPage({
+  session,
+  bills,
+  proceduralBillCount = 0,
+}: SessionBillsPageProps) {
   const startDate = new Date(session.start_date);
   const endDate = new Date(session.end_date ?? session.start_date);
   const sessionDescription = `${startDate.getFullYear()}.${startDate.getMonth() + 1}月〜${endDate.getMonth() + 1}月に実施された${session.name}`;
@@ -59,7 +66,7 @@ export function SessionBillsPage({ session, bills }: SessionBillsPageProps) {
       {/* 全議案リスト（ステータスフィルター付き） */}
       {bills.length === 0 ? (
         <p className="text-center py-12 text-muted-foreground">
-          この定例会の議案はまだありません
+          わかりやすい解説つきの議案は準備中です
         </p>
       ) : (
         <section className="flex flex-col gap-4">
@@ -68,6 +75,24 @@ export function SessionBillsPage({ session, bills }: SessionBillsPageProps) {
           </h2>
           <BillListWithStatusFilter bills={bills} />
         </section>
+      )}
+
+      {/* その他の議案（事務手続き議案）への導線 */}
+      {proceduralBillCount > 0 && (
+        <Link
+          href={`/sessions/${session.slug}/other-bills`}
+          className="flex items-center justify-between gap-2 rounded-2xl border border-mirai-border bg-white px-5 py-4 hover:border-primary/50 hover:shadow-md transition-all duration-200"
+        >
+          <div>
+            <p className="font-bold text-mirai-text">
+              その他の議案（{proceduralBillCount}件）
+            </p>
+            <p className="mt-0.5 text-sm text-mirai-text-secondary">
+              指定管理者の指定・契約・購入など、事務手続き的な議案を一覧で確認できます
+            </p>
+          </div>
+          <ChevronRight className="w-5 h-5 text-mirai-text-muted shrink-0" />
+        </Link>
       )}
 
       {/* 区議会リンク */}

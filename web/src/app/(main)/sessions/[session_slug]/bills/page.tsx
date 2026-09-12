@@ -4,6 +4,7 @@ import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { SessionBillsPage } from "@/features/bills/server/components/session-bills-page";
 import { getSessionBills } from "@/features/bills/server/loaders/get-session-bills";
+import { getSessionProceduralBills } from "@/features/bills/server/loaders/get-session-procedural-bills";
 import { getCouncilSessionBySlug } from "@/features/council-sessions/server/loaders/get-council-session-by-slug";
 
 interface SessionBillsRouteProps {
@@ -42,11 +43,18 @@ export default async function SessionBillsRoute({
     notFound();
   }
 
-  const bills = await getSessionBills(session.id, difficultyLevel);
+  const [bills, proceduralBills] = await Promise.all([
+    getSessionBills(session.id, difficultyLevel),
+    getSessionProceduralBills(session.id),
+  ]);
 
   return (
     <Container className="py-10">
-      <SessionBillsPage session={session} bills={bills} />
+      <SessionBillsPage
+        session={session}
+        bills={bills}
+        proceduralBillCount={proceduralBills.length}
+      />
     </Container>
   );
 }
