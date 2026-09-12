@@ -9,6 +9,10 @@ type CouncilSessionInsert =
   Database["public"]["Tables"]["council_sessions"]["Insert"];
 type FactionInsert = Database["public"]["Tables"]["factions"]["Insert"];
 type CommitteeInsert = Database["public"]["Tables"]["committees"]["Insert"];
+type CouncilMemberInsert =
+  Database["public"]["Tables"]["council_members"]["Insert"];
+type CouncilMemberCommitteeInsert =
+  Database["public"]["Tables"]["council_member_committees"]["Insert"];
 type InterviewConfigInsert =
   Database["public"]["Tables"]["interview_configs"]["Insert"];
 type InterviewQuestionInsert =
@@ -126,6 +130,128 @@ export const committees: CommitteeInsert[] = [
     description: "学校教育、生涯学習、子育て支援などについての審査",
     sort_order: 5,
     is_active: true,
+  },
+];
+
+// 議員データ（仮データ）
+// TODO: 足立区議会の実際の議員名簿に差し替える。
+// factionName / committeeNames は挿入時に factions / committees の
+// 実IDへ解決するための一時的なキー（DBカラムではない）。
+type CouncilMemberSeed = {
+  name: string;
+  factionName: string;
+  committeeNames: string[];
+  sortOrder: number;
+};
+
+export const councilMembersSeed: CouncilMemberSeed[] = [
+  {
+    name: "青木 康弘",
+    factionName: "jimin-adachi",
+    committeeNames: ["総務委員会"],
+    sortOrder: 1,
+  },
+  {
+    name: "石田 なおこ",
+    factionName: "jimin-adachi",
+    committeeNames: ["区民委員会"],
+    sortOrder: 2,
+  },
+  {
+    name: "上野 たかし",
+    factionName: "jimin-adachi",
+    committeeNames: ["建設委員会"],
+    sortOrder: 3,
+  },
+  {
+    name: "遠藤 さゆり",
+    factionName: "jimin-adachi",
+    committeeNames: ["文教委員会"],
+    sortOrder: 4,
+  },
+  {
+    name: "小田切 まさる",
+    factionName: "jimin-adachi",
+    committeeNames: ["厚生委員会", "総務委員会"],
+    sortOrder: 5,
+  },
+  {
+    name: "加藤 ひろみ",
+    factionName: "komei",
+    committeeNames: ["厚生委員会"],
+    sortOrder: 6,
+  },
+  {
+    name: "木村 しんじ",
+    factionName: "komei",
+    committeeNames: ["文教委員会"],
+    sortOrder: 7,
+  },
+  {
+    name: "工藤 あきこ",
+    factionName: "komei",
+    committeeNames: ["区民委員会"],
+    sortOrder: 8,
+  },
+  {
+    name: "阪本 ゆうすけ",
+    factionName: "adachi-club",
+    committeeNames: ["総務委員会"],
+    sortOrder: 9,
+  },
+  {
+    name: "柴田 みちこ",
+    factionName: "adachi-club",
+    committeeNames: ["建設委員会"],
+    sortOrder: 10,
+  },
+  {
+    name: "杉本 けんた",
+    factionName: "adachi-club",
+    committeeNames: ["厚生委員会", "区民委員会"],
+    sortOrder: 11,
+  },
+  {
+    name: "瀬戸 なつみ",
+    factionName: "kyosan",
+    committeeNames: ["文教委員会"],
+    sortOrder: 12,
+  },
+  {
+    name: "高梨 じろう",
+    factionName: "kyosan",
+    committeeNames: ["厚生委員会"],
+    sortOrder: 13,
+  },
+  {
+    name: "田村 ひでお",
+    factionName: "rikken-adachi",
+    committeeNames: ["総務委員会"],
+    sortOrder: 14,
+  },
+  {
+    name: "土屋 まゆみ",
+    factionName: "rikken-adachi",
+    committeeNames: ["建設委員会"],
+    sortOrder: 15,
+  },
+  {
+    name: "中野 たくや",
+    factionName: "ishin",
+    committeeNames: ["区民委員会"],
+    sortOrder: 16,
+  },
+  {
+    name: "野口 さちこ",
+    factionName: "tomin-first",
+    committeeNames: ["文教委員会"],
+    sortOrder: 17,
+  },
+  {
+    name: "橋本 かずお",
+    factionName: "mushozoku",
+    committeeNames: ["厚生委員会"],
+    sortOrder: 18,
   },
 ];
 
@@ -268,6 +394,52 @@ export function createFactionStances(
     bill_id: insertedBills[index]?.id || "",
     faction_id: miraiFactionId,
   }));
+}
+
+// 議員データを作成（会派名を実IDへ解決）
+export function createCouncilMembers(
+  insertedFactions: { id: string; name: string }[]
+): CouncilMemberInsert[] {
+  return councilMembersSeed.map((member) => {
+    const faction = insertedFactions.find(
+      (f) => f.name === member.factionName
+    );
+    return {
+      name: member.name,
+      faction_id: faction?.id ?? null,
+      sort_order: member.sortOrder,
+      is_active: true,
+    };
+  });
+}
+
+// 議員×委員会の紐付けを作成（挿入済み議員のidと委員会名を実IDへ解決）
+export function createCouncilMemberCommittees(
+  insertedMembers: { id: string; sort_order: number }[],
+  insertedCommittees: { id: string; name: string }[]
+): CouncilMemberCommitteeInsert[] {
+  const rows: CouncilMemberCommitteeInsert[] = [];
+
+  for (const seedMember of councilMembersSeed) {
+    const insertedMember = insertedMembers.find(
+      (m) => m.sort_order === seedMember.sortOrder
+    );
+    if (!insertedMember) continue;
+
+    for (const committeeName of seedMember.committeeNames) {
+      const committee = insertedCommittees.find(
+        (c) => c.name === committeeName
+      );
+      if (!committee) continue;
+
+      rows.push({
+        council_member_id: insertedMember.id,
+        committee_id: committee.id,
+      });
+    }
+  }
+
+  return rows;
 }
 
 // インタビュー設定を作成（最初の議案用）
