@@ -125,7 +125,7 @@ export default function FaqPage() {
     <LegalPageLayout
       title="よくあるご質問"
       description={`${siteConfig.siteName}に関するよくあるご質問をまとめています。`}
-      className="pt-24 md:pt-12"
+      className="md:pt-12"
     >
       <Container className="space-y-10">
         {faqs.map((faq) => (
