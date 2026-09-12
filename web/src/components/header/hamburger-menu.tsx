@@ -52,7 +52,16 @@ export function HamburgerMenu() {
             <RubyToggle />
             <TextSizeToggle />
           </div>
-          <div className="pt-3 mt-3 border-t border-mirai-border">
+          <div className="pt-3 mt-3 border-t border-mirai-border flex flex-col">
+            <a
+              href={siteConfig.councilBaseUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-2 py-2 text-sm text-mirai-text-secondary hover:text-primary-accent transition-colors"
+            >
+              <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+              {siteConfig.councilName}（外部サイト）
+            </a>
             <a
               href={siteConfig.externalLinks.taxMap}
               target="_blank"

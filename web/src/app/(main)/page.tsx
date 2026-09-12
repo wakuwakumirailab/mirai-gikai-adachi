@@ -1,5 +1,6 @@
 import { Container } from "@/components/layouts/container";
 import { About } from "@/components/top/about";
+import { ArchiveBanner } from "@/components/top/archive-banner";
 import { BannerAccordion } from "@/components/top/banner-accordion";
 import { BudgetOverviewBanner } from "@/components/top/budget-overview-banner";
 import { CityFinanceBanner } from "@/components/top/city-finance-banner";
@@ -8,7 +9,6 @@ import { GeneralQuestionsBanner } from "@/components/top/general-questions-banne
 import { JimuJigyoArchiveSection } from "@/components/top/jimu-jigyo-archive-section";
 import { JimuJigyoBanner } from "@/components/top/jimu-jigyo-banner";
 import { Hero } from "@/components/top/hero";
-import { PastSessionsSection } from "@/components/top/past-sessions-section";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { siteConfig } from "@/config/site.config";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
@@ -17,11 +17,9 @@ import { BillsByTagSection } from "@/features/bills/server/components/bills-by-t
 import { FeaturedBillSection } from "@/features/bills/server/components/featured-bill-section";
 import { loadHomeData } from "@/features/bills/server/loaders/load-home-data";
 import type { BillWithContent } from "@/features/bills/shared/types";
-import { getSessionsWithBudget } from "@/features/budget-overview/server/loaders/get-sessions-with-budget";
 import { getLatestBudgetSession } from "@/features/budget-overview/server/loaders/get-latest-budget-session";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 import { CurrentCouncilSession } from "@/features/council-sessions/client/components/current-council-session";
-import { getAllPastSessions } from "@/features/council-sessions/server/loaders/get-all-past-sessions";
 import { getCurrentCouncilSession } from "@/features/council-sessions/server/loaders/get-current-council-session";
 import { getLatestSessionWithQuestions } from "@/features/general-questions/server/loaders/get-latest-session-with-questions";
 import { PressConferenceArchiveSection } from "@/features/press-conferences/client/components/press-conference-archive-section";
@@ -37,8 +35,6 @@ export default async function Home() {
   const [
     currentSession,
     currentDifficulty,
-    pastSessions,
-    budgetSessions,
     latestQuestionsSlug,
     latestPressConference,
     pressConferences,
@@ -46,8 +42,6 @@ export default async function Home() {
   ] = await Promise.all([
     getCurrentCouncilSession(getJapanTime()),
     getDifficultyLevel(),
-    getAllPastSessions(),
-    getSessionsWithBudget(),
     getLatestSessionWithQuestions(),
     getLatestPressConference(),
     getPressConferences(),
@@ -118,14 +112,11 @@ export default async function Home() {
         </div>
       </Container>
 
-      {/* Archive セクション（過去の定例会・過去の予算・区長記者会見） */}
+      {/* Archive セクション（区長記者会見・事務事業評価のアーカイブ＋過去の資料への導線） */}
       <div className="bg-mirai-surface-muted py-10">
         <Container>
           <div className="flex flex-col gap-8">
-            <PastSessionsSection
-              sessions={pastSessions}
-              budgetSessions={budgetSessions}
-            />
+            <ArchiveBanner />
             <PressConferenceArchiveSection
               pressConferences={pressConferences}
             />
