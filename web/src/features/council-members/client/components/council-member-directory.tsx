@@ -4,20 +4,10 @@ import { Search, Users } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import type { CouncilMember } from "../../shared/types";
-import {
-  ALL_COMMITTEES,
-  ALL_FACTIONS,
-  filterCouncilMembers,
-} from "../../shared/utils/filter-council-members";
+import { filterCouncilMembers } from "../../shared/utils/filter-council-members";
 import { shuffle } from "../../shared/utils/shuffle";
+import { CheckboxFilterPopover } from "./checkbox-filter-popover";
 
 type Props = {
   members: CouncilMember[];
@@ -28,8 +18,8 @@ export function CouncilMemberDirectory({ members }: Props) {
   // （SSRとクライアントで乱数結果が食い違うハイドレーションエラーを避けるため）
   const [orderedMembers, setOrderedMembers] = useState(members);
   const [keyword, setKeyword] = useState("");
-  const [factionId, setFactionId] = useState<string>(ALL_FACTIONS);
-  const [committeeId, setCommitteeId] = useState<string>(ALL_COMMITTEES);
+  const [factionIds, setFactionIds] = useState<Set<string>>(new Set());
+  const [committeeIds, setCommitteeIds] = useState<Set<string>>(new Set());
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: 初回マウント時のみシャッフルしたいため members を依存配列に含めない
   useEffect(() => {
@@ -54,8 +44,12 @@ export function CouncilMemberDirectory({ members }: Props) {
 
   const filteredMembers = useMemo(
     () =>
-      filterCouncilMembers(orderedMembers, { keyword, factionId, committeeId }),
-    [orderedMembers, keyword, factionId, committeeId]
+      filterCouncilMembers(orderedMembers, {
+        keyword,
+        factionIds,
+        committeeIds,
+      }),
+    [orderedMembers, keyword, factionIds, committeeIds]
   );
 
   return (
@@ -74,33 +68,18 @@ export function CouncilMemberDirectory({ members }: Props) {
         </div>
 
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Select value={factionId} onValueChange={setFactionId}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="会派で絞り込み" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={ALL_FACTIONS}>すべての会派</SelectItem>
-              {factionOptions.map((f) => (
-                <SelectItem key={f.id} value={f.id}>
-                  {f.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-
-          <Select value={committeeId} onValueChange={setCommitteeId}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="委員会で絞り込み" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value={ALL_COMMITTEES}>すべての委員会</SelectItem>
-              {committeeOptions.map((c) => (
-                <SelectItem key={c.id} value={c.id}>
-                  {c.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <CheckboxFilterPopover
+            label="会派"
+            options={factionOptions}
+            selectedIds={factionIds}
+            onChange={setFactionIds}
+          />
+          <CheckboxFilterPopover
+            label="委員会"
+            options={committeeOptions}
+            selectedIds={committeeIds}
+            onChange={setCommitteeIds}
+          />
         </div>
       </div>
 

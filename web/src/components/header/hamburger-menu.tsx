@@ -14,11 +14,11 @@ import { TextSizeToggle } from "@/lib/text-size";
 
 const NAV_LINKS = [
   { href: "/", label: "トップページ" },
-  { href: "/sessions", label: "過去の定例会" },
-  { href: "/committees", label: "委員会" },
+  { href: "/assembly", label: "議会" },
+  { href: "/budget", label: "予算" },
   { href: "/members", label: "議員" },
-  { href: "/budget", label: "過去の予算" },
-  { href: "/press-conferences", label: "区長記者会見" },
+  { href: "/learn", label: "学ぶ" },
+  { href: "/archive", label: "過去の資料" },
 ] as const;
 
 export function HamburgerMenu() {

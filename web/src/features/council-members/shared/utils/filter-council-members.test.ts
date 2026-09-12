@@ -27,11 +27,11 @@ const members: CouncilMember[] = [
 ];
 
 describe("filterCouncilMembers", () => {
-  it("returns all members when filters are empty/all", () => {
+  it("returns all members when filters are empty", () => {
     const result = filterCouncilMembers(members, {
       keyword: "",
-      factionId: "all",
-      committeeId: "all",
+      factionIds: new Set(),
+      committeeIds: new Set(),
     });
     expect(result).toHaveLength(3);
   });
@@ -39,8 +39,8 @@ describe("filterCouncilMembers", () => {
   it("filters by name keyword (partial match)", () => {
     const result = filterCouncilMembers(members, {
       keyword: "田",
-      factionId: "all",
-      committeeId: "all",
+      factionIds: new Set(),
+      committeeIds: new Set(),
     });
     expect(result.map((m) => m.name)).toEqual(["山田太郎", "田中花子"]);
   });
@@ -48,44 +48,62 @@ describe("filterCouncilMembers", () => {
   it("trims whitespace in the keyword", () => {
     const result = filterCouncilMembers(members, {
       keyword: "  山田太郎  ",
-      factionId: "all",
-      committeeId: "all",
+      factionIds: new Set(),
+      committeeIds: new Set(),
     });
     expect(result.map((m) => m.name)).toEqual(["山田太郎"]);
   });
 
-  it("filters by faction id", () => {
+  it("filters by a single faction id", () => {
     const result = filterCouncilMembers(members, {
       keyword: "",
-      factionId: "f2",
-      committeeId: "all",
+      factionIds: new Set(["f2"]),
+      committeeIds: new Set(),
     });
     expect(result.map((m) => m.name)).toEqual(["田中花子"]);
+  });
+
+  it("matches any of multiple selected faction ids (OR)", () => {
+    const result = filterCouncilMembers(members, {
+      keyword: "",
+      factionIds: new Set(["f1", "f2"]),
+      committeeIds: new Set(),
+    });
+    expect(result.map((m) => m.name)).toEqual(["山田太郎", "田中花子"]);
   });
 
   it("excludes members with no faction when a faction filter is active", () => {
     const result = filterCouncilMembers(members, {
       keyword: "",
-      factionId: "f1",
-      committeeId: "all",
+      factionIds: new Set(["f1"]),
+      committeeIds: new Set(),
     });
     expect(result.map((m) => m.name)).toEqual(["山田太郎"]);
   });
 
-  it("filters by committee id", () => {
+  it("filters by a single committee id", () => {
     const result = filterCouncilMembers(members, {
       keyword: "",
-      factionId: "all",
-      committeeId: "c2",
+      factionIds: new Set(),
+      committeeIds: new Set(["c2"]),
     });
     expect(result.map((m) => m.name)).toEqual(["田中花子"]);
+  });
+
+  it("matches a member belonging to any of multiple selected committees (OR)", () => {
+    const result = filterCouncilMembers(members, {
+      keyword: "",
+      factionIds: new Set(),
+      committeeIds: new Set(["c1"]),
+    });
+    expect(result.map((m) => m.name)).toEqual(["山田太郎", "田中花子"]);
   });
 
   it("combines keyword, faction and committee filters", () => {
     const result = filterCouncilMembers(members, {
       keyword: "田中",
-      factionId: "f2",
-      committeeId: "c1",
+      factionIds: new Set(["f2"]),
+      committeeIds: new Set(["c1"]),
     });
     expect(result.map((m) => m.name)).toEqual(["田中花子"]);
   });
@@ -93,8 +111,8 @@ describe("filterCouncilMembers", () => {
   it("returns an empty array when nothing matches", () => {
     const result = filterCouncilMembers(members, {
       keyword: "存在しない",
-      factionId: "all",
-      committeeId: "all",
+      factionIds: new Set(),
+      committeeIds: new Set(),
     });
     expect(result).toEqual([]);
   });

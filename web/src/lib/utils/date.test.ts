@@ -4,6 +4,7 @@ import {
   formatDate,
   formatDateJST,
   formatDateWithDots,
+  getFiscalYear,
   getJapanTime,
 } from "./date";
 
@@ -47,6 +48,22 @@ describe("formatDateJST", () => {
 
   it("zero-pads single-digit month and day", () => {
     expect(formatDateJST("2025-01-05T12:00:00+09:00")).toBe("2025/01/05");
+  });
+});
+
+describe("getFiscalYear", () => {
+  it("returns the same year for dates in April or later", () => {
+    expect(getFiscalYear("2025-04-01")).toBe(2025);
+    expect(getFiscalYear("2025-12-01")).toBe(2025);
+  });
+
+  it("returns the previous year for dates from January to March", () => {
+    expect(getFiscalYear("2026-01-01")).toBe(2025);
+    expect(getFiscalYear("2026-03-31")).toBe(2025);
+  });
+
+  it("treats an ISO datetime string the same way", () => {
+    expect(getFiscalYear("2026-02-01T00:00:00Z")).toBe(2025);
   });
 });
 

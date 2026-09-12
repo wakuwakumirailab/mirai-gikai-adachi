@@ -3,18 +3,15 @@ import type { CouncilMember } from "../types";
 export type CouncilMemberFilters = {
   /** 議員名の部分一致キーワード */
   keyword: string;
-  /** 会派ID。"all" で絞り込みなし */
-  factionId: string;
-  /** 委員会ID。"all" で絞り込みなし */
-  committeeId: string;
+  /** 選択された会派IDの集合。空集合なら絞り込みなし（OR条件） */
+  factionIds: Set<string>;
+  /** 選択された委員会IDの集合。空集合なら絞り込みなし（OR条件） */
+  committeeIds: Set<string>;
 };
-
-export const ALL_FACTIONS = "all";
-export const ALL_COMMITTEES = "all";
 
 export function filterCouncilMembers(
   members: CouncilMember[],
-  { keyword, factionId, committeeId }: CouncilMemberFilters
+  { keyword, factionIds, committeeIds }: CouncilMemberFilters
 ): CouncilMember[] {
   const trimmedKeyword = keyword.trim();
 
@@ -23,13 +20,16 @@ export function filterCouncilMembers(
       return false;
     }
 
-    if (factionId !== ALL_FACTIONS && member.faction?.id !== factionId) {
+    if (
+      factionIds.size > 0 &&
+      (!member.faction || !factionIds.has(member.faction.id))
+    ) {
       return false;
     }
 
     if (
-      committeeId !== ALL_COMMITTEES &&
-      !member.committees.some((c) => c.id === committeeId)
+      committeeIds.size > 0 &&
+      !member.committees.some((c) => committeeIds.has(c.id))
     ) {
       return false;
     }

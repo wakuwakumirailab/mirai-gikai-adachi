@@ -46,3 +46,14 @@ export function getJapanTime(): Date {
     new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" })
   );
 }
+
+/**
+ * 日付から日本の会計年度（4月始まり）を算出する。
+ * 例: 2026-02-01 → 2025（令和7年度）, 2025-09-01 → 2025（令和7年度）
+ */
+export function getFiscalYear(dateString: string): number {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1; // 1-12
+  return month >= 4 ? year : year - 1;
+}
