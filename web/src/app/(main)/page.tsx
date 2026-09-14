@@ -6,8 +6,6 @@ import { BudgetOverviewBanner } from "@/components/top/budget-overview-banner";
 import { CityFinanceBanner } from "@/components/top/city-finance-banner";
 import { CommitteeBanner } from "@/components/top/committee-banner";
 import { GeneralQuestionsBanner } from "@/components/top/general-questions-banner";
-import { JimuJigyoArchiveSection } from "@/components/top/jimu-jigyo-archive-section";
-import { JimuJigyoBanner } from "@/components/top/jimu-jigyo-banner";
 import { Hero } from "@/components/top/hero";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { siteConfig } from "@/config/site.config";
@@ -94,7 +92,6 @@ export default async function Home() {
           {latestBudgetSession?.slug && (
             <BudgetOverviewBanner sessionSlug={latestBudgetSession.slug} />
           )}
-          <JimuJigyoBanner />
           <CityFinanceBanner />
         </BannerAccordion>
       </Container>
@@ -120,7 +117,6 @@ export default async function Home() {
             <PressConferenceArchiveSection
               pressConferences={pressConferences}
             />
-            <JimuJigyoArchiveSection />
           </div>
         </Container>
       </div>

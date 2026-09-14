@@ -1,3 +1,5 @@
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { CommitteesView } from "@/features/committee-minutes/server/components/committees-view";
 import { getCommitteeArchives } from "@/features/committee-minutes/server/loaders/get-committee-archives";
@@ -11,7 +13,17 @@ export default async function CommitteesPage() {
 
   return (
     <Container className="py-8">
-      <CommitteesView archives={archives} meetings={meetings} />
+      <div className="flex flex-col gap-6">
+        <Link
+          href="/assembly"
+          className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          議会に戻る
+        </Link>
+
+        <CommitteesView archives={archives} meetings={meetings} />
+      </div>
     </Container>
   );
 }

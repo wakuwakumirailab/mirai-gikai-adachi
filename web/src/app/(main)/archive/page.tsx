@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
-import { Archive } from "lucide-react";
+import {
+  Archive,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardList,
+} from "lucide-react";
+import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { siteConfig } from "@/config/site.config";
 import { getAllPastSessions } from "@/features/council-sessions/server/loaders/get-all-past-sessions";
@@ -20,6 +26,14 @@ export default async function ArchivePage() {
   return (
     <Container className="py-8">
       <div className="flex flex-col gap-8">
+        <Link
+          href="/assembly"
+          className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          議会に戻る
+        </Link>
+
         <header className="flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
           <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
             <Archive className="size-3.5" />
@@ -37,6 +51,29 @@ export default async function ArchivePage() {
           pastSessions={pastSessions}
           pastBudgetSessions={budgetSessions}
         />
+
+        <section className="flex flex-col gap-3">
+          <h2 className="border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
+            事務事業評価
+          </h2>
+          <Link
+            href="/jimu-jigyo"
+            className="group flex items-center justify-between gap-4 rounded-lg border border-border bg-card px-5 py-4 transition-colors hover:border-primary"
+          >
+            <div className="flex items-start gap-3">
+              <ClipboardList className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
+              <div>
+                <p className="font-bold text-mirai-text">
+                  事務事業評価を年度別に見る
+                </p>
+                <p className="mt-0.5 text-sm text-mirai-text-secondary">
+                  区が実施する事業のKPI・予算・効率の動向を年度ごとに分析します
+                </p>
+              </div>
+            </div>
+            <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
+          </Link>
+        </section>
       </div>
     </Container>
   );

@@ -25,6 +25,8 @@ export function MainLayout({ children }: MainLayoutProps) {
       className={cn(
         "relative max-w-[700px] mx-auto",
         isHome ? "md:mt-24" : "mt-24",
+        // 画面下部固定のBottomNav（sm未満で表示）分の余白
+        "pb-16 sm:pb-0",
         // インタビューページ以外ではshadowを表示
         !isInterview && "sm:shadow-lg",
         // TOPページと法案詳細ページのみ、チャットサイドバー用のオフセット

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import { BillListWithStatusFilter } from "@/features/council-sessions/client/components/bill-list-with-status-filter";
@@ -31,6 +31,14 @@ export function SessionBillsPage({
     <div className="flex flex-col gap-16">
       {/* アーカイブヘッダー */}
       <div className="flex flex-col gap-6">
+        <Link
+          href="/assembly"
+          className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          議会に戻る
+        </Link>
+
         <div className="flex flex-col gap-1">
           <h1>
             <Image
