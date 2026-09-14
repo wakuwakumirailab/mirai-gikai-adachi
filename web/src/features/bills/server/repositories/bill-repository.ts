@@ -239,6 +239,40 @@ export async function findPublishedBillsByDietSession(
 }
 
 /**
+ * 公開済みの請願・陳情（bill_type = petition）を新しい順に取得。
+ * 1件が複数の会期をまたいで継続審査になることがあるため、
+ * 会期単位ではなく全件をまとめて取得する。
+ */
+export async function findAllPublishedPetitions() {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("bills")
+    .select(
+      `
+      id,
+      bill_number,
+      name,
+      status,
+      status_note,
+      published_at,
+      committees (
+        id,
+        name
+      )
+    `
+    )
+    .eq("bill_type", "petition")
+    .eq("publish_status", "published")
+    .order("published_at", { ascending: false });
+
+  if (error) {
+    throw new Error(`Failed to fetch petitions: ${error.message}`);
+  }
+
+  return data ?? [];
+}
+
+/**
  * 会期に紐づく「その他の議案」（事務手続き議案 is_procedural = true）を取得。
  * わかりやすい解説は付けず、一覧表示のみで公式サイトへリンクする。
  */

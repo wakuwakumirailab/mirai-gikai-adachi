@@ -162,11 +162,11 @@ async function seedDatabase() {
     // Insert bills（足立区議会公式サイトの実データ。council_session_id は
     // スラッグ経由で挿入済みセッションのIDへ解決してから挿入する）
     console.log("📄 Inserting bills...");
-    const bills = createBills(insertedCouncilSessions);
+    const bills = createBills(insertedCouncilSessions, insertedCommittees);
     const { data: insertedBills, error: billsError } = await supabase
       .from("bills")
       .insert(bills)
-      .select("id, name");
+      .select("id, name, published_at");
 
     if (billsError) {
       throw new Error(`Failed to insert bills: ${billsError.message}`);

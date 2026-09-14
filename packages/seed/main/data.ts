@@ -101,7 +101,9 @@ type RealBillSeed = {
   publishedAt: string;
   status: BillInsert["status"];
   statusNote: string | null;
-  billType: "bill" | "procedural";
+  billType: "bill" | "procedural" | "petition";
+  /** 請願・陳情の付託委員会（あれば committees.id へ解決する） */
+  committeeName?: string;
 };
 
 export const realBillsSeed: RealBillSeed[] = [
@@ -272,15 +274,56 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-2", billNumber: "第77号", name: "令和8年度足立区一般会計補正予算（第3号）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "bill" },
 ];
 
+// 請願・陳情データ（足立区議会公式サイト「請願・陳情の検索」より取得。
+// 令和7年度・令和8年度の会期に付託されたもの、計27件）
+// 受理番号は西暦の暦年でカウントされるため、令和7年2月受理分（07-1・07-2）は
+// 議案データと同じく令和6年度以前の会期に付託されており、今回取り込んだ
+// 8会期（令和7年度・令和8年度分）の範囲外のため対象外としている。
+// 継続審査中のものは直近の付託会期を council_session_id として保持し、
+// 審査結果が確定した際に status を更新する運用（福岡市版の継続審査案件と同じ）。
+export const realPetitionsSeed: RealBillSeed[] = [
+  { sessionSlug: "r7-2", billNumber: "07-3", name: "子どもの心を育てる、情操豊かな音楽の街・足立区にする請願", publishedAt: "2025-06-27", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r7-2", billNumber: "07-4", name: "あはき・柔整広告ガイドラインの適正かつ積極的な運用を求める陳情", publishedAt: "2025-06-27", status: "approved", statusNote: "採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r7-2", billNumber: "07-5", name: "足立区の学校図書館の充実を求める陳情", publishedAt: "2025-06-27", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r7-2", billNumber: "07-6", name: "政党機関紙も庁内取締規則を守り、許可のない勧誘・配達・集金は認めないように足立区議会として足立区に改善することを求める陳情", publishedAt: "2025-06-27", status: "approved", statusNote: "採択", billType: "petition", committeeName: "議会運営委員会" },
+  { sessionSlug: "r7-3", billNumber: "07-7", name: "足立区民に対して国民健康保険資格確認書を一斉交付するよう求める陳情", publishedAt: "2025-09-19", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r7-3", billNumber: "07-8", name: "地方消費者行政の維持・強化のための対策を求める意見書を国会等に提出することを求める陳情", publishedAt: "2025-09-19", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "産業環境委員会" },
+  { sessionSlug: "r7-3", billNumber: "07-9", name: "足立ブランド認定と認定企業への支援の仕組みの改善を求める陳情", publishedAt: "2025-09-19", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "産業環境委員会" },
+  { sessionSlug: "r7-3", billNumber: "07-10", name: "固定資産税及び都市計画税の軽減措置の継続について意見書の提出に関する請願", publishedAt: "2025-10-20", status: "approved", statusNote: "採択", billType: "petition", committeeName: "総務委員会" },
+  { sessionSlug: "r7-3", billNumber: "07-11", name: "1,000名以上の死亡被害を出している新型コロナワクチンの潜在的な被害救済のため、足立区民の死亡者の接種歴データと死亡届データを照合したデータ公開を求める陳情", publishedAt: "2025-10-20", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r7-4", billNumber: "07-12", name: "2026年度の国民健康保険料を値上げせず、負担を軽減することを求める陳情", publishedAt: "2025-12-03", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-1", name: "学校をより安全で安心な環境にするための陳情", publishedAt: "2026-02-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-2", name: "区民の平等性を著しく欠く「区民葬儀における新たな助成制度」に関する陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-3", name: "竹の塚、梅田両地域学習センターホール舞台へのスロープまたは昇降機設置を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-4", name: "地盤変状の発生区域における地区計画運用と安全な土地利用判断の整理を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "建設委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-5", name: "竹の塚中学校と渕江中学校の統合を中止し両校の存続を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-6", name: "中央本町地域など区中央エリアにおける地域コミュニティ再生への支援等を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-7", name: "「工場運営企業と周辺住民の共生のための条例」の制定を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "産業環境委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-8", name: "mRNAワクチン（レプリコンワクチンを含む）接種事業中止の意見書提出を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-9", name: "薬害級の健康被害を出している新型コロナワクチンの副反応の適切な情報収集のため、副反応疑い報告制度の更なる周知を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-10", name: "足立区立中学校における平和教育及び校外学習の政治的中立性と安全確保を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-11", name: "花畑西小学校と桜花小学校の統廃合計画に反対する陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-12", name: "花畑地区の学校統廃合計画（花畑中学校と花畑北中学校、花畑西小学校と桜花小学校）を中止し、4校の存続を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-13", name: "乳幼児期からの孤立予防と「助けを求められる子ども」を育てる支援の充実を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "子ども・子育て支援対策調査特別委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-14", name: "子どもの視点に立った災害対策の強化を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "災害・オウム対策調査特別委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-15", name: "防災体制の是正へ向けての陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "災害・オウム対策調査特別委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-16", name: "公的支援事業における政治的公平性の確保に関する陳情", publishedAt: "2026-07-07", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "総務委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-17", name: "東京女子医大足立医療センターにおける地域医療機能の検証及び区民への情報公開の充実を求める陳情", publishedAt: "2026-07-07", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+];
+
 export function createBills(
-  insertedSessions: { id: string; slug: string | null }[]
+  insertedSessions: { id: string; slug: string | null }[],
+  insertedCommittees: { id: string; name: string | null }[]
 ): BillInsert[] {
-  return realBillsSeed.map((b) => {
+  return [...realBillsSeed, ...realPetitionsSeed].map((b) => {
     const session = insertedSessions.find((s) => s.slug === b.sessionSlug);
+    const committee = b.committeeName
+      ? insertedCommittees.find((c) => c.name === b.committeeName)
+      : undefined;
     return {
       name: b.name,
       bill_number: b.billNumber,
-      bill_type: "bill", // 通常議案（意見書・決議・議員提出はこのバッチには含まない）
+      bill_type: b.billType === "petition" ? "petition" : "bill",
       is_procedural: b.billType === "procedural",
       status: b.status,
       status_note: b.statusNote,
@@ -288,6 +331,7 @@ export function createBills(
       publish_status: "published",
       is_featured: false,
       council_session_id: session?.id ?? null,
+      committee_id: committee?.id ?? null,
     };
   });
 }
@@ -377,6 +421,30 @@ export const committees: CommitteeInsert[] = [
     name: "文教委員会",
     description: "学校教育、生涯学習、子育て支援などについての審査",
     sort_order: 5,
+    is_active: true,
+  },
+  {
+    name: "産業環境委員会",
+    description: "産業経済、環境政策、農業委員会などについての審査",
+    sort_order: 6,
+    is_active: true,
+  },
+  {
+    name: "議会運営委員会",
+    description: "各定例会の運営、議長の諮問事項の調査などについての審査",
+    sort_order: 7,
+    is_active: true,
+  },
+  {
+    name: "子ども・子育て支援対策調査特別委員会",
+    description: "保育ニーズ、幼児教育・保育の質、少子化対策などの調査研究",
+    sort_order: 8,
+    is_active: true,
+  },
+  {
+    name: "災害・オウム対策調査特別委員会",
+    description: "災害対策、減災対策、地域防災計画などの調査研究",
+    sort_order: 9,
     is_active: true,
   },
 ];

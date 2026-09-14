@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
-import { Archive, ChevronRight, Landmark, Megaphone } from "lucide-react";
+import {
+  CalendarDays,
+  ChevronRight,
+  FileText,
+  Landmark,
+  Megaphone,
+  MessageSquare,
+} from "lucide-react";
 import Link from "next/link";
+import { ArchiveBanner } from "@/components/top/archive-banner";
 import { Container } from "@/components/layouts/container";
 import { CurrentCouncilSession } from "@/features/council-sessions/client/components/current-council-session";
+import { getAllPastSessions } from "@/features/council-sessions/server/loaders/get-all-past-sessions";
 import { getCurrentCouncilSession } from "@/features/council-sessions/server/loaders/get-current-council-session";
+import { getLatestSessionWithQuestions } from "@/features/general-questions/server/loaders/get-latest-session-with-questions";
 import { siteConfig } from "@/config/site.config";
 import { getJapanTime } from "@/lib/utils/date";
 
@@ -12,7 +22,7 @@ export const metadata: Metadata = {
   description: `${siteConfig.councilName}の定例会・委員会・区長記者会見をまとめて確認できます。`,
 };
 
-const CHILD_LINKS = [
+const OTHER_CHILD_LINKS = [
   {
     href: "/committees",
     icon: Landmark,
@@ -26,15 +36,47 @@ const CHILD_LINKS = [
     description: "区長が定例で発表している内容をまとめています",
   },
   {
-    href: "/archive",
-    icon: Archive,
-    label: "過去の資料",
-    description: "終了した定例会・議案、過去の予算を年度別に確認できます",
+    href: "/petitions",
+    icon: FileText,
+    label: "請願・陳情",
+    description: "区民から提出された請願・陳情の審査状況を確認できます",
   },
 ] as const;
 
 export default async function AssemblyPage() {
-  const currentSession = await getCurrentCouncilSession(getJapanTime());
+  const [currentSession, pastSessions, latestQuestionsSlug] = await Promise.all(
+    [
+      getCurrentCouncilSession(getJapanTime()),
+      getAllPastSessions(),
+      getLatestSessionWithQuestions(),
+    ]
+  );
+
+  // 「議会」カードは常に一番直近の定例会（開会中ならその会期、閉会中なら直近の会期）の議案一覧に遷移させる
+  const latestSessionSlug = currentSession?.slug ?? pastSessions[0]?.slug;
+
+  const childLinks = [
+    {
+      href: latestSessionSlug
+        ? `/sessions/${latestSessionSlug}/bills`
+        : "/sessions",
+      icon: CalendarDays,
+      label: "議会",
+      description: "直近の定例会の議案をまとめて確認できます",
+    },
+    ...(latestQuestionsSlug
+      ? [
+          {
+            href: `/sessions/${latestQuestionsSlug}/questions`,
+            icon: MessageSquare,
+            label: "一般質問",
+            description:
+              "議員が区長・部長に直接質問した内容をわかりやすく解説します",
+          },
+        ]
+      : []),
+    ...OTHER_CHILD_LINKS,
+  ];
 
   return (
     <Container className="py-8">
@@ -65,8 +107,8 @@ export default async function AssemblyPage() {
           )}
         </div>
 
-        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {CHILD_LINKS.map(({ href, icon: Icon, label, description }) => (
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {childLinks.map(({ href, icon: Icon, label, description }) => (
             <li key={href}>
               <Link
                 href={href}
@@ -81,6 +123,8 @@ export default async function AssemblyPage() {
             </li>
           ))}
         </ul>
+
+        <ArchiveBanner />
       </div>
     </Container>
   );
