@@ -202,19 +202,15 @@ async function seedDatabase() {
 
     console.log(`✅ Inserted ${insertedContentsCount} bill contents`);
 
-    // Insert faction_stances
-    // 注: 足立区版では "mirai" 会派を seed しないため、このブロックは実行されない。
-    // 実データの会派別賛否は admin から取り込む。
+    // Insert faction_stances（委員会会議録に基づく実データ）
     console.log("🎯 Inserting faction stances...");
-    const miraiFaction = insertedFactions.find((f) => f.name === "mirai");
+    const factionStances = createFactionStances(
+      insertedBills,
+      insertedFactions
+    );
     let insertedStancesCount = 0;
 
-    if (miraiFaction) {
-      const factionStances = createFactionStances(
-        insertedBills,
-        miraiFaction.id
-      );
-
+    if (factionStances.length > 0) {
       const { data: insertedStances, error: stancesError } = await supabase
         .from("faction_stances")
         .insert(factionStances)
@@ -226,9 +222,7 @@ async function seedDatabase() {
         );
       }
 
-      if (insertedStances) {
-        insertedStancesCount = insertedStances.length;
-      }
+      insertedStancesCount = insertedStances?.length ?? 0;
     }
 
     console.log(`✅ Inserted ${insertedStancesCount} faction stances`);

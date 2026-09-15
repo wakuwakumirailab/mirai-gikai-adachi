@@ -744,6 +744,7 @@ export type Database = {
           created_at: string
           faction_id: string
           id: string
+          member_names: string[]
           type: Database["public"]["Enums"]["stance_type_enum"]
           updated_at: string
         }
@@ -753,6 +754,7 @@ export type Database = {
           created_at?: string
           faction_id: string
           id?: string
+          member_names?: string[]
           type: Database["public"]["Enums"]["stance_type_enum"]
           updated_at?: string
         }
@@ -762,6 +764,7 @@ export type Database = {
           created_at?: string
           faction_id?: string
           id?: string
+          member_names?: string[]
           type?: Database["public"]["Enums"]["stance_type_enum"]
           updated_at?: string
         }

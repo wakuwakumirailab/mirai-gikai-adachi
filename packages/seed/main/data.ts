@@ -343,13 +343,13 @@ export function createBills(
 export const factions: FactionInsert[] = [
   {
     name: "jimin-adachi",
-    display_name: "自由民主党足立区議団",
+    display_name: "足立区議会自由民主党",
     sort_order: 1,
     is_active: true,
   },
   {
     name: "komei",
-    display_name: "公明党",
+    display_name: "足立区議会公明党",
     sort_order: 2,
     is_active: true,
   },
@@ -379,7 +379,7 @@ export const factions: FactionInsert[] = [
   },
   {
     name: "tomin-first",
-    display_name: "都民ファーストの会あだち",
+    display_name: "都民ファーストの会足立区議団",
     sort_order: 7,
     is_active: true,
   },
@@ -387,6 +387,17 @@ export const factions: FactionInsert[] = [
     name: "mushozoku",
     display_name: "無所属",
     sort_order: 8,
+    is_active: true,
+  },
+  // 令和8年時点の会派（是々非々の会）。会派の離合集散が頻繁なため、
+  // 過去の会派（adachi-club/rikken-adachi/ishin）は履歴として残しつつ、
+  // 現行の会派見解データではこちらを使う。faction_stances は
+  // member_names に採決当時の議員名をスナップショットで持つため、
+  // 会派再編があっても記録済みデータの正確性には影響しない。
+  {
+    name: "zezehihi-no-kai",
+    display_name: "是々非々の会（維新・参政・無所属・立憲）",
+    sort_order: 9,
     is_active: true,
   },
 ];
@@ -622,52 +633,105 @@ export function createBillsTags(
   return billsTags;
 }
 
-// 会派見解データ
-const factionStancesData: Omit<
-  FactionStanceInsert,
-  "bill_id" | "faction_id"
->[] = [
-  {
-    type: "for",
-    comment: `子どもの医療費助成の拡充は、子育て世代の経済的負担を軽減する重要な施策です。
+// 会派の賛否データ（委員会会議録の「各会派からの意見」に基づく）
+// 会派は離合集散（例:「是々非々の会」）や無所属議員の賛否の分裂が起こり得るため、
+// 議員名を採決当時のスナップショットとして member_names に保持する。
+// bill は name + publishedAt で一意に特定する（bill_contentsと同じ方式）。
+type RealFactionStanceSeed = {
+  billName: string;
+  billPublishedAt: string;
+  factionName: string;
+  type: FactionStanceInsert["type"];
+  memberNames: string[];
+  comment?: string;
+};
 
-足立区の子育て環境をより良くし、安心して子育てできるまちづくりに貢献すると考えます。`,
+export const realFactionStancesSeed: RealFactionStanceSeed[] = [
+  // 第22号議案 足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例
+  // 令和8年3月13日 建設委員会にて審査。賛成多数（ぬかが和子委員が反対）で可決。
+  {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉ひろし"],
   },
   {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "jimin-adachi",
     type: "for",
-    comment: `高齢化が進む中、地域包括ケアシステムの推進は足立区にとって重要な課題です。
-
-医療・介護・予防・住まい・生活支援を一体的に提供する体制の整備は、区民の安心につながります。`,
+    memberNames: ["くじらい実"],
   },
   {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "zezehihi-no-kai",
     type: "for",
-    comment: `公園は区民の憩いの場であり、防災拠点としても重要です。
-
-この条例改正により、公園の利活用が促進され、地域コミュニティの活性化が期待できます。`,
+    memberNames: ["富田けんたろう"],
   },
   {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "mushozoku",
     type: "for",
-    comment: `学校給食の無償化は、子育て支援と教育の充実を同時に実現する重要な政策です。
-
-全ての子どもが質の高い食事を平等に受けられることは、健康格差の解消にもつながります。足立区の地元食材を活用した食育の推進も期待できます。`,
+    memberNames: ["市川おさと"],
   },
   {
+    // 委員会での反対表明はぬかが和子委員のみだったが、本会議の採決結果PDF
+    // （【審議結果一覧】令和8年第1回定例会）では反対6票＝共産党の議席数と
+    // 一致しており、党として6名全員が反対したことが確認できる。
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "kyosan",
     type: "against",
-    comment: `防災対策の強化は重要ですが、現行条例の運用改善で対応できる部分も多いと考えます。
-
-条例改正よりも先に、現場レベルでの防災訓練の充実や地域防災力の向上に注力すべきです。`,
+    memberNames: [
+      "ぬかが和子",
+      "はたの昭彦",
+      "山中ちえ子",
+      "横田ゆう",
+      "小林ともよ",
+      "西の原ゆま",
+    ],
+    comment:
+      "旅館業（民泊より規制が緩い形態）に対する用途制限が条例に盛り込まれなかったことを理由に反対。",
   },
 ];
 
 export function createFactionStances(
-  insertedBills: { id: string; name: string }[],
-  miraiFactionId: string
+  insertedBills: { id: string; name: string; published_at: string | null }[],
+  insertedFactions: { id: string; name: string }[]
 ): FactionStanceInsert[] {
-  return factionStancesData.map((stance, index) => ({
-    ...stance,
-    bill_id: insertedBills[index]?.id || "",
-    faction_id: miraiFactionId,
-  }));
+  return realFactionStancesSeed.map((s) => {
+    const bill = insertedBills.find(
+      (b) =>
+        b.name === s.billName &&
+        b.published_at?.slice(0, 10) === s.billPublishedAt
+    );
+    if (!bill) {
+      throw new Error(
+        `Bill not found for faction stance: ${s.billName} (${s.billPublishedAt})`
+      );
+    }
+
+    const faction = insertedFactions.find((f) => f.name === s.factionName);
+    if (!faction) {
+      throw new Error(`Faction not found for faction stance: ${s.factionName}`);
+    }
+
+    return {
+      bill_id: bill.id,
+      faction_id: faction.id,
+      type: s.type,
+      comment: s.comment ?? null,
+      member_names: s.memberNames,
+    };
+  });
 }
 
 // 議員データを作成（会派名を実IDへ解決）

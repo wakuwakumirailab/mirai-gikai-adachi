@@ -42,6 +42,8 @@ export type FactionStance = {
   id: string;
   stance: StanceTypeEnum;
   comment: string | null;
+  /** 採決当時にこの賛否区分に含まれていた議員名のスナップショット */
+  memberNames: string[];
   faction: {
     id: string;
     name: string;

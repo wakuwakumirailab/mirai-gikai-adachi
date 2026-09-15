@@ -4,6 +4,7 @@ type RawFactionStance = {
   id: string;
   type: StanceTypeEnum;
   comment: string | null;
+  member_names: string[] | null;
   factions: {
     id: string;
     name: string;
@@ -29,6 +30,7 @@ export function mapFactionStances(
       id: fs.id,
       stance: fs.type,
       comment: fs.comment,
+      memberNames: fs.member_names ?? [],
       faction: {
         id: fs.factions.id,
         name: fs.factions.name,

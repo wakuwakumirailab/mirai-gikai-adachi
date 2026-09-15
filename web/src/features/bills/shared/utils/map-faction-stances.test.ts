@@ -8,6 +8,7 @@ describe("mapFactionStances", () => {
         id: "fs-1",
         type: "for",
         comment: "賛成です",
+        member_names: ["山田太郎", "鈴木花子"],
         factions: {
           id: "f-1",
           name: "miraikai",
@@ -22,6 +23,7 @@ describe("mapFactionStances", () => {
         id: "fs-1",
         stance: "for",
         comment: "賛成です",
+        memberNames: ["山田太郎", "鈴木花子"],
         faction: {
           id: "f-1",
           name: "miraikai",
@@ -32,12 +34,32 @@ describe("mapFactionStances", () => {
     ]);
   });
 
+  it("member_names が null の場合は空配列にする", () => {
+    const result = mapFactionStances([
+      {
+        id: "fs-1",
+        type: "for",
+        comment: null,
+        member_names: null,
+        factions: {
+          id: "f-1",
+          name: "miraikai",
+          display_name: "未来会議",
+          sort_order: 1,
+        },
+      },
+    ]);
+
+    expect(result[0].memberNames).toEqual([]);
+  });
+
   it("factions が null のレコードを除外する", () => {
     const result = mapFactionStances([
       {
         id: "fs-1",
         type: "for",
         comment: null,
+        member_names: null,
         factions: null,
       },
     ]);
@@ -51,6 +73,7 @@ describe("mapFactionStances", () => {
         id: "fs-1",
         type: "for",
         comment: null,
+        member_names: null,
         factions: {
           id: "f-1",
           name: "b",
@@ -62,6 +85,7 @@ describe("mapFactionStances", () => {
         id: "fs-2",
         type: "against",
         comment: null,
+        member_names: null,
         factions: {
           id: "f-2",
           name: "a",
