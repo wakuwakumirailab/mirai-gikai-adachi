@@ -655,7 +655,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "komei",
     type: "for",
-    memberNames: ["小泉ひろし"],
+    memberNames: ["小泉"],
   },
   {
     billName:
@@ -663,7 +663,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "jimin-adachi",
     type: "for",
-    memberNames: ["くじらい実"],
+    memberNames: ["くじらい"],
   },
   {
     billName:
@@ -671,7 +671,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "zezehihi-no-kai",
     type: "for",
-    memberNames: ["富田けんたろう"],
+    memberNames: ["富田"],
   },
   {
     billName:
@@ -679,7 +679,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "mushozoku",
     type: "for",
-    memberNames: ["市川おさと"],
+    memberNames: ["市川"],
   },
   {
     // 委員会での反対表明はぬかが和子委員のみだったが、本会議の採決結果PDF
@@ -690,14 +690,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "kyosan",
     type: "against",
-    memberNames: [
-      "ぬかが和子",
-      "はたの昭彦",
-      "山中ちえ子",
-      "横田ゆう",
-      "小林ともよ",
-      "西の原ゆま",
-    ],
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
     comment:
       "旅館業（民泊より規制が緩い形態）に対する用途制限が条例に盛り込まれなかったことを理由に反対。",
   },

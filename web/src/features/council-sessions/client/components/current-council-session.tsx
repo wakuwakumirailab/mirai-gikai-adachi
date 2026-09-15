@@ -1,4 +1,5 @@
 import { formatDateWithDots } from "@/lib/utils/date";
+import { siteConfig } from "@/config/site.config";
 import type { CouncilSession } from "../../shared/types";
 
 type CurrentCouncilSessionProps = {
@@ -11,7 +12,7 @@ export function CurrentCouncilSession({ session }: CurrentCouncilSessionProps) {
       <div className="flex items-center gap-5">
         <div className="flex items-center gap-4 flex-1">
           <h2 className="text-xl font-bold text-gray-800 leading-[0.9]">
-            本日は
+            本日は{siteConfig.councilName}
           </h2>
           <div
             className={`
