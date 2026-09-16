@@ -1,8 +1,10 @@
 name: Deploy Web
 
+# 本番投入前の仮データ公開を避けるため、push時の自動デプロイを一時停止中。
+# 本番データ投入の準備が整ったら、上の "push:" のコメントアウトを解除して再度有効化する。
 on:
-  push:
-    branches: [adachi/develop]
+  # push:
+  #   branches: [adachi/develop]
   workflow_dispatch:
 
 jobs:
