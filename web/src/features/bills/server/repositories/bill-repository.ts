@@ -26,6 +26,8 @@ export async function findPublishedBillsWithContents(
         summary,
         content,
         difficulty_level,
+        is_preliminary_source,
+        source_references,
         created_at,
         updated_at
       )
@@ -128,7 +130,7 @@ export async function findTagsByBillId(billId: string) {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("bills_tags")
-    .select("tags(id, label)")
+    .select("tags(id, label, emoji)")
     .eq("bill_id", billId);
 
   if (error) {
@@ -176,7 +178,9 @@ import { groupTagsByBillId } from "../../shared/utils/group-tags";
  */
 export async function findTagsByBillIds(
   billIds: string[]
-): Promise<Map<string, Array<{ id: string; label: string }>>> {
+): Promise<
+  Map<string, Array<{ id: string; label: string; emoji: string | null }>>
+> {
   if (billIds.length === 0) {
     return new Map();
   }
@@ -184,7 +188,7 @@ export async function findTagsByBillIds(
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("bills_tags")
-    .select("bill_id, tags(id, label)")
+    .select("bill_id, tags(id, label, emoji)")
     .in("bill_id", billIds);
 
   if (error) {
@@ -218,6 +222,8 @@ export async function findPublishedBillsByDietSession(
         summary,
         content,
         difficulty_level,
+        is_preliminary_source,
+        source_references,
         created_at,
         updated_at
       )
@@ -283,7 +289,9 @@ export async function findProceduralBillsByCouncilSession(
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("bills")
-    .select("id, bill_number, name, status, status_note, published_at")
+    .select(
+      "id, bill_number, name, status, status_note, published_at, procedural_summary"
+    )
     .eq("council_session_id", councilSessionId)
     .eq("publish_status", "published")
     .eq("is_procedural", true)
@@ -317,6 +325,8 @@ export async function findPreviousSessionBills(
         summary,
         content,
         difficulty_level,
+        is_preliminary_source,
+        source_references,
         created_at,
         updated_at
       )
@@ -409,6 +419,8 @@ export async function findPublishedBillsByTag(
           summary,
           content,
           difficulty_level,
+          is_preliminary_source,
+          source_references,
           created_at,
           updated_at
         ),
@@ -459,6 +471,8 @@ export async function findFeaturedBillsWithContents(
         summary,
         content,
         difficulty_level,
+        is_preliminary_source,
+        source_references,
         created_at,
         updated_at
       ),

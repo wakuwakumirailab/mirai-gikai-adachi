@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ChevronLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,15 +9,18 @@ import { BillStatusBadge } from "../../../client/components/bill-list/bill-statu
 import { BillTag } from "../../../client/components/bill-list/bill-tag";
 import { getBillShareData } from "../../../client/utils/share";
 import type { BillWithContent } from "../../../shared/types";
+import { PreliminarySourceNotice } from "../preliminary-source-notice";
 
 interface BillDetailHeaderProps {
   bill: BillWithContent;
   hasInterviewConfig?: boolean;
+  backLink: { href: string; label: string };
 }
 
 export async function BillDetailHeader({
   bill,
   hasInterviewConfig,
+  backLink,
 }: BillDetailHeaderProps) {
   const displayTitle = bill.bill_content?.title;
   const displaySummary = bill.bill_content?.summary;
@@ -26,6 +29,15 @@ export async function BillDetailHeader({
 
   return (
     <div className="mb-8 bg-white rounded-b-4xl">
+      <div className="px-4 pt-4">
+        <Link
+          href={backLink.href}
+          className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          {backLink.label}
+        </Link>
+      </div>
       {bill.thumbnail_url ? (
         <div className="relative w-full h-72 md:h-80">
           <Image
@@ -61,6 +73,12 @@ export async function BillDetailHeader({
       </div>
 
       <div className="px-4 pb-8">
+        {bill.bill_content?.is_preliminary_source && (
+          <div className="mb-4">
+            <PreliminarySourceNotice scope="bill" />
+          </div>
+        )}
+
         {displaySummary && (
           <p className="mb-4 leading-relaxed">{displaySummary}</p>
         )}

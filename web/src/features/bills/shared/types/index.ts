@@ -59,6 +59,7 @@ export type BillWithStance = Bill & {
 export type BillTag = {
   id: string;
   label: string;
+  emoji?: string | null;
 };
 
 export type FeaturedTag = {

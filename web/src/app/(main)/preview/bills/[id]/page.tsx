@@ -64,7 +64,11 @@ export default async function PreviewBillPage({
   return (
     <>
       <PreviewBanner />
-      <BillDetailLayout bill={bill} currentDifficulty={difficulty} />
+      <BillDetailLayout
+        bill={bill}
+        currentDifficulty={difficulty}
+        backLink={{ href: "/assembly", label: "議会に戻る" }}
+      />
     </>
   );
 }

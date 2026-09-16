@@ -2,12 +2,16 @@ import "server-only";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
-import { formatSessionPeriod } from "@/features/council-sessions/shared/utils/group-sessions-by-year";
-import { groupByFiscalYear } from "../../shared/utils/group-by-fiscal-year";
+import {
+  formatSessionPeriod,
+  groupSessionsByYear,
+} from "@/features/council-sessions/shared/utils/group-sessions-by-year";
 
 type Props = {
   pastSessions: CouncilSession[];
   pastBudgetSessions: CouncilSession[];
+  /** bill_contents が0件（未整備）の定例会IDの集合 */
+  sessionsWithoutContent: Set<string>;
 };
 
 function toBudgetLabel(sessionName: string): string {
@@ -18,18 +22,22 @@ function toBudgetLabel(sessionName: string): string {
   return `${sessionName} 各部の重点施策`;
 }
 
-export function ArchiveView({ pastSessions, pastBudgetSessions }: Props) {
-  const sessionsByFiscalYear = groupByFiscalYear(pastSessions);
-  const budgetSessionsByFiscalYear = groupByFiscalYear(pastBudgetSessions);
+export function ArchiveView({
+  pastSessions,
+  pastBudgetSessions,
+  sessionsWithoutContent,
+}: Props) {
+  const sessionsByYear = groupSessionsByYear(pastSessions);
+  const budgetSessionsByYear = groupSessionsByYear(pastBudgetSessions);
 
-  const fiscalYears = Array.from(
+  const years = Array.from(
     new Set([
-      ...sessionsByFiscalYear.map((g) => g.fiscalYear),
-      ...budgetSessionsByFiscalYear.map((g) => g.fiscalYear),
+      ...sessionsByYear.map((g) => g.year),
+      ...budgetSessionsByYear.map((g) => g.year),
     ])
   ).sort((a, b) => b - a);
 
-  if (fiscalYears.length === 0) {
+  if (years.length === 0) {
     return (
       <p className="text-sm text-mirai-text-muted">
         過去の資料はまだ掲載されていません。
@@ -39,18 +47,16 @@ export function ArchiveView({ pastSessions, pastBudgetSessions }: Props) {
 
   return (
     <div className="flex flex-col gap-10">
-      {fiscalYears.map((fiscalYear) => {
+      {years.map((year) => {
         const sessions =
-          sessionsByFiscalYear.find((g) => g.fiscalYear === fiscalYear)
-            ?.items ?? [];
+          sessionsByYear.find((g) => g.year === year)?.sessions ?? [];
         const budgetSessions =
-          budgetSessionsByFiscalYear.find((g) => g.fiscalYear === fiscalYear)
-            ?.items ?? [];
+          budgetSessionsByYear.find((g) => g.year === year)?.sessions ?? [];
 
         return (
-          <section key={fiscalYear} className="flex flex-col gap-6">
+          <section key={year} className="flex flex-col gap-6">
             <h2 className="border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
-              {fiscalYear}年度
+              {year}年
             </h2>
 
             {sessions.length > 0 && (
@@ -61,6 +67,7 @@ export function ArchiveView({ pastSessions, pastBudgetSessions }: Props) {
                 <ul className="flex flex-col divide-y divide-mirai-border">
                   {sessions.map((session) => {
                     if (!session.slug) return null;
+                    const noContent = sessionsWithoutContent.has(session.id);
                     return (
                       <li key={session.id}>
                         <Link
@@ -70,6 +77,11 @@ export function ArchiveView({ pastSessions, pastBudgetSessions }: Props) {
                           <div className="flex flex-col gap-0.5">
                             <span className="font-bold text-mirai-text">
                               {session.name}
+                              {noContent && (
+                                <span className="ml-2 rounded-full bg-mirai-surface-muted px-2 py-0.5 text-xs font-medium text-mirai-text-muted align-middle">
+                                  データ未整備
+                                </span>
+                              )}
                             </span>
                             <span className="text-xs text-mirai-text-secondary">
                               {formatSessionPeriod(session)}

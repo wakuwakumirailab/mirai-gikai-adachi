@@ -1,12 +1,15 @@
-import Image from "next/image";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import {
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+} from "lucide-react";
 import Link from "next/link";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import { BillListWithStatusFilter } from "@/features/council-sessions/client/components/bill-list-with-status-filter";
-import { groupBillsByTag } from "../../shared/utils/group-bills-by-tag";
 import type { BillWithContent } from "../../shared/types";
 import { FeaturedBillSection } from "./featured-bill-section";
-import { BillsByTagSection } from "./bills-by-tag-section";
+import { PreliminarySourceNotice } from "./preliminary-source-notice";
 
 interface SessionBillsPageProps {
   session: CouncilSession;
@@ -25,11 +28,17 @@ export function SessionBillsPage({
   const sessionDescription = `${startDate.getFullYear()}.${startDate.getMonth() + 1}月〜${endDate.getMonth() + 1}月に実施された${session.name}`;
 
   const featuredBills = bills.filter((b) => b.is_featured);
-  const billsByTag = groupBillsByTag(bills);
+  const hasPreliminarySource = bills.some(
+    (b) => b.bill_content?.is_preliminary_source
+  );
+  const roundMatch = session.name.match(/第(\d+)回/);
+  const eyebrowLabel = roundMatch
+    ? `${startDate.getFullYear()}年 第${roundMatch[1]}回`
+    : `${startDate.getFullYear()}年`;
 
   return (
     <div className="flex flex-col gap-16">
-      {/* アーカイブヘッダー */}
+      {/* ヘッダー */}
       <div className="flex flex-col gap-6">
         <Link
           href="/assembly"
@@ -39,37 +48,24 @@ export function SessionBillsPage({
           議会に戻る
         </Link>
 
-        <div className="flex flex-col gap-1">
-          <h1>
-            <Image
-              src="/icons/archive-typography.svg"
-              alt="Archive"
-              width={156}
-              height={36}
-              priority
-            />
-          </h1>
-          <p className="text-sm font-bold text-primary-accent">
+        <div className="flex flex-col gap-2">
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-mirai-surface-tag px-3 py-1 text-xs font-medium text-primary-accent">
+            <Calendar className="size-3.5" />
+            {eyebrowLabel}
+          </span>
+          <h1 className="text-[28px] font-bold text-black leading-[1.4]">
             {session.name}に上程された議案
+          </h1>
+          <p className="text-xs font-medium text-mirai-text">
+            {sessionDescription}・{bills.length}件
           </p>
         </div>
 
-        <div className="flex flex-col gap-0.5">
-          <h2 className="text-[22px] font-bold text-black leading-[1.48] flex items-center gap-4">
-            {startDate.getFullYear()}年 {session.name}の提出議案
-            <span>{bills.length}件</span>
-          </h2>
-          <p className="text-xs font-medium text-mirai-text">
-            {sessionDescription}
-          </p>
-        </div>
+        {hasPreliminarySource && <PreliminarySourceNotice scope="session" />}
       </div>
 
       {/* 注目の議案 */}
       <FeaturedBillSection bills={featuredBills} />
-
-      {/* カテゴリ別議案 */}
-      {billsByTag.length > 0 && <BillsByTagSection billsByTag={billsByTag} />}
 
       {/* 全議案リスト（ステータスフィルター付き） */}
       {bills.length === 0 ? (
@@ -118,6 +114,15 @@ export function SessionBillsPage({
           </a>
         </div>
       )}
+
+      {/* 過去の資料へのリンク */}
+      <Link
+        href="/archive"
+        className="group flex items-center justify-between gap-2 rounded-2xl border border-mirai-border bg-white px-5 py-4 hover:border-primary/50 hover:shadow-md transition-all duration-200"
+      >
+        <p className="font-bold text-mirai-text">過去の資料一覧へ</p>
+        <ChevronRight className="w-5 h-5 text-mirai-text-muted shrink-0" />
+      </Link>
     </div>
   );
 }

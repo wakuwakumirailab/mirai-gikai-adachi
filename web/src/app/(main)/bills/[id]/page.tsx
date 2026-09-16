@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { getBillById } from "@/features/bills/server/loaders/get-bill-by-id";
 import { BillDetailLayout } from "@/features/bills/server/components/bill-detail/bill-detail-layout";
+import { getCouncilSessionById } from "@/features/council-sessions/server/loaders/get-council-session-by-id";
 import { env } from "@/lib/env";
 
 interface BillDetailPageProps {
@@ -71,10 +72,22 @@ export default async function BillDetailPage({ params }: BillDetailPageProps) {
     notFound();
   }
 
+  const backToSession = billWithContent.council_session_id
+    ? await getCouncilSessionById(billWithContent.council_session_id)
+    : null;
+
   return (
     <BillDetailLayout
       bill={billWithContent}
       currentDifficulty={currentDifficulty}
+      backLink={
+        backToSession?.slug
+          ? {
+              href: `/sessions/${backToSession.slug}/bills`,
+              label: `${backToSession.name}の議案一覧に戻る`,
+            }
+          : { href: "/assembly", label: "議会に戻る" }
+      }
     />
   );
 }

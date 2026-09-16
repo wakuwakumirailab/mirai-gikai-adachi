@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { formatDateJST } from "@/lib/utils/date";
 import type { BillWithContent } from "../../../shared/types";
 import { BillStatusBadge } from "./bill-status-badge";
+import { BillTag } from "./bill-tag";
 
 interface CompactBillCardProps {
   bill: BillWithContent;
@@ -15,6 +16,7 @@ interface CompactBillCardProps {
  */
 export function CompactBillCard({ bill, className }: CompactBillCardProps) {
   const displayTitle = bill.bill_content?.title || bill.name;
+  const summary = bill.bill_content?.summary;
   const statusLabel = "提出";
 
   return (
@@ -24,6 +26,11 @@ export function CompactBillCard({ bill, className }: CompactBillCardProps) {
       <div className="flex">
         {/* コンテンツエリア */}
         <div className="flex-1 p-4 flex flex-col gap-2">
+          {bill.bill_number && (
+            <span className="text-xs font-medium text-muted-foreground">
+              {bill.bill_number}
+            </span>
+          )}
           <h3 className="font-bold text-[15px] leading-[1.6] line-clamp-2">
             {displayTitle}
           </h3>
@@ -35,6 +42,18 @@ export function CompactBillCard({ bill, className }: CompactBillCardProps) {
               </span>
             )}
           </div>
+          {summary && (
+            <p className="text-xs leading-relaxed text-mirai-text-secondary line-clamp-2">
+              {summary}
+            </p>
+          )}
+          {bill.tags && bill.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {bill.tags.map((tag) => (
+                <BillTag key={tag.id} tag={tag} />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* サムネイル画像 */}

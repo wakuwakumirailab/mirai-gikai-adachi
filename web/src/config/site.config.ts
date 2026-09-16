@@ -72,5 +72,7 @@ export const siteConfig = {
      * 非公式運営など、党の公式サービスとして出さない場合は false にする。
      */
     showTeamMiraiSection: false as boolean,
+    /** 事務事業評価セクションの表示（過去の資料ページ）。データ投入が完了するまで false */
+    jimuJigyo: false as boolean,
   },
 } as const;

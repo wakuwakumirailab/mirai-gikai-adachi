@@ -58,7 +58,7 @@ export default async function OtherBillsRoute({
           </Link>
           <h1 className="text-2xl font-bold text-mirai-text">その他の議案</h1>
           <p className="mt-1 text-sm text-mirai-text-secondary">
-            指定管理者の指定・工事請負契約・物品購入など、事務手続き的な議案です。わかりやすい解説はありませんが、議案名・議決結果を一覧でご確認いただけます。
+            指定管理者の指定・工事請負契約・物品購入など、事務手続き的な議案です。わかりやすい解説はありませんが、契約金額・相手方など議案の要点を一覧でご確認いただけます。
           </p>
         </div>
 
@@ -69,26 +69,30 @@ export default async function OtherBillsRoute({
         ) : (
           <ul className="flex flex-col divide-y divide-mirai-border rounded-2xl border border-mirai-border bg-white">
             {bills.map((bill) => (
-              <li
-                key={bill.id}
-                className="flex flex-col gap-1.5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-xs text-mirai-text-muted">
-                    {bill.bill_number}
-                  </span>
-                  <span className="font-medium text-mirai-text">
-                    {bill.name}
-                  </span>
+              <li key={bill.id} className="flex flex-col gap-1.5 px-4 py-3">
+                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs text-mirai-text-muted">
+                      {bill.bill_number}
+                    </span>
+                    <span className="font-medium text-mirai-text">
+                      {bill.name}
+                    </span>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2 text-xs text-mirai-text-muted">
+                    {bill.published_at && (
+                      <time>{formatDateJST(bill.published_at)}</time>
+                    )}
+                    <Badge variant={getStatusVariant(bill.status)}>
+                      {bill.status_note ?? getCardStatusLabel(bill.status)}
+                    </Badge>
+                  </div>
                 </div>
-                <div className="flex shrink-0 items-center gap-2 text-xs text-mirai-text-muted">
-                  {bill.published_at && (
-                    <time>{formatDateJST(bill.published_at)}</time>
-                  )}
-                  <Badge variant={getStatusVariant(bill.status)}>
-                    {bill.status_note ?? getCardStatusLabel(bill.status)}
-                  </Badge>
-                </div>
+                {bill.procedural_summary && (
+                  <p className="text-xs leading-relaxed text-mirai-text-secondary line-clamp-2">
+                    {bill.procedural_summary}
+                  </p>
+                )}
               </li>
             ))}
           </ul>

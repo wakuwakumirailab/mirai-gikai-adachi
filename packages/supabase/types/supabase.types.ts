@@ -41,6 +41,8 @@ export type Database = {
           created_at: string
           difficulty_level: Database["public"]["Enums"]["difficulty_level_enum"]
           id: string
+          is_preliminary_source: boolean
+          source_references: Json
           summary: string
           title: string
           updated_at: string
@@ -51,6 +53,8 @@ export type Database = {
           created_at?: string
           difficulty_level: Database["public"]["Enums"]["difficulty_level_enum"]
           id?: string
+          is_preliminary_source?: boolean
+          source_references?: Json
           summary: string
           title: string
           updated_at?: string
@@ -61,6 +65,8 @@ export type Database = {
           created_at?: string
           difficulty_level?: Database["public"]["Enums"]["difficulty_level_enum"]
           id?: string
+          is_preliminary_source?: boolean
+          source_references?: Json
           summary?: string
           title?: string
           updated_at?: string
@@ -146,6 +152,7 @@ export type Database = {
           is_featured: boolean
           is_procedural: boolean
           name: string
+          procedural_summary: string | null
           publish_status: Database["public"]["Enums"]["bill_publish_status"]
           publish_status_order: number | null
           published_at: string | null
@@ -168,6 +175,7 @@ export type Database = {
           is_featured?: boolean
           is_procedural?: boolean
           name: string
+          procedural_summary?: string | null
           publish_status?: Database["public"]["Enums"]["bill_publish_status"]
           publish_status_order?: number | null
           published_at?: string | null
@@ -190,6 +198,7 @@ export type Database = {
           is_featured?: boolean
           is_procedural?: boolean
           name?: string
+          procedural_summary?: string | null
           publish_status?: Database["public"]["Enums"]["bill_publish_status"]
           publish_status_order?: number | null
           published_at?: string | null
@@ -1758,6 +1767,7 @@ export type Database = {
         Row: {
           created_at: string
           description: string | null
+          emoji: string | null
           featured_priority: number | null
           id: string
           label: string
@@ -1766,6 +1776,7 @@ export type Database = {
         Insert: {
           created_at?: string
           description?: string | null
+          emoji?: string | null
           featured_priority?: number | null
           id?: string
           label: string
@@ -1774,6 +1785,7 @@ export type Database = {
         Update: {
           created_at?: string
           description?: string | null
+          emoji?: string | null
           featured_priority?: number | null
           id?: string
           label?: string

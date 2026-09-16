@@ -45,8 +45,10 @@ const _getCachedBillById = unstable_cache(
     const tags =
       billTags
         ?.map((bt) => bt.tags)
-        .filter((tag): tag is { id: string; label: string } => tag !== null) ||
-      [];
+        .filter(
+          (tag): tag is { id: string; label: string; emoji: string | null } =>
+            tag !== null
+        ) || [];
 
     return {
       ...bill,

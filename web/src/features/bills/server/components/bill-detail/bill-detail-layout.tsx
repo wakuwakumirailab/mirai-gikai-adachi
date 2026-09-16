@@ -15,15 +15,18 @@ import { getBillDiscussions } from "../../loaders/get-bill-discussions";
 import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
 import { BillDiscussionsSection } from "./bill-discussions-section";
+import { BillSourceReferences } from "./bill-source-references";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
   currentDifficulty: DifficultyLevelEnum;
+  backLink: { href: string; label: string };
 }
 
 export async function BillDetailLayout({
   bill,
   currentDifficulty,
+  backLink,
 }: BillDetailLayoutProps) {
   const showStances =
     bill.status === "preparing" ||
@@ -53,6 +56,7 @@ export async function BillDetailLayout({
         <BillDetailHeader
           bill={bill}
           hasInterviewConfig={interviewConfig != null}
+          backLink={backLink}
         />
         <Container>
           {/* 議案ステータス進捗 */}
@@ -64,6 +68,9 @@ export async function BillDetailLayout({
           </div>
 
           <BillContent bill={bill} />
+          <BillSourceReferences
+            sourceReferences={bill.bill_content?.source_references}
+          />
           {discussions.length > 0 && (
             <div className="my-8">
               <BillDiscussionsSection
