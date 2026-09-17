@@ -80,6 +80,6 @@ export const siteConfig = {
      * （他のページ（/bills/[id] 等）には影響しない）。
      * 本番投入前の仮データ非公開や、今後の一時的なメンテナンス告知に使う。
      */
-    maintenanceMode: false as boolean,
+    maintenanceMode: true as boolean,
   },
 } as const;
