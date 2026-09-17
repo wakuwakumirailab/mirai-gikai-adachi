@@ -126,7 +126,7 @@ export function FactionStanceCard({
 
   return (
     <>
-      <h2 className="text-[22px] font-bold mb-1">🗳️会派の賛否</h2>
+      <h2 className="text-[22px] font-bold mb-1">会派の賛否</h2>
       <p className="mb-3 text-xs text-mirai-text-muted">
         議員、会派は略称で記載しています。賛否は採決時点の名称、所属議員で記載しています。
       </p>

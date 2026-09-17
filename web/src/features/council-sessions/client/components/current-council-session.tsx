@@ -16,11 +16,16 @@ export function CurrentCouncilSession({ session }: CurrentCouncilSessionProps) {
           </h2>
           <div
             className={`
-            inline-flex items-center justify-center px-5 py-1.5 rounded-[50px]  shrink-0
-            ${session == null ? "bg-mirai-border-muted" : "bg-mirai-gradient"}
+            inline-flex items-center justify-center px-4 py-1 rounded-lg border-2 bg-white shrink-0
+            ${session == null ? "border-mirai-text-muted" : "border-mirai-session-open"}
             `}
           >
-            <span className="text-base font-bold leading-[1.48]">
+            <span
+              className={`
+              text-base font-bold leading-[1.48]
+              ${session == null ? "text-mirai-text-muted" : "text-mirai-session-open"}
+              `}
+            >
               {session == null ? "閉会中" : "開会中"}
             </span>
           </div>

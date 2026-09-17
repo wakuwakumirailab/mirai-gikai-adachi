@@ -50,8 +50,13 @@ export async function findCurrentCouncilSession(
 
 /**
  * 全定例会を新しい順に取得（アクティブなものを除く、公開済み議案が1件以上あるもののみ）
+ * 会期末日が指定日より前（＝既に閉会済み）のもののみを対象とする。
+ * 開会中の会期（議案登録済みだが未閉会）は、閉会するまでここには出さない
+ * （まだ解説が無くても「データ未整備」表示で出したい会期はこちらに含まれる）
  */
-export async function findAllPastCouncilSessions(): Promise<CouncilSession[]> {
+export async function findAllPastCouncilSessions(
+  targetDate: string
+): Promise<CouncilSession[]> {
   const supabase = createAdminClient();
 
   // bills テーブルから published な議案がある会期IDを取得
@@ -81,6 +86,7 @@ export async function findAllPastCouncilSessions(): Promise<CouncilSession[]> {
     .from("council_sessions")
     .select("*")
     .eq("is_active", false)
+    .lt("end_date", targetDate)
     .in("id", sessionIds)
     .order("start_date", { ascending: false });
 

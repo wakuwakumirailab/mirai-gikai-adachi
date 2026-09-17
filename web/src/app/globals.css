@@ -122,6 +122,9 @@
   --color-mirai-gradient-start: #c8e4f2;
   --color-mirai-gradient-end: #e9f5fb;
 
+  /* 「開会中」バッジ専用の緑（トップの免責文言バッジ（青系）と区別するため） */
+  --color-mirai-session-open: #3b6d11;
+
   /* 事務事業評価グレード */
   --color-grade-a: #22c55e;
   --color-grade-a-bg: #f0fdf4;

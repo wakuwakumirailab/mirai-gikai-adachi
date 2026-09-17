@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { SessionBillsPage } from "@/features/bills/server/components/session-bills-page";
+import { getCurrentSessionBills } from "@/features/bills/server/loaders/get-current-session-bills";
 import { getSessionBills } from "@/features/bills/server/loaders/get-session-bills";
 import { getSessionProceduralBills } from "@/features/bills/server/loaders/get-session-procedural-bills";
 import { getCouncilSessionBySlug } from "@/features/council-sessions/server/loaders/get-council-session-by-slug";
@@ -43,10 +44,17 @@ export default async function SessionBillsRoute({
     notFound();
   }
 
-  const [bills, proceduralBills] = await Promise.all([
+  const [bills, proceduralBills, allSessionBills] = await Promise.all([
     getSessionBills(session.id, difficultyLevel),
     getSessionProceduralBills(session.id),
+    getCurrentSessionBills(session.id),
   ]);
+
+  const contentBillIds = new Set(bills.map((b) => b.id));
+  const proceduralBillIds = new Set(proceduralBills.map((b) => b.id));
+  const awaitingContentBills = allSessionBills.filter(
+    (b) => !contentBillIds.has(b.id) && !proceduralBillIds.has(b.id)
+  );
 
   return (
     <Container className="py-10">
@@ -54,6 +62,7 @@ export default async function SessionBillsRoute({
         session={session}
         bills={bills}
         proceduralBillCount={proceduralBills.length}
+        awaitingContentBills={awaitingContentBills}
       />
     </Container>
   );

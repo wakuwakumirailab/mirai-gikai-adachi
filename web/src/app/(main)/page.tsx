@@ -7,12 +7,15 @@ import { CityFinanceBanner } from "@/components/top/city-finance-banner";
 import { CommitteeBanner } from "@/components/top/committee-banner";
 import { GeneralQuestionsBanner } from "@/components/top/general-questions-banner";
 import { Hero } from "@/components/top/hero";
+import { SiteDisclaimerNotice } from "@/components/top/site-disclaimer-notice";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { siteConfig } from "@/config/site.config";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
 import { BillsByTagSection } from "@/features/bills/server/components/bills-by-tag-section";
+import { CurrentSessionBillsBanner } from "@/features/bills/server/components/current-session-bills-banner";
 import { FeaturedBillSection } from "@/features/bills/server/components/featured-bill-section";
+import { getCurrentSessionBills } from "@/features/bills/server/loaders/get-current-session-bills";
 import { loadHomeData } from "@/features/bills/server/loaders/load-home-data";
 import type { BillWithContent } from "@/features/bills/shared/types";
 import { getLatestBudgetSession } from "@/features/budget-overview/server/loaders/get-latest-budget-session";
@@ -46,6 +49,10 @@ export default async function Home() {
     getLatestBudgetSession(),
   ]);
 
+  const currentSessionBills = currentSession
+    ? await getCurrentSessionBills(currentSession.id)
+    : [];
+
   const toBillChatContext = (bill: BillWithContent) => {
     return {
       name: `${bill.bill_content?.title}（${bill.name}）`,
@@ -59,8 +66,20 @@ export default async function Home() {
     <>
       <Hero />
 
+      <SiteDisclaimerNotice />
+
       {/* 本日の定例会セクション */}
       <CurrentCouncilSession session={currentSession} />
+
+      {/* 今回の定例会の議案（わかりやすい解説の有無に関わらず表示） */}
+      {currentSession && (
+        <Container className="pt-4">
+          <CurrentSessionBillsBanner
+            session={currentSession}
+            bills={currentSessionBills}
+          />
+        </Container>
+      )}
 
       {/* 区長記者会見バナー */}
       {latestPressConference && (

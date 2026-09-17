@@ -5,23 +5,41 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import { BillListWithStatusFilter } from "@/features/council-sessions/client/components/bill-list-with-status-filter";
-import type { BillWithContent } from "../../shared/types";
+import { formatDateJST } from "@/lib/utils/date";
+import type { BillStatusEnum, BillWithContent } from "../../shared/types";
+import {
+  getCardStatusLabel,
+  getStatusVariant,
+} from "../../shared/utils/bill-status";
 import { FeaturedBillSection } from "./featured-bill-section";
 import { PreliminarySourceNotice } from "./preliminary-source-notice";
+
+interface AwaitingContentBill {
+  id: string;
+  bill_number: string;
+  name: string;
+  status: BillStatusEnum;
+  status_note: string | null;
+  published_at: string | null;
+}
 
 interface SessionBillsPageProps {
   session: CouncilSession;
   bills: BillWithContent[];
   /** 指定管理者の指定・契約等、解説なしで一覧のみ表示する議案の件数 */
   proceduralBillCount?: number;
+  /** 上程済みだがわかりやすい解説がまだ無い議案（委員会審査待ちの新会期など） */
+  awaitingContentBills?: AwaitingContentBill[];
 }
 
 export function SessionBillsPage({
   session,
   bills,
   proceduralBillCount = 0,
+  awaitingContentBills = [],
 }: SessionBillsPageProps) {
   const startDate = new Date(session.start_date);
   const endDate = new Date(session.end_date ?? session.start_date);
@@ -68,16 +86,54 @@ export function SessionBillsPage({
       <FeaturedBillSection bills={featuredBills} />
 
       {/* 全議案リスト（ステータスフィルター付き） */}
-      {bills.length === 0 ? (
+      {bills.length === 0 && awaitingContentBills.length === 0 ? (
         <p className="text-center py-12 text-muted-foreground">
           わかりやすい解説つきの議案は準備中です
         </p>
       ) : (
+        bills.length > 0 && (
+          <section className="flex flex-col gap-4">
+            <h2 className="text-[22px] font-bold text-black leading-[1.48]">
+              全議案一覧
+            </h2>
+            <BillListWithStatusFilter bills={bills} />
+          </section>
+        )
+      )}
+
+      {/* 解説準備中の議案（委員会審査待ちなどでbill_contentsが未作成のもの） */}
+      {awaitingContentBills.length > 0 && (
         <section className="flex flex-col gap-4">
           <h2 className="text-[22px] font-bold text-black leading-[1.48]">
-            全議案一覧
+            解説準備中の議案（{awaitingContentBills.length}件）
           </h2>
-          <BillListWithStatusFilter bills={bills} />
+          <p className="text-sm text-mirai-text-secondary">
+            委員会での審査が済み次第、わかりやすい解説を順次公開します。
+          </p>
+          <ul className="flex flex-col divide-y divide-mirai-border rounded-2xl border border-mirai-border bg-white">
+            {awaitingContentBills.map((bill) => (
+              <li key={bill.id} className="flex flex-col gap-1.5 px-4 py-3">
+                <div className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xs text-mirai-text-muted">
+                      {bill.bill_number}
+                    </span>
+                    <span className="font-medium text-mirai-text">
+                      {bill.name}
+                    </span>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2 text-xs text-mirai-text-muted">
+                    {bill.published_at && (
+                      <time>{formatDateJST(bill.published_at)}</time>
+                    )}
+                    <Badge variant={getStatusVariant(bill.status)}>
+                      {bill.status_note ?? getCardStatusLabel(bill.status)}
+                    </Badge>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 

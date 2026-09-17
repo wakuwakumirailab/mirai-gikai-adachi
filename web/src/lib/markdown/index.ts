@@ -8,7 +8,6 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { LongPressSection } from "@/features/bills/client/components/bill-detail/long-press-section";
-import { DifficultyInfoCard } from "@/features/bills/server/components/bill-detail/difficulty-info-card";
 import { rehypeEmbedYouTube } from "./rehype-embed-youtube";
 import { rehypeExternalLinks } from "./rehype-external-links";
 import { rehypeInjectElement } from "./rehype-inject-element";
@@ -25,7 +24,6 @@ const sanitizeSchema = {
     ...(defaultSchema.tagNames || []),
     // カスタム要素を許可
     "LongPressSection",
-    "DifficultyInfoCard",
   ],
 };
 
@@ -51,10 +49,6 @@ export async function parseMarkdown(markdown: string): Promise<ReactElement> {
           targetH2Index: 3,
           tagName: "LongPressSection",
         },
-        {
-          targetH2Index: -1,
-          tagName: "DifficultyInfoCard",
-        },
       ],
     })
     .use(rehypeSanitize, sanitizeSchema)
@@ -69,7 +63,6 @@ export async function parseMarkdown(markdown: string): Promise<ReactElement> {
     jsxs,
     components: {
       LongPressSection, // Client Componentとして水和
-      DifficultyInfoCard, // Client Componentとして水和
     },
   });
 }

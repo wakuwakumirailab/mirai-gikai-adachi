@@ -305,6 +305,30 @@ export async function findProceduralBillsByCouncilSession(
 }
 
 /**
+ * 会期に紐づく公開済み議案を、わかりやすい解説(bill_contents)の有無に関わらず取得。
+ * 審査がまだ始まっていない新会期を、ホームの「今回の定例会の議案」バナー等で
+ * 一覧表示するために使う（is_procedural問わず、petitionを除く）。
+ */
+export async function findAllBillsByCouncilSession(councilSessionId: string) {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("bills")
+    .select("id, bill_number, name, status, status_note, published_at")
+    .eq("council_session_id", councilSessionId)
+    .eq("publish_status", "published")
+    .neq("bill_type", "petition")
+    .order("published_at", { ascending: true });
+
+  if (error) {
+    throw new Error(
+      `Failed to fetch all bills by council session: ${error.message}`
+    );
+  }
+
+  return data ?? [];
+}
+
+/**
  * 前回の定例会の公開済み議案を取得（件数制限あり）
  */
 export async function findPreviousSessionBills(

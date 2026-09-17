@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
+import { siteConfig } from "./config/site.config";
 import {
   DIFFICULTY_COOKIE_NAME,
   DIFFICULTY_COOKIE_OPTIONS,
@@ -19,6 +20,12 @@ export function middleware(request: NextRequest) {
       return NextResponse.rewrite(new URL("/not-found", request.url));
     }
     return NextResponse.next();
+  }
+
+  // メンテナンス中はトップページのみ、ヘッダー・ナビの無い専用画面へリライトする
+  // （ヘッダー/ボトムナビ経由で他ページへ遷移できてしまうのを防ぐ。他ページは通常通り）
+  if (siteConfig.features.maintenanceMode && request.nextUrl.pathname === "/") {
+    return NextResponse.rewrite(new URL("/maintenance-screen", request.url));
   }
 
   const response = _handleDifficultyCookie(request);

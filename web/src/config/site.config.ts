@@ -74,5 +74,12 @@ export const siteConfig = {
     showTeamMiraiSection: false as boolean,
     /** 事務事業評価セクションの表示（過去の資料ページ）。データ投入が完了するまで false */
     jimuJigyo: false as boolean,
+    /**
+     * トップページのメンテナンス画面表示。
+     * true にすると "/" が通常のコンテンツの代わりに準備中の案内を表示する
+     * （他のページ（/bills/[id] 等）には影響しない）。
+     * 本番投入前の仮データ非公開や、今後の一時的なメンテナンス告知に使う。
+     */
+    maintenanceMode: false as boolean,
   },
 } as const;

@@ -16,6 +16,7 @@ import { BillContent } from "./bill-content";
 import { BillDetailHeader } from "./bill-detail-header";
 import { BillDiscussionsSection } from "./bill-discussions-section";
 import { BillSourceReferences } from "./bill-source-references";
+import { DifficultyInfoCard } from "./difficulty-info-card";
 
 interface BillDetailLayoutProps {
   bill: BillWithContent;
@@ -68,6 +69,15 @@ export async function BillDetailLayout({
           </div>
 
           <BillContent bill={bill} />
+          {showStances && (
+            <div className="my-8">
+              <FactionStanceCard
+                stances={bill.faction_stances ?? []}
+                billStatus={bill.status}
+              />
+            </div>
+          )}
+          {bill.bill_content?.content && <DifficultyInfoCard />}
           <BillSourceReferences
             sourceReferences={bill.bill_content?.source_references}
           />
@@ -97,14 +107,6 @@ export async function BillDetailLayout({
               billId={bill.id}
               reports={publicReportsResult.reports}
               totalCount={publicReportsResult.totalCount}
-            />
-          </div>
-        )}
-        {showStances && (
-          <div className="my-8">
-            <FactionStanceCard
-              stances={bill.faction_stances ?? []}
-              billStatus={bill.status}
             />
           </div>
         )}

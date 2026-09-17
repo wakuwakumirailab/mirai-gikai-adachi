@@ -90,6 +90,14 @@ export const councilSessions: CouncilSessionInsert[] = [
     end_date: "2026-07-07",
     is_active: false,
   },
+  {
+    name: "令和8年 第3回 定例会",
+    slug: "r8-3",
+    council_url: "https://www.gikai-adachi.jp/g07_giketsu.asp?kword1=&exp=AND&kword2=&kaigi=2026%2F09%2F14%2C2026%2F10%2F20%2C137&bunrui=&nenfrom=&nento=&kekka=&kensu=100&Sflg=2&smode=3",
+    start_date: "2026-09-14",
+    end_date: "2026-10-20",
+    is_active: false,
+  },
 ];
 
 // 議案データ（足立区議会公式サイト「議案の検索」より取得。令和7年度・令和8年度分、計165件）
@@ -274,6 +282,36 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-2", billNumber: "第75号", name: "学校給食室設備（コンベクションオーブン外）の買い替えについて", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "有限会社中田屋からコンベクションオーブン等の学校給食室設備を3,353万9,000円で買い替えます。納期は令和8年11月30日。" },
   { sessionSlug: "r8-2", billNumber: "第76号", name: "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "千住大川端地区A工区の道路整備に伴う土壌汚染対策等工事について、東京製鐵など開発事業者3社が区に上限3億5,000万円を負担する協定を締結します。" },
   { sessionSlug: "r8-2", billNumber: "第77号", name: "令和8年度足立区一般会計補正予算（第3号）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "bill" },
+
+  // 令和8年第3回定例会（r8-3、2026-09-14〜2026-10-20）。委員会審査はこれから
+  // （総務9/17・区民9/18・産業環境9/24・建設/文教10月・決算特別委員会9/28〜）のため、
+  // 審議未了 = submitted。わかりやすい解説（bill_contents）は委員会審査後に別途追加する。
+  { sessionSlug: "r8-3", billNumber: "第78号", name: "令和7年度足立区一般会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第79号", name: "令和7年度足立区国民健康保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第80号", name: "令和7年度足立区介護保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第81号", name: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第82号", name: "令和8年度足立区一般会計補正予算(第4号）", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第83号", name: "令和8年度足立区国民健康保険特別会計補正予算（第1号）", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第84号", name: "令和8年度足立区介護保険特別会計補正予算（第2号）", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第85号", name: "令和8年度足立区後期高齢者医療特別会計補正予算（第1号）", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第86号", name: "加平小学校人工芝改修工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第87号", name: "青井住区センター大規模改修工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第88号", name: "（仮称）舎人三丁目第二公園整備工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第89号", name: "花畑地域学習センター大規模改修その他工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第90号", name: "花畑地域学習センター大規模改修機械設備工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第91号", name: "東伊興住区センター分館大規模改修工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第92号", name: "足立区印鑑条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第93号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第94号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第95号", name: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第96号", name: "特別区道路線の認定について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第97号", name: "足立区長等の給料の特例に関する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第98号", name: "梅島小学校外壁改修工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第99号", name: "千住大橋防災船着場整備工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第100号", name: "花畑地域学習センター大規模改修電気設備工事請負契約", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第101号", name: "東渕江小学校改築工事請負契約の変更について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第102号", name: "足立区多文化共生推進計画審議会条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第103号", name: "足立区景観条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
 ];
 
 // 請願・陳情データ（足立区議会公式サイト「請願・陳情の検索」より取得。
@@ -389,7 +427,8 @@ export const factions: FactionInsert[] = [
   {
     name: "mushozoku",
     display_name: "無所属",
-    sort_order: 8,
+    // 無所属は常に一覧の最後に表示したいため、他の会派より大きい値を設定する
+    sort_order: 11,
     is_active: true,
   },
   // 令和8年時点の会派（是々非々の会）。会派の離合集散が頻繁なため、
@@ -401,6 +440,15 @@ export const factions: FactionInsert[] = [
     name: "zezehihi-no-kai",
     display_name: "是々非々の会（維新・参政・無所属・立憲）",
     sort_order: 9,
+    is_active: true,
+  },
+  // 令和8年第1回定例会（3/24）時点で存在した会派。【審議結果一覧】PDFの
+  // 凡例に基づく（その後、令和8年9月時点では会派として存在せず、
+  // 所属していた土屋のりこ・髙橋まゆみ両議員は無所属となっている）。
+  {
+    name: "reiwa-shimin",
+    display_name: "れいわ新選組・市民派の会あだち",
+    sort_order: 10,
     is_active: true,
   },
 ];
@@ -707,14 +755,29 @@ type RealFactionStanceSeed = {
 
 export const realFactionStancesSeed: RealFactionStanceSeed[] = [
   // 第22号議案 足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例
-  // 令和8年3月13日 建設委員会にて審査。賛成多数（ぬかが和子委員が反対）で可決。
+  // 令和8年3月13日 建設委員会にて審査。委員会では反対表明はぬかが和子委員のみだったが、
+  // 本会議（3/24）の採決結果PDF【審議結果一覧】令和8年第1回定例会で会派ごとの
+  // 賛否（○×）を確認し、各会派の議決当時の全議員名をスナップショットとして記録。
   {
     billName:
       "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
     billPublishedAt: "2026-03-24",
     factionName: "komei",
     type: "for",
-    memberNames: ["小泉"],
+    memberNames: [
+      "小泉",
+      "たがた",
+      "いいくら",
+      "長井",
+      "岡安",
+      "くぼた",
+      "佐々木",
+      "吉田",
+      "さの",
+      "石毛",
+      "水野",
+      "太田",
+    ],
   },
   {
     billName:
@@ -722,7 +785,20 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "jimin-adachi",
     type: "for",
-    memberNames: ["くじらい"],
+    // 議長（ただ太郎）は採決に加わらないため11名
+    memberNames: [
+      "白石",
+      "吉岡",
+      "渡辺",
+      "かねだ",
+      "鹿浜",
+      "工藤",
+      "伊藤",
+      "くじらい",
+      "杉本",
+      "しぶや",
+      "岡田",
+    ],
   },
   {
     billName:
@@ -730,7 +806,7 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "zezehihi-no-kai",
     type: "for",
-    memberNames: ["富田"],
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
   },
   {
     billName:
@@ -738,7 +814,23 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     billPublishedAt: "2026-03-24",
     factionName: "mushozoku",
     type: "for",
-    memberNames: ["市川"],
+    memberNames: ["市川", "野沢"],
+  },
+  {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤", "川村"],
+  },
+  {
+    billName:
+      "足立区西新井公園周辺地区地区計画の区域内における建築物の制限に関する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "reiwa-shimin",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
   },
   {
     // 委員会での反対表明はぬかが和子委員のみだったが、本会議の採決結果PDF
@@ -753,6 +845,327 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     comment:
       "旅館業（民泊より規制が緩い形態）に対する用途制限が条例に盛り込まれなかったことを理由に反対。",
   },
+
+  // 第60号議案 足立区立校外施設条例の一部を改正する条例（令和8年第2回定例会 7/7 本会議・起立採決）
+  // 本会議録には個別の賛否は載らないが、【審議結果一覧】令和8年第2回定例会PDFで
+  // 会派・議員別の賛否（○×）を確認できる。無所属は市川・野沢が賛成、土屋・髙橋が反対で割れたため2レコードに分ける。
+  // なお、令和8年第2回定例会時点で「れいわ新選組・市民派の会あだち」会派は解消しており、
+  // 元メンバー（土屋・髙橋）は無所属として記録されている。
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "jimin-adachi",
+    type: "for",
+    // 議決時の議長（伊藤のぶゆき）は採決に加わらないため11名
+    memberNames: [
+      "白石",
+      "吉岡",
+      "渡辺",
+      "かねだ",
+      "鹿浜",
+      "工藤",
+      "ただ",
+      "くじらい",
+      "杉本",
+      "しぶや",
+      "岡田",
+    ],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "komei",
+    type: "for",
+    memberNames: [
+      "小泉",
+      "たがた",
+      "いいくら",
+      "長井",
+      "岡安",
+      "くぼた",
+      "佐々木",
+      "吉田",
+      "さの",
+      "石毛",
+      "水野",
+      "太田",
+    ],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤", "川村"],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢"],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
+  },
+  {
+    billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第45号議案 足立区特定乳児等通園支援事業の運営に関する基準を定める条例（令和8年第1回定例会 3/24 本会議）
+  // 【審議結果一覧】令和8年第1回定例会PDFで確認。共産党とれ市（土屋・髙橋）が反対、他は賛成。
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: [
+      "白石",
+      "吉岡",
+      "渡辺",
+      "かねだ",
+      "鹿浜",
+      "工藤",
+      "伊藤",
+      "くじらい",
+      "杉本",
+      "しぶや",
+      "岡田",
+    ],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "komei",
+    type: "for",
+    memberNames: [
+      "小泉",
+      "たがた",
+      "いいくら",
+      "長井",
+      "岡安",
+      "くぼた",
+      "佐々木",
+      "吉田",
+      "さの",
+      "石毛",
+      "水野",
+      "太田",
+    ],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤", "川村"],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢"],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "reiwa-shimin",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
+  },
+  {
+    billName: "足立区特定乳児等通園支援事業の運営に関する基準を定める条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第49号議案 足立区国民健康保険条例の一部を改正する条例（令和8年第1回定例会 3/24 本会議）
+  // 【審議結果一覧】令和8年第1回定例会PDFで確認。共産党とれ市（土屋・髙橋）が反対、他は賛成。
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: [
+      "白石",
+      "吉岡",
+      "渡辺",
+      "かねだ",
+      "鹿浜",
+      "工藤",
+      "伊藤",
+      "くじらい",
+      "杉本",
+      "しぶや",
+      "岡田",
+    ],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "komei",
+    type: "for",
+    memberNames: [
+      "小泉",
+      "たがた",
+      "いいくら",
+      "長井",
+      "岡安",
+      "くぼた",
+      "佐々木",
+      "吉田",
+      "さの",
+      "石毛",
+      "水野",
+      "太田",
+    ],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤", "川村"],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢"],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "reiwa-shimin",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
+  },
+  {
+    billName: "足立区国民健康保険条例の一部を改正する条例",
+    billPublishedAt: "2026-03-24",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第1号・5号・6号・8号議案（令和8年第1回定例会 3/24 本会議）
+  // 【審議結果一覧】令和8年第1回定例会PDFで確認。いずれも共産党とれ市（土屋・髙橋）が反対、他は賛成（賛成32・反対8）。
+  ...[
+    "令和7年度足立区一般会計補正予算（第10号）",
+    "令和8年度足立区一般会計予算",
+    "令和8年度足立区国民健康保険特別会計予算",
+    "令和8年度足立区後期高齢者医療特別会計予算",
+  ].flatMap(
+    (billName): RealFactionStanceSeed[] => [
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "jimin-adachi",
+        type: "for",
+        memberNames: [
+          "白石",
+          "吉岡",
+          "渡辺",
+          "かねだ",
+          "鹿浜",
+          "工藤",
+          "伊藤",
+          "くじらい",
+          "杉本",
+          "しぶや",
+          "岡田",
+        ],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "komei",
+        type: "for",
+        memberNames: [
+          "小泉",
+          "たがた",
+          "いいくら",
+          "長井",
+          "岡安",
+          "くぼた",
+          "佐々木",
+          "吉田",
+          "さの",
+          "石毛",
+          "水野",
+          "太田",
+        ],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "zezehihi-no-kai",
+        type: "for",
+        memberNames: ["おぐら", "へんみ", "加地", "富田"],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "tomin-first",
+        type: "for",
+        memberNames: ["中島", "佐藤", "川村"],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "mushozoku",
+        type: "for",
+        memberNames: ["市川", "野沢"],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "reiwa-shimin",
+        type: "against",
+        memberNames: ["土屋", "髙橋"],
+      },
+      {
+        billName,
+        billPublishedAt: "2026-03-24",
+        factionName: "kyosan",
+        type: "against",
+        memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+      },
+    ]
+  ),
 ];
 
 export function createFactionStances(
