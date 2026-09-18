@@ -9,18 +9,16 @@ export function About() {
       <div className="flex flex-col gap-4">
         {/* ヘッダー */}
         <div className="flex flex-col gap-4">
-          <h2>
+          <h2 className="flex items-center gap-2">
             <Image
-              src="/icons/about-typography.svg"
-              alt="このサイトについて"
-              width={143}
-              height={36}
-              priority
+              src="/img/brand-logo.png"
+              alt={siteConfig.siteName}
+              width={800}
+              height={97}
+              className="h-6 w-auto"
             />
+            <span className="text-[22px] font-bold text-mirai-text">とは</span>
           </h2>
-          <p className="text-sm font-bold text-primary-accent">
-            {siteConfig.siteName}とは
-          </p>
         </div>
 
         {/* コンテンツ */}

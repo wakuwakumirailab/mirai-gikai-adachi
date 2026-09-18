@@ -1,10 +1,6 @@
 import { Container } from "@/components/layouts/container";
 import { About } from "@/components/top/about";
 import { ArchiveBanner } from "@/components/top/archive-banner";
-import { BannerAccordion } from "@/components/top/banner-accordion";
-import { BudgetOverviewBanner } from "@/components/top/budget-overview-banner";
-import { CityFinanceBanner } from "@/components/top/city-finance-banner";
-import { CommitteeBanner } from "@/components/top/committee-banner";
 import { GeneralQuestionsBanner } from "@/components/top/general-questions-banner";
 import { Hero } from "@/components/top/hero";
 import { SiteDisclaimerNotice } from "@/components/top/site-disclaimer-notice";
@@ -12,13 +8,10 @@ import { TeamMirai } from "@/components/top/team-mirai";
 import { siteConfig } from "@/config/site.config";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
-import { BillsByTagSection } from "@/features/bills/server/components/bills-by-tag-section";
 import { CurrentSessionBillsBanner } from "@/features/bills/server/components/current-session-bills-banner";
-import { FeaturedBillSection } from "@/features/bills/server/components/featured-bill-section";
 import { getCurrentSessionBills } from "@/features/bills/server/loaders/get-current-session-bills";
 import { loadHomeData } from "@/features/bills/server/loaders/load-home-data";
 import type { BillWithContent } from "@/features/bills/shared/types";
-import { getLatestBudgetSession } from "@/features/budget-overview/server/loaders/get-latest-budget-session";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 import { CurrentCouncilSession } from "@/features/council-sessions/client/components/current-council-session";
 import { getCurrentCouncilSession } from "@/features/council-sessions/server/loaders/get-current-council-session";
@@ -39,14 +32,12 @@ export default async function Home() {
     latestQuestionsSlug,
     latestPressConference,
     pressConferences,
-    latestBudgetSession,
   ] = await Promise.all([
     getCurrentCouncilSession(getJapanTime()),
     getDifficultyLevel(),
     getLatestSessionWithQuestions(),
     getLatestPressConference(),
     getPressConferences(),
-    getLatestBudgetSession(),
   ]);
 
   const currentSessionBills = currentSession
@@ -68,18 +59,20 @@ export default async function Home() {
 
       <SiteDisclaimerNotice />
 
-      {/* 本日の定例会セクション */}
-      <CurrentCouncilSession session={currentSession} />
+      {/* 本日の定例会セクション＋今回の定例会の議案（ベージュ背景でひとつながりに） */}
+      <div className="bg-mirai-surface-warm">
+        <CurrentCouncilSession session={currentSession} />
 
-      {/* 今回の定例会の議案（わかりやすい解説の有無に関わらず表示） */}
-      {currentSession && (
-        <Container className="pt-4">
-          <CurrentSessionBillsBanner
-            session={currentSession}
-            bills={currentSessionBills}
-          />
-        </Container>
-      )}
+        {/* わかりやすい解説の有無に関わらず表示 */}
+        {currentSession && (
+          <Container className="pt-4 pb-5">
+            <CurrentSessionBillsBanner
+              session={currentSession}
+              bills={currentSessionBills}
+            />
+          </Container>
+        )}
+      </div>
 
       {/* 区長記者会見バナー */}
       {latestPressConference && (
@@ -96,37 +89,6 @@ export default async function Home() {
           <GeneralQuestionsBanner sessionSlug={latestQuestionsSlug} />
         </Container>
       )}
-
-      {/* 委員会バナー */}
-      <Container className="pt-3">
-        <CommitteeBanner />
-      </Container>
-
-      {/* 予算・事務事業評価・お金の使い道（まとめてアコーディオン） */}
-      <Container className="pt-3">
-        <BannerAccordion
-          title="足立区の予算・評価・お金の使い道"
-          description="各部の重点施策、事務事業評価、財政の状況をまとめて見る"
-        >
-          {latestBudgetSession?.slug && (
-            <BudgetOverviewBanner sessionSlug={latestBudgetSession.slug} />
-          )}
-          <CityFinanceBanner />
-        </BannerAccordion>
-      </Container>
-
-      {/* 議案一覧セクション */}
-      <Container className="">
-        <div className="py-10">
-          <main className="flex flex-col gap-16">
-            {/* 注目の議案セクション */}
-            <FeaturedBillSection bills={featuredBills} />
-
-            {/* タグ別議案一覧セクション */}
-            <BillsByTagSection billsByTag={billsByTag} />
-          </main>
-        </div>
-      </Container>
 
       {/* Archive セクション（区長記者会見・事務事業評価のアーカイブ＋過去の資料への導線） */}
       <div className="bg-mirai-surface-muted py-10">
