@@ -280,7 +280,7 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-2", billNumber: "第73号", name: "学校給食室設備（熱風消毒保管庫）の買い替え（鹿浜第一小学校外5校）について", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "株式会社オーキンから熱風消毒保管庫の学校給食室設備を4,345万円で買い替えます（鹿浜第一小学校外5校）。" },
   { sessionSlug: "r8-2", billNumber: "第74号", name: "学校給食室設備（食器洗浄機外）の買い替えについて", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "イズミ商事株式会社から食器洗浄機等の学校給食室設備を6,187万5,000円で買い替えます。納期は令和8年11月30日。" },
   { sessionSlug: "r8-2", billNumber: "第75号", name: "学校給食室設備（コンベクションオーブン外）の買い替えについて", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "有限会社中田屋からコンベクションオーブン等の学校給食室設備を3,353万9,000円で買い替えます。納期は令和8年11月30日。" },
-  { sessionSlug: "r8-2", billNumber: "第76号", name: "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "千住大川端地区A工区の道路整備に伴う土壌汚染対策等工事について、東京製鐵など開発事業者3社が区に上限3億5,000万円を負担する協定を締結します。" },
+  { sessionSlug: "r8-2", billNumber: "第76号", name: "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "千住大川端地区A工区の道路整備に伴う土壌汚染対策等工事について、東京製鐵など開発事業者3社が区に上限3億5,000万円を負担する協定を締結します。本会議の採決は賛成33・反対7で、共産党と無所属の一部議員が反対しました。" },
   { sessionSlug: "r8-2", billNumber: "第77号", name: "令和8年度足立区一般会計補正予算（第3号）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "bill" },
 
   // 令和8年第3回定例会（r8-3、2026-09-14〜2026-10-20）。委員会審査はこれから
@@ -927,6 +927,91 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
   },
   {
     billName: "足立区立校外施設条例の一部を改正する条例",
+    billPublishedAt: "2026-07-07",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第76号議案 （仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年第2回定例会 7/7 本会議・起立採決）
+  // 【審議結果一覧】令和8年第2回定例会PDFで確認。共産党全員と無所属の土屋議員が反対（賛成33・反対7）。
+  // 同日に採決された第60号議案とは異なり、無所属のうち反対は土屋議員のみ（髙橋議員は賛成）。
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: [
+      "白石",
+      "吉岡",
+      "渡辺",
+      "かねだ",
+      "鹿浜",
+      "工藤",
+      "ただ",
+      "くじらい",
+      "杉本",
+      "しぶや",
+      "岡田",
+    ],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "komei",
+    type: "for",
+    memberNames: [
+      "小泉",
+      "たがた",
+      "いいくら",
+      "長井",
+      "岡安",
+      "くぼた",
+      "佐々木",
+      "吉田",
+      "さの",
+      "石毛",
+      "水野",
+      "太田",
+    ],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤", "川村"],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢", "髙橋"],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
+    billPublishedAt: "2026-07-07",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋"],
+  },
+  {
+    billName:
+      "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）",
     billPublishedAt: "2026-07-07",
     factionName: "kyosan",
     type: "against",
