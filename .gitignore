@@ -7,6 +7,10 @@ node_modules
 # sample files
 docs/fukuoka/sample/
 
+# 足立区版: データ確認用の参照元ファイル置き場（PDF/Excel等の生データ、リポジトリには含めない）
+docs/adachi/sources/*
+!docs/adachi/sources/.gitkeep
+
 # 福岡市版メンテナへ直接手渡す報告メモ（リポジトリには含めない）
 docs/adachi/20260908_福岡市版seedバグ報告.md
 
