@@ -31,7 +31,7 @@ export function About() {
             </h3>
             <p className="text-[15px] leading-[28px] text-black">
               {siteConfig.siteName}は、{siteConfig.siteDescription}
-              。区民の意見を政治に届けることを目指して、継続的にアップデートしていきます。
+              。区民の声が区政に反映されていくことを目標に、区政や区議会の見える化を進めています。
             </p>
           </div>
 
@@ -90,9 +90,7 @@ export function About() {
                 <p>
                   このサイトは「チームみらい」の公式ではない、非公式のサイトです。
                   <br />
-                  ご意見や不具合等がございましたら党公式への連絡ではなく、
-                  <br />
-                  開発者の
+                  ご意見や不具合等がございましたら党公式への連絡ではなく、開発者の
                   <Link
                     href={siteConfig.operator.contactUrl}
                     target="_blank"
