@@ -108,6 +108,23 @@ describe("assignCategory", () => {
     expect(assignCategory("歴史ある旧家の保存").label).toBe("スポーツ・文化");
   });
 
+  it("足立区版で追加したキーワードで分類される", () => {
+    expect(assignCategory("産後ケアの拡充").label).toBe("子育て・教育");
+    expect(assignCategory("難病患者の交流の場").label).toBe("健康・医療");
+    expect(assignCategory("綾瀬エリアの治安と自転車盗対策").label).toBe(
+      "防災・安全"
+    );
+    expect(assignCategory("羽田空港の新飛行ルート").label).toBe(
+      "交通・まちづくり"
+    );
+    expect(assignCategory("東綾瀬公園温水プールの改修").label).toBe(
+      "スポーツ・文化"
+    );
+    expect(assignCategory("物価高支援給付金の個人給付").label).toBe(
+      "行財政・経済"
+    );
+  });
+
   it("マッチしない → その他", () => {
     expect(assignCategory("特になし").label).toBe("その他");
   });
