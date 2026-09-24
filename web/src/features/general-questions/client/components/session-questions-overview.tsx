@@ -11,7 +11,6 @@ import {
   Landmark,
   Leaf,
   Shield,
-  Sparkles,
   Stethoscope,
   Trophy,
 } from "lucide-react";
@@ -114,18 +113,9 @@ function TopicCard({
   return (
     <div className={`rounded-xl border ${style.card} overflow-hidden`}>
       <div className="px-4 pt-4 pb-3">
-        <div className="flex items-start gap-2 mb-2">
-          <h3 className={`text-base font-bold ${style.text} flex-1`}>
-            {entry.title}
-          </h3>
-          {entry.topicCount > 1 && (
-            <span
-              className={`shrink-0 text-xs font-medium px-1.5 py-0.5 rounded-full ${style.iconBg} ${style.text}`}
-            >
-              {entry.topicCount}件
-            </span>
-          )}
-        </div>
+        <h3 className={`mb-2 text-base font-bold ${style.text}`}>
+          {entry.title}
+        </h3>
         <p className="text-sm text-mirai-text leading-relaxed">
           {entry.answerSummary}
         </p>
@@ -161,7 +151,7 @@ function ThemeAccordionItem({
 }) {
   const Icon = ICON_MAP[group.iconName] ?? Circle;
   const style = CATEGORY_STYLE[group.categoryLabel] ?? DEFAULT_STYLE;
-  const count = group.entries.reduce((n, e) => n + e.topicCount, 0);
+  const count = group.entries.length;
   const panelId = `theme-panel-${group.categoryLabel}`;
   // 折りたたみ時はテーマの3行プレビューを表示（押すと展開）
   const showPreview = !isOpen && themeLines.length > 0;
@@ -236,7 +226,6 @@ export function SessionQuestionsOverview({
   overview,
 }: SessionQuestionsOverviewProps) {
   // デプロイ直後はキャッシュが旧シェイプ（string[]/null）を返すことがあるため防御的に扱う
-  const sessionLines = Array.isArray(overview?.lines) ? overview.lines : null;
   const themeLines: Record<string, string[]> =
     overview?.themeLines && typeof overview.themeLines === "object"
       ? overview.themeLines
@@ -265,27 +254,6 @@ export function SessionQuestionsOverview({
 
   return (
     <div className="flex flex-col gap-6">
-      {sessionLines && sessionLines.length > 0 && (
-        <section className="rounded-xl border border-primary-accent bg-mirai-surface-warm px-5 py-4">
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <h2 className="font-bold text-mirai-text">
-              どんな話があった？（今回の3行まとめ）
-            </h2>
-          </div>
-          <ol className="flex flex-col gap-2">
-            {sessionLines.slice(0, 3).map((line, i) => (
-              <li key={line} className="flex gap-2 text-sm text-mirai-text">
-                <span className="shrink-0 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold">
-                  {i + 1}
-                </span>
-                <span className="leading-relaxed">{line}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
       <div className="flex items-center justify-between gap-2">
         <p className="text-sm text-mirai-text-secondary">
           テーマを選んで質疑の中身を確認できます

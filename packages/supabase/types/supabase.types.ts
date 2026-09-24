@@ -873,9 +873,11 @@ export type Database = {
           questioner_number: number | null
           questioner_party: string | null
           raw_text: string | null
+          session_date: string | null
           session_day: number
           source_url: string | null
           summary: string | null
+          summary_easy: string | null
           topics: Json
           updated_at: string | null
         }
@@ -889,9 +891,11 @@ export type Database = {
           questioner_number?: number | null
           questioner_party?: string | null
           raw_text?: string | null
+          session_date?: string | null
           session_day?: number
           source_url?: string | null
           summary?: string | null
+          summary_easy?: string | null
           topics?: Json
           updated_at?: string | null
         }
@@ -905,9 +909,11 @@ export type Database = {
           questioner_number?: number | null
           questioner_party?: string | null
           raw_text?: string | null
+          session_date?: string | null
           session_day?: number
           source_url?: string | null
           summary?: string | null
+          summary_easy?: string | null
           topics?: Json
           updated_at?: string | null
         }

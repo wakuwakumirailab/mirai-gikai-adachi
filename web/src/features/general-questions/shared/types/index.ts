@@ -2,9 +2,11 @@ export type GeneralQuestionTopic = {
   title: string;
   question_summary: string;
   answer_summary: string;
+  /** やさしい版（中学生レベル）。未設定なら question_summary / answer_summary を使う */
+  question_summary_easy?: string | null;
+  answer_summary_easy?: string | null;
   answerer_role: string;
   answerer_name: string;
-  block_summary?: string | null;
 };
 
 /**
@@ -24,8 +26,12 @@ export type GeneralQuestion = {
   questioner_party: string | null;
   questioner_number: number | null;
   session_day: number;
+  /** 質問が行われた本会議の日付（YYYY-MM-DD）。未設定の場合は session_day で表示する */
+  session_date?: string | null;
   question_order: number;
   summary: string | null;
+  /** 全体要約のやさしい版。未設定なら summary を使う */
+  summary_easy?: string | null;
   topics: GeneralQuestionTopic[];
   raw_text: string | null;
   source_url: string | null;

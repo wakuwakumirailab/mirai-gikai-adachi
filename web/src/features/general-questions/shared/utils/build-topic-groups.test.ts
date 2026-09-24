@@ -21,9 +21,9 @@ describe("assignCategory", () => {
       assignCategory("取適法施行を踏まえた価格転嫁・中小企業支援の取組").label
     ).toBe("行財政・経済");
   });
-  it("市債マネジメント → 行財政・経済", () => {
+  it("区債マネジメント → 行財政・経済", () => {
     expect(
-      assignCategory("将来世代を守るための市債マネジメントのルール化").label
+      assignCategory("将来世代を守るための区債マネジメントのルール化").label
     ).toBe("行財政・経済");
   });
   it("いじめ → 子育て・教育", () => {
@@ -88,6 +88,26 @@ describe("assignCategory", () => {
       "スポーツ・文化"
     );
   });
+  it("駅周辺・自転車 → 交通・まちづくり（足立区向けキーワード）", () => {
+    expect(assignCategory("六町駅周辺の自転車走行環境と駐輪場").label).toBe(
+      "交通・まちづくり"
+    );
+    expect(assignCategory("牛田駅の踏切対策").label).toBe("交通・まちづくり");
+  });
+
+  it("糖尿病・健診 → 健康・医療（足立区向けキーワード）", () => {
+    expect(assignCategory("糖尿病対策の成果").label).toBe("健康・医療");
+    expect(assignCategory("特定健診の受診率").label).toBe("健康・医療");
+  });
+
+  it("ごみ・電池 → 環境・脱炭素（足立区向けキーワード）", () => {
+    expect(assignCategory("小型充電式電池の回収").label).toBe("環境・脱炭素");
+  });
+
+  it("歴史・文化財 → スポーツ・文化（足立区向けキーワード）", () => {
+    expect(assignCategory("歴史ある旧家の保存").label).toBe("スポーツ・文化");
+  });
+
   it("マッチしない → その他", () => {
     expect(assignCategory("特になし").label).toBe("その他");
   });
@@ -149,15 +169,14 @@ describe("buildTopicGroups", () => {
     expect(childCare?.entries[0].questioner.id).toBe("q-001");
   });
 
-  it("単一トピックのカードはtopicCount=1でトピック名をtitleに使う", () => {
+  it("カードはトピック名をtitleに使う", () => {
     const groups = buildTopicGroups([mockQuestion]);
     const childCare = groups.find((g) => g.categoryLabel === "子育て・教育");
     const entry = childCare?.entries[0];
-    expect(entry?.topicCount).toBe(1);
     expect(entry?.title).toBe("保育所の待機児童対策");
   });
 
-  it("同一議員・同一カテゴリの複数トピックは1枚にマージされる", () => {
+  it("同一議員・同一カテゴリの複数トピックもトピックごとに別カードになる", () => {
     const q: GeneralQuestion = {
       id: "q-002",
       council_session_id: "session-1",
@@ -199,13 +218,17 @@ describe("buildTopicGroups", () => {
 
     const groups = buildTopicGroups([q]);
     const bousai = groups.find((g) => g.categoryLabel === "防災・安全");
-    expect(bousai?.entries).toHaveLength(1);
-    const entry = bousai?.entries[0];
-    expect(entry?.topicCount).toBe(3);
-    // merged block uses first topic's title; N件 badge shows the count
-    expect(entry?.title).toBe("火災警報の発令基準について");
-    // block_summary が未設定の場合は最初のトピックの answer_summary を使う
-    expect(entry?.answerSummary).toBe("制度の検討を進める。");
+    expect(bousai?.entries.map((e) => e.title)).toEqual([
+      "火災警報の発令基準について",
+      "林野火災注意報の導入について",
+      "災害時のプッシュ型情報発信の必要性",
+    ]);
+    // 各カードはそれぞれのトピックの答弁を表示する
+    expect(bousai?.entries.map((e) => e.answerSummary)).toEqual([
+      "制度の検討を進める。",
+      "林野火災注意報の導入を検討する。",
+      "プッシュ通知の拡充を検討する。",
+    ]);
   });
 
   it("同一議員でもカテゴリが異なれば別カードになる", () => {
@@ -250,16 +273,13 @@ describe("buildTopicGroups", () => {
     const kotsu = groups.find((g) => g.categoryLabel === "交通・まちづくり");
     expect(bousai?.entries).toHaveLength(1);
     expect(kotsu?.entries).toHaveLength(1);
-    expect(bousai?.entries[0].topicCount).toBe(1);
-    expect(kotsu?.entries[0].topicCount).toBe(1);
   });
 
   it("空配列は空グループを返す", () => {
     expect(buildTopicGroups([])).toHaveLength(0);
   });
 
-  it("各ブロックは先頭トピックのindexをtopicIndexに持つ", () => {
-    // topics: [0]保育=子育て, [1]耐震=防災 → 2ブロック（index 0, 1）
+  it("各カードはトピックのindexをtopicIndexに持つ", () => {
     const groups = buildTopicGroups([mockQuestion]);
     const childCare = groups.find((g) => g.categoryLabel === "子育て・教育");
     const bousai = groups.find((g) => g.categoryLabel === "防災・安全");
@@ -267,7 +287,7 @@ describe("buildTopicGroups", () => {
     expect(bousai?.entries[0].topicIndex).toBe(1);
   });
 
-  it("連続同カテゴリをまとめたブロックのtopicIndexは先頭トピックの位置", () => {
+  it("連続する同カテゴリのトピックもそれぞれ自分のtopicIndexを持つ", () => {
     const q: GeneralQuestion = {
       id: "q-idx",
       council_session_id: "session-1",
@@ -286,7 +306,7 @@ describe("buildTopicGroups", () => {
           answerer_role: "局長",
           answerer_name: "A",
         },
-        // [1][2] 防災（連続→1ブロック, 先頭index=1）
+        // [1][2] 防災
         {
           title: "耐震化の推進",
           question_summary: "q",
@@ -310,7 +330,6 @@ describe("buildTopicGroups", () => {
     };
     const groups = buildTopicGroups([q]);
     const bousai = groups.find((g) => g.categoryLabel === "防災・安全");
-    expect(bousai?.entries[0].topicCount).toBe(2);
-    expect(bousai?.entries[0].topicIndex).toBe(1);
+    expect(bousai?.entries.map((e) => e.topicIndex)).toEqual([1, 2]);
   });
 });

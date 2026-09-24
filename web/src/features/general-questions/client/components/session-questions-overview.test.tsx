@@ -28,7 +28,6 @@ const groups: TopicGroup[] = [
         answerSummary: "令和9年度中に解消予定。",
         answererRole: "こども未来局長",
         answererName: "野中晶",
-        topicCount: 1,
         topicIndex: 0,
         questioner: { id: "q1", name: "山田花子", party: "テスト会派" },
       },
@@ -44,8 +43,16 @@ const groups: TopicGroup[] = [
         answerSummary: "5分野に注力する。",
         answererRole: "市長",
         answererName: "高島宗一郎",
-        topicCount: 2,
         topicIndex: 3,
+        questioner: { id: "q2", name: "佐藤太郎", party: null },
+      },
+      {
+        title: "区債の発行方針",
+        questionSummary: "区債の方針は？",
+        answerSummary: "発行額を抑制する。",
+        answererRole: "政策経営部長",
+        answererName: "鈴木次郎",
+        topicIndex: 4,
         questioner: { id: "q2", name: "佐藤太郎", party: null },
       },
     ],
@@ -55,21 +62,6 @@ const groups: TopicGroup[] = [
 const EMPTY_OVERVIEW = { lines: null, themeLines: {} };
 
 describe("SessionQuestionsOverview", () => {
-  it("3行サマリーを表示する", () => {
-    render(
-      <SessionQuestionsOverview
-        groups={groups}
-        overview={{
-          lines: ["1行目の話題", "2行目の話題", "3行目の話題"],
-          themeLines: {},
-        }}
-      />
-    );
-    expect(screen.getByText("1行目の話題")).toBeInTheDocument();
-    expect(screen.getByText("2行目の話題")).toBeInTheDocument();
-    expect(screen.getByText("3行目の話題")).toBeInTheDocument();
-  });
-
   it("テーマ行に折りたたみ時のテーマ3行プレビューを表示し、展開すると消える", async () => {
     const user = userEvent.setup();
     render(
@@ -89,21 +81,12 @@ describe("SessionQuestionsOverview", () => {
     expect(screen.getByText("令和9年度中に解消予定。")).toBeInTheDocument();
   });
 
-  it("overviewがnullなら3行ブロックを表示しない", () => {
-    render(
-      <SessionQuestionsOverview groups={groups} overview={EMPTY_OVERVIEW} />
-    );
-    expect(
-      screen.queryByText("どんな話があった？（今回の3行まとめ）")
-    ).not.toBeInTheDocument();
-  });
-
   it("テーマ行を件数つきで表示し、初期状態ではカードを表示しない", () => {
     render(
       <SessionQuestionsOverview groups={groups} overview={EMPTY_OVERVIEW} />
     );
     expect(screen.getByText("子育て・教育")).toBeInTheDocument();
-    // 行財政・経済は topicCount=2 → 「2件」
+    // 行財政・経済はカード2枚 → 「2件」
     expect(screen.getByText("2件")).toBeInTheDocument();
     // 初期は折りたたみ → カード本文は出ていない
     expect(

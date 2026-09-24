@@ -5,21 +5,20 @@ interface GeneralQuestionListProps {
   questions: GeneralQuestion[];
 }
 
+/** 議員別一覧（質問順） */
 export function GeneralQuestionList({ questions }: GeneralQuestionListProps) {
-  if (questions.length === 0) {
-    return (
-      <div className="text-center py-16 text-mirai-text-secondary">
-        <p>現在、一般質問のデータを準備中です。</p>
-        <p className="text-sm mt-2">しばらくお待ちください。</p>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col gap-3">
-      {questions.map((question) => (
-        <GeneralQuestionCard key={question.id} question={question} />
-      ))}
+      <p className="text-sm text-mirai-text-secondary">
+        質問した順に並んでいます。議員を選ぶと質問と答弁の詳細を確認できます
+      </p>
+      <ul className="grid gap-3 sm:grid-cols-2">
+        {questions.map((question) => (
+          <li key={question.id}>
+            <GeneralQuestionCard question={question} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

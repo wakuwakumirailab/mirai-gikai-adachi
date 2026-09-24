@@ -4,14 +4,25 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { siteConfig } from "@/config/site.config";
-import { RawTranscriptView } from "@/features/general-questions/server/components/raw-transcript-view";
+import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
+import { getCouncilSessionById } from "@/features/council-sessions/server/loaders/get-council-session-by-id";
 import { QuestionChatView } from "@/features/general-questions/client/components/question-chat-view";
 import { QuestionViewToggle } from "@/features/general-questions/client/components/question-view-toggle";
+import { AdjacentQuestionNav } from "@/features/general-questions/server/components/adjacent-question-nav";
+import { RawTranscriptView } from "@/features/general-questions/server/components/raw-transcript-view";
 import { getGeneralQuestionById } from "@/features/general-questions/server/loaders/get-general-question-by-id";
-import { getCouncilSessionById } from "@/features/council-sessions/server/loaders/get-council-session-by-id";
+import { getGeneralQuestionsBySession } from "@/features/general-questions/server/loaders/get-general-questions-by-session";
+import { applyQuestionDifficulty } from "@/features/general-questions/shared/utils/apply-question-difficulty";
+import { formatQuestionDay } from "@/features/general-questions/shared/utils/format-question-day";
+import { formatSourceLabel } from "@/features/general-questions/shared/utils/format-source-label";
+import {
+  buildSessionQuestionsHref,
+  parseQuestionView,
+} from "@/features/general-questions/shared/utils/question-view";
 
 type Props = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ from?: string | string[] }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,32 +39,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const DAY_LABELS: Record<number, string> = {
-  1: "第1日",
-  2: "第2日",
-  3: "第3日",
-  4: "第4日",
-  5: "第5日",
-  6: "第6日",
-};
-
-export default async function GeneralQuestionDetailPage({ params }: Props) {
+export default async function GeneralQuestionDetailPage({
+  params,
+  searchParams,
+}: Props) {
   const { id } = await params;
-  const question = await getGeneralQuestionById(id);
-  const session = question
-    ? await getCouncilSessionById(question.council_session_id)
-    : null;
+  const view = parseQuestionView((await searchParams).from);
+  const rawQuestion = await getGeneralQuestionById(id);
 
-  if (!question) {
+  if (!rawQuestion) {
     notFound();
   }
 
-  const backHref = session
-    ? `/sessions/${session.slug}/questions`
+  const [session, sessionQuestions, difficultyLevel] = await Promise.all([
+    getCouncilSessionById(rawQuestion.council_session_id),
+    getGeneralQuestionsBySession(rawQuestion.council_session_id),
+    getDifficultyLevel(),
+  ]);
+  const question = applyQuestionDifficulty(rawQuestion, difficultyLevel);
+
+  const backHref = session?.slug
+    ? buildSessionQuestionsHref(session.slug, view)
     : "/questions";
 
-  const dayLabel =
-    DAY_LABELS[question.session_day] ?? `第${question.session_day}日`;
+  const dayLabel = formatQuestionDay(question);
 
   return (
     <Container className="py-8 max-w-2xl">
@@ -95,17 +104,26 @@ export default async function GeneralQuestionDetailPage({ params }: Props) {
         <QuestionChatView topics={question.topics} />
       )}
 
+      <AdjacentQuestionNav
+        questions={sessionQuestions}
+        currentId={question.id}
+        view={view}
+      />
+
       {question.source_url && (
-        <div className="mt-8 pt-6 border-t border-border">
-          <Link
+        <div className="my-8">
+          <h2 className="text-lg font-bold text-mirai-text mb-3">
+            参考にした会議録
+          </h2>
+          <a
             href={question.source_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm text-primary-accent hover:underline"
           >
-            <ExternalLink className="w-4 h-4" />
-            公式会議録を見る
-          </Link>
+            <ExternalLink className="h-3.5 w-3.5 shrink-0" />
+            {formatSourceLabel(question)}
+          </a>
         </div>
       )}
     </Container>

@@ -6,8 +6,7 @@ export type TopicEntry = {
   answerSummary: string;
   answererRole: string;
   answererName: string;
-  topicCount: number;
-  /** このブロックの先頭トピックが議員の topics 配列内で何番目か（詳細ページのアンカー用） */
+  /** このトピックが議員の topics 配列内で何番目か（詳細ページのアンカー用） */
   topicIndex: number;
   questioner: {
     id: string;
@@ -68,6 +67,9 @@ const CATEGORY_MAP: Array<{
       "検診",
       "難聴",
       "補聴器",
+      "糖尿病",
+      "健診",
+      "歯科",
     ],
   },
   {
@@ -86,6 +88,7 @@ const CATEGORY_MAP: Array<{
       "注意報",
       "林野",
       "危機管理",
+      "感震",
     ],
   },
   {
@@ -103,6 +106,7 @@ const CATEGORY_MAP: Array<{
       "孤立",
       "独居",
       "成年後見",
+      "障がい",
     ],
   },
   {
@@ -110,9 +114,7 @@ const CATEGORY_MAP: Array<{
     iconName: "Building2",
     keywords: [
       "渋滞",
-      "空港",
       "交通",
-      "滑走路",
       "道路",
       "鉄道",
       "バス",
@@ -122,12 +124,16 @@ const CATEGORY_MAP: Array<{
       "無電柱",
       "橋梁",
       "駐輪",
-      "渡船",
-      "動く歩道",
       "住宅",
       "民泊",
       "回遊",
       "歩行者",
+      "駅",
+      "自転車",
+      "自動運転",
+      "踏切",
+      "区画整理",
+      "エリアデザイン",
     ],
   },
   {
@@ -148,6 +154,9 @@ const CATEGORY_MAP: Array<{
       "リサイクル",
       "資源循環",
       "再資源化",
+      "ごみ",
+      "電池",
+      "プラスチック",
     ],
   },
   {
@@ -160,38 +169,34 @@ const CATEGORY_MAP: Array<{
       "スタジアム",
       "博物館",
       "公民館",
-      "城",
-      "ドーム",
       "動植物園",
       "植物園",
       "美術館",
       "文化芸術",
+      "文化財",
+      "歴史",
     ],
   },
   {
     label: "地域・国際交流",
     iconName: "Globe",
     keywords: [
-      "漁港",
       "農業",
       "観光",
       "地域",
-      "市営",
       "国際",
       "外国人",
       "多文化",
       "共生",
-      "海業",
-      "漁村",
       "動物",
       "愛護",
       "自治会",
       "町内会",
       "飼育",
       "農林水産",
-      "アウトバウンド",
       "人権",
       "差別",
+      "町会",
     ],
   },
   {
@@ -201,13 +206,12 @@ const CATEGORY_MAP: Array<{
       "財政",
       "予算",
       "行財政",
-      "市債",
+      "区債",
       "基金",
       "区政運営",
       "DX",
       "マイナンバー",
       "ペーパーレス",
-      "副首都",
       "経済",
       "産業",
       "中小企業",
@@ -239,20 +243,15 @@ export function assignCategory(topicTitle: string): {
 
 function buildEntry(
   q: GeneralQuestion,
-  topics: GeneralQuestionTopic[],
+  topic: GeneralQuestionTopic,
   topicIndex: number
 ): TopicEntry {
-  const first = topics[0];
-  // block_summary がある場合（複数トピック統合時にAI生成）はそれを優先
-  // ない場合は最初のトピックのQ/Aを使う（最後のトピックはタイトルと不一致になるため）
-  const useBlockSummary = !!first.block_summary;
   return {
-    title: first.title,
-    questionSummary: first.question_summary,
-    answerSummary: first.block_summary ?? first.answer_summary,
-    answererRole: useBlockSummary ? "" : first.answerer_role,
-    answererName: useBlockSummary ? "" : first.answerer_name,
-    topicCount: topics.length,
+    title: topic.title,
+    questionSummary: topic.question_summary,
+    answerSummary: topic.answer_summary,
+    answererRole: topic.answerer_role,
+    answererName: topic.answerer_name,
     topicIndex,
     questioner: {
       id: q.id,
@@ -263,53 +262,25 @@ function buildEntry(
 }
 
 export function buildTopicGroups(questions: GeneralQuestion[]): TopicGroup[] {
-  // Group consecutive same-category topics per questioner into blocks.
-  // This preserves natural Q&A blocks while still merging related sub-topics
-  // (e.g. 10 fire-alarm exchanges → 1 card), without bundling unrelated themes
-  // that happen to share a category (e.g. international exchange ≠ neighborhood assoc).
-  const blocks: Array<{
-    q: GeneralQuestion;
-    topics: GeneralQuestionTopic[];
-    iconName: string;
-    categoryLabel: string;
-    topicIndex: number;
-  }> = [];
-
-  for (const q of questions) {
-    let currentBlock: (typeof blocks)[0] | null = null;
-
-    q.topics.forEach((t, i) => {
-      const { label, iconName } = assignCategory(t.title);
-
-      if (currentBlock && currentBlock.categoryLabel === label) {
-        currentBlock.topics.push(t);
-      } else {
-        currentBlock = {
-          q,
-          topics: [t],
-          iconName,
-          categoryLabel: label,
-          topicIndex: i,
-        };
-        blocks.push(currentBlock);
-      }
-    });
-  }
-
+  // 1トピック＝1カード。同じ議員の連続した同カテゴリのトピックもまとめない
+  // （まとめると先頭トピックの答弁しか表示されず、件数表示とカード枚数もずれるため）
   const categoryMap = new Map<string, TopicGroup>();
 
-  for (const { q, topics, iconName, categoryLabel, topicIndex } of blocks) {
-    const entry = buildEntry(q, topics, topicIndex);
-    const existing = categoryMap.get(categoryLabel);
-    if (existing) {
-      existing.entries.push(entry);
-    } else {
-      categoryMap.set(categoryLabel, {
-        categoryLabel,
-        iconName,
-        entries: [entry],
-      });
-    }
+  for (const q of questions) {
+    q.topics.forEach((topic, i) => {
+      const { label, iconName } = assignCategory(topic.title);
+      const entry = buildEntry(q, topic, i);
+      const existing = categoryMap.get(label);
+      if (existing) {
+        existing.entries.push(entry);
+      } else {
+        categoryMap.set(label, {
+          categoryLabel: label,
+          iconName,
+          entries: [entry],
+        });
+      }
+    });
   }
 
   const orderedLabels = [...CATEGORY_MAP.map((c) => c.label), "その他"].filter(
