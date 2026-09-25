@@ -135,6 +135,15 @@ describe("assignCategory", () => {
     expect(assignCategory("区の管理職不足と職員の兼務").label).toBe(
       "行財政・経済"
     );
+    expect(assignCategory("こども誰でも通園制度").label).toBe("子育て・教育");
+    expect(assignCategory("部活動の地域展開").label).toBe("子育て・教育");
+    expect(assignCategory("ひきこもり支援").label).toBe("高齢者・福祉");
+    expect(assignCategory("旧小学校跡地の活用").label).toBe("子育て・教育");
+    expect(assignCategory("区有地の跡地活用").label).toBe("交通・まちづくり");
+    expect(assignCategory("地域の水害への備え").label).toBe("防災・安全");
+    expect(assignCategory("足立の花火の改革").label).toBe("スポーツ・文化");
+    expect(assignCategory("ペットのふんの放置").label).toBe("地域・国際交流");
+    expect(assignCategory("公文書管理条例の制定").label).toBe("行財政・経済");
   });
 
   it("マッチしない → その他", () => {
