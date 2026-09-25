@@ -144,6 +144,10 @@ describe("assignCategory", () => {
     expect(assignCategory("足立の花火の改革").label).toBe("スポーツ・文化");
     expect(assignCategory("ペットのふんの放置").label).toBe("地域・国際交流");
     expect(assignCategory("公文書管理条例の制定").label).toBe("行財政・経済");
+    expect(assignCategory("地震による液状化への備え").label).toBe("防災・安全");
+    expect(assignCategory("硬式野球ができる環境").label).toBe("スポーツ・文化");
+    expect(assignCategory("運転免許の自主返納").label).toBe("交通・まちづくり");
+    expect(assignCategory("指定管理者制度の見直し").label).toBe("行財政・経済");
   });
 
   it("マッチしない → その他", () => {
