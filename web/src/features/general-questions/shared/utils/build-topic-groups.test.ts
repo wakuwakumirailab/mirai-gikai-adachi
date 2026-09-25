@@ -123,6 +123,18 @@ describe("assignCategory", () => {
     expect(assignCategory("物価高支援給付金の個人給付").label).toBe(
       "行財政・経済"
     );
+    expect(assignCategory("ヤングケアラーへの支援").label).toBe("子育て・教育");
+    expect(assignCategory("認知症の人と家族の支援").label).toBe("高齢者・福祉");
+    expect(assignCategory("葬祭施設の設置基準の見直し").label).toBe(
+      "交通・まちづくり"
+    );
+    expect(assignCategory("銭湯の支援").label).toBe("スポーツ・文化");
+    expect(assignCategory("外国籍住民との地域共生").label).toBe(
+      "地域・国際交流"
+    );
+    expect(assignCategory("区の管理職不足と職員の兼務").label).toBe(
+      "行財政・経済"
+    );
   });
 
   it("マッチしない → その他", () => {
