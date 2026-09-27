@@ -40,6 +40,9 @@ export default async function Home() {
     getPressConferences(),
   ]);
 
+  // 一般質問バナーは議案と同じく開会中の定例会を優先し、閉会中は一般質問のある直近の会期へ
+  const questionsSlug = currentSession?.slug ?? latestQuestionsSlug;
+
   const currentSessionBills = currentSession
     ? await getCurrentSessionBills(currentSession.id)
     : [];
@@ -84,9 +87,9 @@ export default async function Home() {
       )}
 
       {/* 一般質問バナー */}
-      {latestQuestionsSlug && (
+      {questionsSlug && (
         <Container className="pt-6">
-          <GeneralQuestionsBanner sessionSlug={latestQuestionsSlug} />
+          <GeneralQuestionsBanner sessionSlug={questionsSlug} />
         </Container>
       )}
 
