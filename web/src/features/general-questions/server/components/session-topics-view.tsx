@@ -6,8 +6,10 @@ import type {
 } from "../../shared/types";
 import { buildTopicGroups } from "../../shared/utils/build-topic-groups";
 import type { QuestionView } from "../../shared/utils/question-view";
+import { getSessionSourceStage } from "../../shared/utils/source-stage";
 import { GeneralQuestionList } from "./general-question-list";
 import { QuestionViewTabs } from "./question-view-tabs";
+import { SourceStageNotice } from "./source-stage-notice";
 
 interface SessionTopicsViewProps {
   questions: GeneralQuestion[];
@@ -34,6 +36,10 @@ export function SessionTopicsView({
 
   return (
     <div className="flex flex-col gap-6">
+      <SourceStageNotice
+        stage={getSessionSourceStage(questions)}
+        scope="session"
+      />
       <SessionSummaryLines lines={overview?.lines} />
       <QuestionViewTabs sessionSlug={sessionSlug} current={view} />
       {view === "members" ? (

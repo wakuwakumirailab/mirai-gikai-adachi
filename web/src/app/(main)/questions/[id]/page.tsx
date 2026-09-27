@@ -10,6 +10,7 @@ import { QuestionChatView } from "@/features/general-questions/client/components
 import { QuestionViewToggle } from "@/features/general-questions/client/components/question-view-toggle";
 import { AdjacentQuestionNav } from "@/features/general-questions/server/components/adjacent-question-nav";
 import { RawTranscriptView } from "@/features/general-questions/server/components/raw-transcript-view";
+import { SourceStageNotice } from "@/features/general-questions/server/components/source-stage-notice";
 import { getGeneralQuestionById } from "@/features/general-questions/server/loaders/get-general-question-by-id";
 import { getGeneralQuestionsBySession } from "@/features/general-questions/server/loaders/get-general-questions-by-session";
 import { applyQuestionDifficulty } from "@/features/general-questions/shared/utils/apply-question-difficulty";
@@ -86,6 +87,12 @@ export default async function GeneralQuestionDetailPage({
           {dayLabel}
         </p>
       </div>
+
+      {question.source_stage && question.source_stage !== "final" && (
+        <div className="mb-6">
+          <SourceStageNotice stage={question.source_stage} scope="question" />
+        </div>
+      )}
 
       {question.summary && (
         <p className="mb-6 text-mirai-text leading-relaxed">

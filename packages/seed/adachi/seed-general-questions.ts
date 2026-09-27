@@ -38,6 +38,8 @@ type QuestionInput = {
   source_url: string | null;
   summary: string;
   summary_easy?: string | null;
+  /** notice=質問通告書（質問のみ・answer_summary は空）／preliminary=速報版会議録／final（省略時）=正式な会議録 */
+  source_stage?: "notice" | "preliminary" | "final";
   topics: TopicInput[];
 };
 

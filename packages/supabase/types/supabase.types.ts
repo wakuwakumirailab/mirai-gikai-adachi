@@ -875,6 +875,7 @@ export type Database = {
           raw_text: string | null
           session_date: string | null
           session_day: number
+          source_stage: string
           source_url: string | null
           summary: string | null
           summary_easy: string | null
@@ -893,6 +894,7 @@ export type Database = {
           raw_text?: string | null
           session_date?: string | null
           session_day?: number
+          source_stage?: string
           source_url?: string | null
           summary?: string | null
           summary_easy?: string | null
@@ -911,6 +913,7 @@ export type Database = {
           raw_text?: string | null
           session_date?: string | null
           session_day?: number
+          source_stage?: string
           source_url?: string | null
           summary?: string | null
           summary_easy?: string | null

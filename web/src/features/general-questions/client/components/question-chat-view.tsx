@@ -3,6 +3,7 @@
 import { MessageCircle, User } from "lucide-react";
 import { useEffect } from "react";
 import type { GeneralQuestionTopic } from "../../shared/types";
+import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 /**
  * URL に #topic-N が付いている場合、その区切り位置へスクロールする。
@@ -78,11 +79,17 @@ export function QuestionChatView({ topics }: QuestionChatViewProps) {
             {topic.title}
           </p>
           <ChatBubbleQuestion text={topic.question_summary} />
-          <ChatBubbleAnswer
-            text={topic.answer_summary}
-            role={topic.answerer_role}
-            name={topic.answerer_name}
-          />
+          {topic.answer_summary ? (
+            <ChatBubbleAnswer
+              text={topic.answer_summary}
+              role={topic.answerer_role}
+              name={topic.answerer_name}
+            />
+          ) : (
+            <p className="text-center text-xs text-mirai-text-muted">
+              {PENDING_ANSWER_TEXT}
+            </p>
+          )}
         </div>
       ))}
     </div>

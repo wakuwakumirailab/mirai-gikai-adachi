@@ -4,6 +4,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { GeneralQuestionTopic } from "../../shared/types";
+import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 interface GeneralQuestionTopicsProps {
   topics: GeneralQuestionTopic[];
@@ -57,15 +58,21 @@ export function GeneralQuestionTopics({ topics }: GeneralQuestionTopicsProps) {
                     {topic.question_summary}
                   </p>
                 </div>
-                <div>
-                  <p className="text-xs font-semibold text-mirai-text-secondary mb-1">
-                    答弁｜{topic.answerer_role}
-                    {topic.answerer_name ? `　${topic.answerer_name}` : ""}
+                {topic.answer_summary ? (
+                  <div>
+                    <p className="text-xs font-semibold text-mirai-text-secondary mb-1">
+                      答弁｜{topic.answerer_role}
+                      {topic.answerer_name ? `　${topic.answerer_name}` : ""}
+                    </p>
+                    <p className="text-sm text-mirai-text">
+                      {topic.answer_summary}
+                    </p>
+                  </div>
+                ) : (
+                  <p className="text-xs text-mirai-text-muted">
+                    {PENDING_ANSWER_TEXT}
                   </p>
-                  <p className="text-sm text-mirai-text">
-                    {topic.answer_summary}
-                  </p>
-                </div>
+                )}
               </div>
             )}
           </div>

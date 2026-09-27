@@ -19,6 +19,8 @@ export type SessionQuestionOverview = {
   themeLines: Record<string, string[]>;
 };
 
+export type QuestionSourceStage = "notice" | "preliminary" | "final";
+
 export type GeneralQuestion = {
   id: string;
   council_session_id: string;
@@ -35,6 +37,8 @@ export type GeneralQuestion = {
   topics: GeneralQuestionTopic[];
   raw_text: string | null;
   source_url: string | null;
+  /** 作成の元資料。notice=質問通告書（質問のみ・答弁なし）／preliminary=速報版会議録／final=正式な会議録 */
+  source_stage?: QuestionSourceStage;
   publish_status: string;
   created_at: string;
   updated_at: string;

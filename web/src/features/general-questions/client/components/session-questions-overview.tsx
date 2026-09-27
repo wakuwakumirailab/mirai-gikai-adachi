@@ -22,6 +22,7 @@ import type {
   TopicEntry,
   TopicGroup,
 } from "../../shared/utils/build-topic-groups";
+import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Baby,
@@ -116,9 +117,15 @@ function TopicCard({
         <h3 className={`mb-2 text-base font-bold ${style.text}`}>
           {entry.title}
         </h3>
+        {/* 質問通告のみ（答弁待ち）の場合は質問の内容を出す */}
         <p className="text-sm text-mirai-text leading-relaxed">
-          {entry.answerSummary}
+          {entry.answerSummary || entry.questionSummary}
         </p>
+        {!entry.answerSummary && (
+          <p className="mt-1.5 text-xs text-mirai-text-muted">
+            {PENDING_ANSWER_TEXT}
+          </p>
+        )}
       </div>
       <div
         className={`px-4 py-2.5 border-t ${style.header} flex items-center justify-between gap-2`}
