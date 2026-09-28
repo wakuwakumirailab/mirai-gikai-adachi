@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: `${session.name}の一般質問 | ${siteConfig.siteName}`,
-    description: `${session.name}で行われた一般質問の一覧です。議員が区長・部長に直接質問した内容をわかりやすく解説します。`,
+    title: `${session.name}の一般質問・代表質問 | ${siteConfig.siteName}`,
+    description: `${session.name}で行われた一般質問・代表質問の一覧です。区議会議員が行政・区長に質問した内容をわかりやすく解説します。`,
   };
 }
 
@@ -72,11 +72,11 @@ export default async function SessionQuestionsPage({
           <Calendar className="size-3.5" />
           {eyebrowLabel}
         </span>
-        <h1 className="text-2xl font-bold text-mirai-text">
-          {session.name}の一般質問
+        <h1 className="text-[28px] font-bold text-black leading-[1.4]">
+          {session.name}の一般質問・代表質問
         </h1>
         <p className="mt-2 text-sm text-mirai-text-secondary">
-          議員が問い、区が答えた。あなたの暮らしに関わる取り組みを、テーマ別・議員別にまとめました。
+          区議会議員が問い、区が答えた内容をわかりやすく解説します。あなたの暮らしに関わる取り組みを、テーマ別・議員別にまとめました。
         </p>
       </div>
       <SessionTopicsView
