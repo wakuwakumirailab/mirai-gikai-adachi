@@ -70,6 +70,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "山田ゆみこ",
     questioner_party: "足立区議会民主クラブ",
     questioner_number: 1,
+    question_type: "general",
     session_day: 1,
     question_order: 1,
     summary:
@@ -115,6 +116,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "堀内徹夫",
     questioner_party: "自由民主党足立区議団",
     questioner_number: 2,
+    question_type: "general",
     session_day: 1,
     question_order: 2,
     summary:
@@ -151,6 +153,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "中山郁美",
     questioner_party: "公明党",
     questioner_number: 3,
+    question_type: "general",
     session_day: 2,
     question_order: 1,
     summary:
@@ -196,6 +199,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "新村まさる",
     questioner_party: "立憲民主党・無所属の会",
     questioner_number: 4,
+    question_type: "general",
     session_day: 2,
     question_order: 2,
     summary:
@@ -232,6 +236,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "倉元達朗",
     questioner_party: "自由民主党足立区議団",
     questioner_number: 5,
+    question_type: "general",
     session_day: 3,
     question_order: 1,
     summary:
@@ -268,6 +273,7 @@ export const mockGeneralQuestions: GeneralQuestion[] = [
     questioner_name: "天野こう",
     questioner_party: "日本共産党足立区議団",
     questioner_number: 6,
+    question_type: "general",
     session_day: 3,
     question_order: 2,
     summary:
