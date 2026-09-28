@@ -231,7 +231,8 @@
           "answerer_role": "教育長",
           "answerer_name": "中村明慶"
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "たがた直昭",
@@ -397,7 +398,8 @@
           "answerer_role": "学校運営部長（絵野沢秀雄）・子ども家庭部長（楠山慶之）",
           "answerer_name": ""
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "ぬかが和子",
@@ -572,7 +574,8 @@
           "answerer_role": "建築室長",
           "answerer_name": "田中靖夫"
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "加地まさなお",
@@ -648,7 +651,8 @@
           "answerer_role": "建築室長",
           "answerer_name": "田中靖夫"
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "川村みこと",
@@ -805,7 +809,8 @@
           "answerer_role": "地域のちから推進部長",
           "answerer_name": "茂木聡直"
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "高橋まゆみ",
@@ -863,7 +868,8 @@
           "answerer_role": "産業経済部長",
           "answerer_name": "石鍋敏夫"
         }
-      ]
+      ],
+      "question_type": "representative"
     },
     {
       "questioner_name": "吉岡茂",
@@ -921,7 +927,8 @@
           "answerer_role": "道路公園整備室長",
           "answerer_name": "室橋延昭"
         }
-      ]
+      ],
+      "question_type": "general"
     },
     {
       "questioner_name": "いいくら昭二",
@@ -988,7 +995,8 @@
           "answerer_role": "千住地区まちづくり担当部長（大竹俊樹）・道路公園整備室長（室橋延昭）・都市建設部長（真鍋兼）",
           "answerer_name": ""
         }
-      ]
+      ],
+      "question_type": "general"
     },
     {
       "questioner_name": "しぶや竜一",
@@ -1109,7 +1117,8 @@
           "answerer_role": "都市建設部長",
           "answerer_name": "真鍋兼"
         }
-      ]
+      ],
+      "question_type": "general"
     },
     {
       "questioner_name": "岡安たかし",
@@ -1176,7 +1185,8 @@
           "answerer_role": "環境部長",
           "answerer_name": "會田康之"
         }
-      ]
+      ],
+      "question_type": "general"
     },
     {
       "questioner_name": "西の原ゆま",
@@ -1234,7 +1244,8 @@
           "answerer_role": "産業経済部長",
           "answerer_name": "石鍋敏夫"
         }
-      ]
+      ],
+      "question_type": "general"
     },
     {
       "questioner_name": "富田けんたろう",
@@ -1274,7 +1285,8 @@
           "answerer_role": "政策経営部長（岩松朋子）・子ども家庭部長（楠山慶之）",
           "answerer_name": ""
         }
-      ]
+      ],
+      "question_type": "general"
     }
   ]
 }
