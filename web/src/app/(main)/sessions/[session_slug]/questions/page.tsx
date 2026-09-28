@@ -16,6 +16,7 @@ import { getGeneralQuestionsBySession } from "@/features/general-questions/serve
 import { applyQuestionDifficulty } from "@/features/general-questions/shared/utils/apply-question-difficulty";
 import { buildGeneralQuestionsSourceUrl } from "@/features/general-questions/shared/utils/build-source-url";
 import { parseQuestionView } from "@/features/general-questions/shared/utils/question-view";
+import { getJapanTime } from "@/lib/utils/date";
 
 type Props = {
   params: Promise<{ session_slug: string }>;
@@ -62,16 +63,22 @@ export default async function SessionQuestionsPage({
     ? `${startDate.getFullYear()}年 第${roundMatch[1]}回`
     : `${startDate.getFullYear()}年`;
   const sourceUrl = buildGeneralQuestionsSourceUrl(session.council_url);
+  const isPastSession =
+    !session.is_active &&
+    !!session.end_date &&
+    new Date(session.end_date) < getJapanTime();
+  const backHref = isPastSession ? "/archive" : "/assembly";
+  const backLabel = isPastSession ? "過去の資料に戻る" : "議会に戻る";
 
   return (
     <Container className="py-8">
       <div className="mb-4">
         <Link
-          href="/assembly"
+          href={backHref}
           className="inline-flex items-center gap-1 text-sm text-mirai-text-secondary hover:text-mirai-text"
         >
           <ChevronLeft className="w-4 h-4" />
-          議会に戻る
+          {backLabel}
         </Link>
       </div>
       <div className="mb-6 flex flex-col gap-2">

@@ -33,6 +33,8 @@ interface SessionBillsPageProps {
   proceduralBillCount?: number;
   /** 上程済みだがわかりやすい解説がまだ無い議案（委員会審査待ちの新会期など） */
   awaitingContentBills?: AwaitingContentBill[];
+  /** 既に閉会済みの過去会期かどうか（true の場合、戻るリンクは過去の資料一覧へ） */
+  isPastSession?: boolean;
 }
 
 export function SessionBillsPage({
@@ -40,6 +42,7 @@ export function SessionBillsPage({
   bills,
   proceduralBillCount = 0,
   awaitingContentBills = [],
+  isPastSession = false,
 }: SessionBillsPageProps) {
   const startDate = new Date(session.start_date);
   const endDate = new Date(session.end_date ?? session.start_date);
@@ -59,11 +62,11 @@ export function SessionBillsPage({
       {/* ヘッダー */}
       <div className="flex flex-col gap-6">
         <Link
-          href="/assembly"
+          href={isPastSession ? "/archive" : "/assembly"}
           className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
         >
           <ChevronLeft className="h-4 w-4" />
-          議会に戻る
+          {isPastSession ? "過去の資料に戻る" : "議会に戻る"}
         </Link>
 
         <div className="flex flex-col gap-2">

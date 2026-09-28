@@ -7,6 +7,7 @@ import { getCurrentSessionBills } from "@/features/bills/server/loaders/get-curr
 import { getSessionBills } from "@/features/bills/server/loaders/get-session-bills";
 import { getSessionProceduralBills } from "@/features/bills/server/loaders/get-session-procedural-bills";
 import { getCouncilSessionBySlug } from "@/features/council-sessions/server/loaders/get-council-session-by-slug";
+import { getJapanTime } from "@/lib/utils/date";
 
 interface SessionBillsRouteProps {
   params: Promise<{
@@ -55,6 +56,10 @@ export default async function SessionBillsRoute({
   const awaitingContentBills = allSessionBills.filter(
     (b) => !contentBillIds.has(b.id) && !proceduralBillIds.has(b.id)
   );
+  const isPastSession =
+    !session.is_active &&
+    !!session.end_date &&
+    new Date(session.end_date) < getJapanTime();
 
   return (
     <Container className="py-10">
@@ -63,6 +68,7 @@ export default async function SessionBillsRoute({
         bills={bills}
         proceduralBillCount={proceduralBills.length}
         awaitingContentBills={awaitingContentBills}
+        isPastSession={isPastSession}
       />
     </Container>
   );
