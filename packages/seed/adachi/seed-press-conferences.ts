@@ -181,7 +181,7 @@ const DATA: PressConferenceInput[] = [
         turns: [
           {
             speaker: "reporter",
-            speakerName: "読売新聞（中条氏）",
+            speakerName: "読売新聞",
             content:
               "小学校版SSRについて、議会で可決された場合、最短でいつ頃から整備が可能になるのでしょうか。",
             orderIndex: 0,
@@ -203,7 +203,7 @@ const DATA: PressConferenceInput[] = [
         turns: [
           {
             speaker: "reporter",
-            speakerName: "読売新聞（中条氏）",
+            speakerName: "読売新聞",
             content:
               "既に設置されている中学校のSSRについて、これまでの政策効果としてはどういったものが挙げられるでしょうか。",
             orderIndex: 0,
@@ -225,7 +225,7 @@ const DATA: PressConferenceInput[] = [
         turns: [
           {
             speaker: "reporter",
-            speakerName: null,
+            speakerName: "読売新聞",
             content:
               "今年は台風が多く、先般の千葉の大雨ではアンダーパスや冠水した道路での車の水没により犠牲者が出た問題がありました。区でも侵入を防止するため注意喚起の表現を強めたと聞いていますが、その狙いと、災害防止の観点からの取り組みについて改めて伺いたいです。",
             orderIndex: 0,
@@ -247,7 +247,7 @@ const DATA: PressConferenceInput[] = [
         turns: [
           {
             speaker: "reporter",
-            speakerName: "MXテレビ（今島氏）",
+            speakerName: "MXテレビ",
             content:
               "保育料無償化などで利用増加が見込まれた一方、受け皿の整備が追いつかなかったという認識でよいのでしょうか。",
             orderIndex: 0,
@@ -291,7 +291,7 @@ const DATA: PressConferenceInput[] = [
         turns: [
           {
             speaker: "reporter",
-            speakerName: "都政新報（高沢氏）",
+            speakerName: "都政新報",
             content:
               "令和9年度の打開策として保育士を追加配置するとのことですが、どのくらいの人数を新たに配置するのでしょうか。また特別一時保育について補助金が出るとのことですが、現場の負担に対してどのような対応が考えられているか教えてください。",
             orderIndex: 0,
