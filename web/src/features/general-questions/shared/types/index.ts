@@ -21,12 +21,16 @@ export type SessionQuestionOverview = {
 
 export type QuestionSourceStage = "notice" | "preliminary" | "final";
 
+export type QuestionType = "representative" | "general";
+
 export type GeneralQuestion = {
   id: string;
   council_session_id: string;
   questioner_name: string;
   questioner_party: string | null;
   questioner_number: number | null;
+  /** 質問区分。representative=代表質問／general=一般質問 */
+  question_type: QuestionType;
   session_day: number;
   /** 質問が行われた本会議の日付（YYYY-MM-DD）。未設定の場合は session_day で表示する */
   session_date?: string | null;

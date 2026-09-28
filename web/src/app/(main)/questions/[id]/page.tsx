@@ -9,6 +9,7 @@ import { getCouncilSessionById } from "@/features/council-sessions/server/loader
 import { QuestionChatView } from "@/features/general-questions/client/components/question-chat-view";
 import { QuestionViewToggle } from "@/features/general-questions/client/components/question-view-toggle";
 import { AdjacentQuestionNav } from "@/features/general-questions/server/components/adjacent-question-nav";
+import { QuestionTypeBadge } from "@/features/general-questions/server/components/question-type-badge";
 import { RawTranscriptView } from "@/features/general-questions/server/components/raw-transcript-view";
 import { SourceStageNotice } from "@/features/general-questions/server/components/source-stage-notice";
 import { getGeneralQuestionById } from "@/features/general-questions/server/loaders/get-general-question-by-id";
@@ -77,9 +78,12 @@ export default async function GeneralQuestionDetailPage({
         </Link>
       </div>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-mirai-text">
-          {question.questioner_name} 議員
-        </h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-mirai-text">
+            {question.questioner_name} 議員
+          </h1>
+          <QuestionTypeBadge questionType={question.question_type} />
+        </div>
         <p className="mt-1 text-sm text-mirai-text-secondary">
           {question.questioner_party && (
             <span>{question.questioner_party}　｜　</span>

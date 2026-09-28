@@ -32,6 +32,8 @@ type QuestionInput = {
   questioner_name: string;
   questioner_party: string | null;
   questioner_number: number | null;
+  /** 質問区分。representative=代表質問／general=一般質問（省略時はDB既定値の "general"） */
+  question_type?: "representative" | "general";
   session_day: number;
   session_date: string;
   question_order: number;

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { GeneralQuestion } from "../../shared/types";
 import { formatQuestionDay } from "../../shared/utils/format-question-day";
 import { buildQuestionDetailHref } from "../../shared/utils/question-view";
+import { QuestionTypeBadge } from "./question-type-badge";
 
 interface GeneralQuestionCardProps {
   question: GeneralQuestion;
@@ -18,9 +19,12 @@ export function GeneralQuestionCard({ question }: GeneralQuestionCardProps) {
       className="flex h-full flex-col gap-3 rounded-xl border border-mirai-border bg-white p-5 transition-all duration-200 hover:border-primary/50 hover:shadow-md"
     >
       <div>
-        <p className="text-lg font-bold text-mirai-text">
-          {question.questioner_name} 議員
-        </p>
+        <div className="flex items-center gap-2">
+          <p className="text-lg font-bold text-mirai-text">
+            {question.questioner_name} 議員
+          </p>
+          <QuestionTypeBadge questionType={question.question_type} />
+        </div>
         <p className="mt-0.5 text-xs text-mirai-text-secondary">
           {question.questioner_party && (
             <span>{question.questioner_party}　｜　</span>

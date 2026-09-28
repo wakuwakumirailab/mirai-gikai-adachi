@@ -1,0 +1,1202 @@
+{
+  "sessionSlug": "r8-3",
+  "questions": [
+    {
+      "questioner_name": "吉岡茂",
+      "questioner_party": "足立区議会自由民主党",
+      "questioner_number": 44,
+      "session_day": 1,
+      "session_date": "2026-09-14",
+      "question_order": 1,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "足立区議会自由民主党を代表し、令和7年度決算、六町・江北・千住のエリアデザイン、犯罪被害者支援、公共施設マネジメント、梅田八丁目複合施設、消費喚起策、民泊規制、プラスチック分別回収、六町地域の待機児童対策など幅広く質問した。",
+      "topics": [
+        {
+          "title": "令和7年度普通会計決算の評価と今後の財政運営",
+          "question_summary": "歳入歳出とも過去最大規模となった令和7年度決算について、区がその要因をどう分析し決算全体をどう評価しているか、また今後の区財政の見通しと財政運営の考え方を区長に質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "六町エリアデザイン（土地区画整理・道路愛称・ろくまる）",
+          "question_summary": "六町の土地区画整理事業の完了後を見据えたまちづくりとして、東京都施行の事業スケジュール、六町2号公園の桜並木復活や公園名称の公募、都市計画道路の愛称、地域安全ステーション「ろくまる」の評価と今後の役割を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "六町駅前区有地の再公募とつくばエクスプレスの利便性向上",
+          "question_summary": "つくばエクスプレス六町駅前区有地の再公募に向けたスケジュール、8両化に向けた改良工事の進捗、東京駅延伸構想の実現に向けた区の取り組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "江北・千住エリアデザインの推進",
+          "question_summary": "高野スポーツパークや上沼田東公園を含めた江北エリア3施設連携のスケジュール、千住エリアデザイン計画策定に向けた今後の具体的な取り組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "犯罪被害者支援条例の制定に向けて",
+          "question_summary": "犯罪被害者支援条例の制定が全国の自治体で広がる中、他区の取り組み状況、区の現在の支援内容、今後の推進方向を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "こども性暴力防止法の施行に向けた区の準備",
+          "question_summary": "令和8年12月施行のこども性暴力防止法について、事業者に義務付けられる具体的な取り組み、義務対象・認定対象施設の範囲、対象職種、区の準備状況を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "「死者ゼロ」を目指す災害対応（情報発信・避難所暑さ対策・水の確保）",
+          "question_summary": "熊本地震や千葉豪雨等を踏まえ、命を守る情報発信のあり方、一連の台風対応から見えた課題と改善策、避難所の暑さ対策、総合防災訓練での水の確保の取り組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "旧北鹿浜小学校跡地の活用（東京大学の提案）",
+          "question_summary": "旧北鹿浜小学校跡地について東京大学から宇宙資源・探査研究の国際拠点整備の提案が寄せられたことを受け、区の活用方針を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "公共施設マネジメントの職員意識啓発と区民周知",
+          "question_summary": "職員意識調査の結果を区がどう受け止め回答率向上にどう取り組むか、職員ワークショップの対象・成果、区民への理解促進の取り組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "東渕江小学校改築工事への中東情勢の影響",
+          "question_summary": "中東情勢の影響による資材納入の遅れが東渕江小学校の改築工事（令和9年4月開校予定）に及ぶか区の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "特別区民税の増収要因と今後の見通し",
+          "question_summary": "令和8年度特別区民税の増額の要因、納税義務者の所得構成の特徴、高額所得者の増加要因、大型開発による今後の増収見込みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "学校開放事業の制度改革（オンライン化・登録要件の見直し）",
+          "question_summary": "学校開放事業審議会の答申を踏まえ、予約手続のオンライン化の時期・計画、登録団体の在住・在勤・在学要件や減免制度の見直しのスケジュールを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "梅田八丁目複合施設整備事業のコスト高騰と今後の方針",
+          "question_summary": "整備工事費が約46億円から約96億円に増加する見込みとなる中、入札不調で設計検証が滞っている状況を踏まえた事業推進・見直しの方針、照査業務予算への影響を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "アーバンスポーツの環境整備（舎人公園への設置検討）",
+          "question_summary": "スケートボードやBMXなどアーバンスポーツ施設の整備に向けた課題、都立舎人公園への整備を都へ働きかけることについて区の考えを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "消費喚起策（PayPay商品券）の進捗と90万口の上限周知",
+          "question_summary": "PayPay商品券の複数回購入・二次販売等の対策によるデジタル化推進の効果、レシートde商品券や商店街応援券の応募状況、今年度90万口の上限を超えた場合の対応と区民への周知を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "特別養護老人ホーム整備計画の今後の展開",
+          "question_summary": "待機者数が約4割減少する一方、多床室とユニット型個室の需給ミスマッチにより整備方針が一時凍結されている状況を踏まえ、新たな整備方針を今後どう示していくか質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "住宅宿泊事業（民泊）の規制強化",
+          "question_summary": "民泊施設の騒音・ごみ等の苦情状況、立入調査の実施状況、他区に先行されないための早期の条例改正と旅館業の規制見直しの必要性を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "プラスチック分別回収の全区実施後の状況",
+          "question_summary": "区内全域でのプラスチック分別回収開始後の混乱への対応、回収量が想定どおりか、区民への分別定着に向けた啓発、リチウムイオン電池の本庁舎での回収実施を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "六町地域の待機児童対策",
+          "question_summary": "大型マンション建設など今後の人口増加を見据え、六町地域の子育て世帯・待機児童の見込みと保育環境の維持・充実に向けた区の取り組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "representative"
+    },
+    {
+      "questioner_name": "石毛かずあき",
+      "questioner_party": "足立区議会公明党",
+      "questioner_number": 21,
+      "session_day": 1,
+      "session_date": "2026-09-14",
+      "question_order": 2,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "足立区議会公明党を代表し、防災・水害対策、フェーズフリー、若者支援、防犯対策、就職氷河期世代支援、中小企業支援、障がい者雇用、SNSリスク対策、待機児童対策など幅広く質問した。",
+      "topics": [
+        {
+          "title": "区の強靱化対策と内水氾濫への対応（区政運営）",
+          "question_summary": "新年度予算での強靱化対策の重点項目や補正予算での機動的対応、内水氾濫を防ぐ下水道整備と道路冠水時の当面の対策を一体的に進めることについて区長の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "旧北鹿浜小学校跡地の東京大学提案への対応",
+          "question_summary": "東京大学からの研究・実証拠点整備の提案を地域資源として捉え、地域との連携を図りながら積極的に検討を進めることについて区の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "困難を抱える若者への切れ目のない支援体制",
+          "question_summary": "「あだち若者サポートテラスSODA」の新拠点の検討状況、オンライン相談・アウトリーチ支援、高校生世代の居場所づくり、「足立区子ども・若者計画」に基づく幅広い支援の方向性を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "日常生活に防災機能を組み込む「フェーズフリー」の導入",
+          "question_summary": "フェーズフリーの理念を区の防災政策に位置付け全庁的な推進体制を整えること、在宅避難者や要配慮者への支援を平時から関係機関と整備することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "家庭・地域の防災力向上（備えの格差・外国人家庭への周知）",
+          "question_summary": "備えが進まない世帯の課題把握、子ども向けの実践的な防災教育の充実、外国人家庭への多言語・やさしい日本語での防災知識の普及を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "水害対策（止水板助成の拡充・アンダーパス対策）",
+          "question_summary": "7月の局地的豪雨を踏まえ、止水板設置助成の拡充、内水氾濫対策、パッカー車等の緊急避難場所としての自走式駐車場との提携拡大を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "防犯対策（ビューティフル・ウインドウズ運動とSNS投資詐欺対策）",
+          "question_summary": "ビューティフル・ウインドウズ運動の認知度低下を踏まえた今後の取り組み、SNS型投資詐欺対策の効果、注意喚起の対象年齢の拡大・引き下げを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "就職氷河期世代への支援策の周知と会計年度任用職員採用",
+          "question_summary": "国・都の支援情報や助成金の区内中小企業への周知、東京都立城東職業能力開発センターの活用促進、就職氷河期世代の会計年度任用職員としての採用を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "中小企業支援（人材確保・AI導入支援）",
+          "question_summary": "人材採用支援助成金の回数制限の見直し、女性活躍推進法に伴う都の奨励金の周知、IT・IoT導入補助金におけるAI導入支援の拡充を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "誰もが「自分らしく働き続けられる」職場と地域社会の実現",
+          "question_summary": "障がい者雇用の実態把握と就労期間・賃金など質を重視した支援への転換、企業向け研修の拡充や伴走型支援の強化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "日常生活用具（タブレット・スマホ）の給付の拡充",
+          "question_summary": "タブレット端末の給付実績と利用者の声、全盲の方からの要望を踏まえたスマートフォンの給付種目への追加を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "訪問介護従事者の安全対策（カスタマーハラスメント）",
+          "question_summary": "区による相談窓口の設置、複数名訪問の補助制度の活用促進、関係機関との連携強化、ハラスメント防止の周知啓発を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "高齢者支援施策の物価高騰対策（紙おむつ・シルバーカー助成）",
+          "question_summary": "紙おむつ支給事業の支給上限額の引き上げ、シルバーカー購入費用助成の上限額引き上げを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "オンライン化で深刻化するギャンブル依存症対策",
+          "question_summary": "海外オンラインカジノの違法性について若年層への予防教育・啓発の充実、相談・支援体制の強化と地域ネットワークを生かした早期発見を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "足立区都市計画マスタープランの改定",
+          "question_summary": "前回改定から約8年の成果と課題、今回の改定で重視する視点、パブリックコメントや説明会のスケジュールを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "SNSリスクから子どもを守る総合的な対策",
+          "question_summary": "闇バイトや生成AI悪用への対策、学校での継続的な予防教育、SNS起因のいじめへの早期発見・対応フローの整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "通常学級に在籍する発達障がい等の児童・生徒への支援",
+          "question_summary": "既存制度の狭間で支援が届かない児童・生徒を生じさせない「（仮称）足立区版スペシャルニーズアシスタント制度」のモデル実施、進学時の支援の引き継ぎ強化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区立小・中学校の防火・安全対策の強化",
+          "question_summary": "他区の校舎火災を踏まえた全校の緊急総点検の結果と改善、救助袋の使用講習・訓練の全校での定期実施、実践的な避難訓練への見直しを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "保育所の待機児童対策（0・1・2歳児保育定員確保プラン）",
+          "question_summary": "六町・綾瀬地域など待機児童が多い地域への重点対策、1歳児対策としての保育士確保と一体となった支援策を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "インクルーシブ保育のための支援",
+          "question_summary": "発達支援児の加配保育士の在籍数に対する充足状況、加配職員を確保できない場合の助成のあり方、施設長の業務負担軽減のための職員配置支援を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "representative"
+    },
+    {
+      "questioner_name": "はたの昭彦",
+      "questioner_party": "日本共産党足立区議団",
+      "questioner_number": 29,
+      "session_day": 2,
+      "session_date": "2026-09-15",
+      "question_order": 1,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "日本共産党足立区議団を代表し、区長の政治姿勢、令和7年度決算と新年度予算編成方針、区内中小事業者への支援、介護・福祉分野の物価高騰対策、北綾瀬駅ペデストリアンデッキ、大型開発とタワーマンション、学校統廃合、待機児童など幅広く質問した。",
+      "topics": [
+        {
+          "title": "物価高騰下の国の経済政策と「富の一極集中」への区長の見解",
+          "question_summary": "飲食料品の値上げラッシュが続く中、大企業・大資産家への富の集中に歯止めをかけるべきとの立場から区長の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "防衛費の大幅増額（安保3文書改定）への区長の見解",
+          "question_summary": "防衛費を5年後に24兆円とする大軍拡方針について、軍需産業の成長では暮らしは豊かにならないとの立場から区長の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "駅前再開発・大型公共事業に偏った区政運営への見解",
+          "question_summary": "大型公共事業や規制緩和を重視し学校統廃合を進める区政運営の方向性について、地域住民の要望との乖離があるのではないかと区長の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "令和7年度決算の評価と物価高騰・人手不足対策",
+          "question_summary": "積立基金残高が増加した令和7年度決算について、物価高騰や人手不足から区民・中小企業を守る対策を十分に実施できたと言えるか質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "新年度行財政運営方針とウェルビーイングの実感",
+          "question_summary": "基金積み増しの一方で区民生活が物価高騰に追いつかない実態を踏まえ、区民の暮らしや地域経済に寄り添った支援を重点項目の一番に据えるべきだと質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区内中小事業者への直接支援",
+          "question_summary": "価格転嫁が難しい中小事業者の実態を踏まえ、用途を問わない経営改善支援の直接支援を実施すべきだと質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区内中小事業者への賃上げ支援",
+          "question_summary": "他自治体の実施例を踏まえた区内中小零細事業者への賃上げ支援の実施、国の地方創生臨時交付金を活用した賃上げ支援策を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "建設業支援の専管組織の設置",
+          "question_summary": "産業振興課に建設業の振興を担う組織がないことを踏まえ、他区の事例のように専管組織を作り処遇改善や人材確保の手立てを立てることを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "介護保険料の算定基礎額と国庫負担割合の引き上げ",
+          "question_summary": "第10期介護保険料基準額の値上げ幅の妥当性、介護予防・高齢者福祉施策への一般会計からの振り向けによる値下げ、国庫負担割合の引き上げを国に求めることを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "福祉分野の物価高騰対策（特別給付金・福祉タクシー・紙おむつ）",
+          "question_summary": "介護・障がい福祉サービス事業者への特別給付金の継続的な支援制度化、福祉タクシー・自動車燃料助成券の増額、紙おむつ等支給事業の上限額引き上げを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "地域包括支援センターの委託料の適正化",
+          "question_summary": "実際の運営コストと乖離した委託料の大幅な引き上げ、物価・賃金スライド方式の導入を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "生活保護世帯の家具什器（冷蔵庫）の買い替え支給",
+          "question_summary": "生活保護受給者の冷蔵庫の買い替え費用が支給要件に該当せず認められなかった事例を踏まえ、行政不服審査の裁定を認識し受給中の買い替えを認めるべきだと質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "精神障害者保健福祉手帳の更新手続の改善",
+          "question_summary": "更新申請から発行までの期間が長く手帳の有効期限切れが生じている問題について、東京都への確実な発行の要望や更新中であることを証明できるものの発行を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "ケアラー支援条例の制定と総合的な支援策",
+          "question_summary": "ヤングケアラーに限らない全世代型のケアラー支援条例の制定、当事者の気づきを促すチェックシートなど総合的な支援体制の整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "北綾瀬駅ペデストリアンデッキの検証と今後のあり方",
+          "question_summary": "当初計画を拡充して整備したペデストリアンデッキの利用実態が想定を下回っている問題について、費用対効果の検証、増額時の費用負担割合の妥当性、南北を結ぶ自由通路化の検討、通行量・利用満足度の事後評価を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "大型開発、タワーマンション建設と税投入のあり方",
+          "question_summary": "市街地再開発事業への補助金の積み増し、税投入を伴う再開発物件の短期売買への規制導入、地元住民が住まいを追われる再開発のあり方を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "学校統廃合計画の凍結・撤廃を求める",
+          "question_summary": "竹の塚中・渕江中の統合地域協議会で反対意見が大勢を占めた経緯を踏まえ、当事者である子どもの意見聴取や統廃合計画の凍結・撤廃、単独建て替えでの「学校を核とした地域づくり」を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "全国ワースト2位の待機児童問題",
+          "question_summary": "待機児童解消アクション・プラン策定をやめた区の責任、認可保育園の抜本的な増設、公立保育園の建て替えによる環境改善と保育士増員、猛暑時の保育室滞在問題への対応を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "鋸南自然の家の廃止と体験の場の確保",
+          "question_summary": "鋸南自然の家の廃止による子どもの体験の場の喪失、ジュニアリーダーズキャンプの開催施設探しへの支援と使用料補助、扇中学校跡の体験施設整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "児童養護施設とこどもショートステイの拡充",
+          "question_summary": "一時保護所の入所率が高止まりする中、こどもショートステイの増設・拡充、こども家庭相談課と児童養護施設の連携強化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "23区ワーストワンの長時間労働・欠員の改善",
+          "question_summary": "残業時間が23区ワーストワンである実態を踏まえ、衛生部・福祉部・子ども家庭部など人員不足部署への増員、窓口時間の短縮による超過勤務の改善を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "representative"
+    },
+    {
+      "questioner_name": "へんみ圭二",
+      "questioner_party": "是々非々の会（維新・参政・無所属・立憲）",
+      "questioner_number": 6,
+      "session_day": 2,
+      "session_date": "2026-09-15",
+      "question_order": 2,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "是々非々の会（維新・参政・無所属・立憲）を代表し、財政の自由度確保、風水害時の学校対応、外国人住民の増加への向き合い方、認知症個人賠償責任保険、観光交流協会の経営転換、地域伝統文化継承支援の創設について質問した。",
+      "topics": [
+        {
+          "title": "経常収支比率上昇への総括と歳出見直しの見える化",
+          "question_summary": "経常収支比率が5年ぶりに適正水準の80%を超えたことについて区の総括、令和9年度予算編成での経常収支比率の回復目標と工程、区自身の事業見直しによる財源創出額を数字で示すことを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "風水害時の学校対応（前日判断の制度化と情報配信の一元化）",
+          "question_summary": "9月7日の大雨対応で混乱が生じたことを踏まえ、前日のうちに休校等の方針を示す判断方式の制度化、複数経路での情報配信、非常時の学習量・出欠の統一基準の策定を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "外国人住民5万人時代―人口の変化をどう捉えるか",
+          "question_summary": "外国人住民が5万人を超えた状況について、受け入れ側の日本人区民の不安・負担への向き合い方、転出入者アンケートの対象を外国人にも広げた人口動態の把握を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "認知症個人賠償責任保険の導入",
+          "question_summary": "近隣区で先行実施がある中、令和9年度からの導入の具体的検討、対象者数や保険料の試算を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "観光交流協会の「地域経済を動かす組織」への進化",
+          "question_summary": "区内消費・送客効果の検証、5大イベントを通年の観光戦略として設計すること、会員数減少への対策、企業パートナー制度の創設を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "地域伝統文化継承支援制度の創設",
+          "question_summary": "お囃子や祭礼文化の保存会が抱える費用負担を踏まえ、太鼓・獅子頭等の修繕や後継者募集広報を対象とする「地域伝統文化継承支援制度」の令和9年度創設を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "representative"
+    },
+    {
+      "questioner_name": "佐藤あい",
+      "questioner_party": "都民ファーストの会足立区議団",
+      "questioner_number": 18,
+      "session_day": 2,
+      "session_date": "2026-09-15",
+      "question_order": 3,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "都民ファーストの会足立区議団を代表し、区長の政治姿勢、子ども・若者の声を区政に生かす仕組み、居場所と支援につながる仕組み、障がい者の「18歳の壁」、産後ケア、行政サービスのデジタル化、防災、アーバンスポーツ、西新井・梅島エリアのまちづくりについて質問した。",
+      "topics": [
+        {
+          "title": "「選ばれ続ける足立区」に向けた区政運営",
+          "question_summary": "若い世代・子育て世代を含む幅広い世代から選ばれ続ける区を目指し、今後の区政運営でどのような視点を重視するか区長に質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "多様な人材が活躍できる組織づくり",
+          "question_summary": "性別や年齢、経歴の異なる人材が政策形成や意思決定に参画する意義、女性職員や若手が管理職を含め能力を発揮できる環境整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "子ども・若者の声を計画の評価・改善につなげる仕組み",
+          "question_summary": "「足立区子ども・若者計画」の評価に多様な当事者の声を反映すること、「きかせて！みんなのこえ」等で寄せられた意見の検討結果を分かりやすく継続的に紹介・公表することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "コミュニティ・スクールにおける児童生徒・若者の参画",
+          "question_summary": "児童生徒アンケート等の声を学校運営協議会で共有する事例の拡大、大学生等の若者の委員登用、児童会・生徒会との意見交換の促進を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "子ども・若者の居場所と支援につながる仕組み（SODA・アウトリーチ）",
+          "question_summary": "SODAの専門職相談員の増員や相談枠の拡充、公園や駅周辺での若者へのアウトリーチ型支援、民間団体と連携した出張型の居場所・相談スポットの事業化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "こどもの居場所づくりコーディネーターの配置",
+          "question_summary": "子ども食堂やフリースクール等の多様な居場所資源を横断的に把握し、地域ごとのニーズに応じてつなぐコーディネート機能の整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "障がい者の「18歳の壁」への対応",
+          "question_summary": "特別支援学校卒業後の生活介護事業所等のサービス提供時間延長に向けた事業所調査の実施状況、夕方以降の居場所ニーズの分析、令和9年度からの制度設計を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "産後ケア事業のさらなる充実（利用枠の見直し）",
+          "question_summary": "宿泊型・日帰り型・訪問型の利用枠を分けることや訪問型利用回数の拡充、多胎児家庭への利用回数拡充を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区民の声と意思を生かす行政サービス（オンライン申請・遺贈寄附）",
+          "question_summary": "証明書オンライン申請での複数種類まとめての申請、専門職団体や区民からの改善提案の継続把握、不動産を含む遺贈寄附の実現を支える連携体制の構築を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "防災と区民の安全（アンダーパス浸水・避難所アレルギー対応）",
+          "question_summary": "浸水リスクの高いアンダーパスへの定点カメラや自動遮断装置の導入、避難所での食物アレルギー対応の運用の具体化と周知、不燃化特区における重量鉄骨造建築物の建替え支援を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "アーバンスポーツの環境整備",
+          "question_summary": "整備場所の確保や騒音・安全対策の課題、都立舎人公園を候補地とした東京都への働きかけを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "西新井・梅島エリアの地域価値を高めるまちづくり",
+          "question_summary": "梅田八丁目複合施設の地域拠点としての整備方針とスケジュールの区民への提示、西新井公園の「使いながらつくる」取組の見える化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "representative"
+    },
+    {
+      "questioner_name": "かねだ正",
+      "questioner_party": "足立区議会自由民主党",
+      "questioner_number": 42,
+      "session_day": 2,
+      "session_date": "2026-09-15",
+      "question_order": 4,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "西新井のにぎわい創出に向けたまちづくり、地域に開かれた学校づくりとコミュニティ・スクールの推進、あだち放課後子ども教室を担う生涯学習振興公社の今後の在り方について質問した。",
+      "topics": [
+        {
+          "title": "西新井駅西口駅前ビジョンとアンケート結果の活用",
+          "question_summary": "西新井駅西口駅前ビジョン策定に向けたアンケート回答数と反映についての区の見解、歩きやすい歩行空間の整備を求める声への対応を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "西新井駅西口のペデストリアンデッキ設置の検討",
+          "question_summary": "駅前アンケートの再開発への活かし方とスケジュール、再開発準備組合との協議内容、ペデストリアンデッキのメリット・デメリット、課題整理の進捗を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "宿泊施設「東横INN」建設計画の影響",
+          "question_summary": "西新井駅西口に計画された客室220室の東横INN建設の経緯、地域活性化の観点からの区の見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "西新井のまちづくりに関する積み残し課題（再開発準備組合・補助253号線）",
+          "question_summary": "東武鉄道駅舎部分が加わった再開発準備組合との協議状況、区域外の旧マンション部分の見通し、補助第253号線の早期整備に向けた都との協議の進捗を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "西新井大師開創1200年のイベントと商店街支援",
+          "question_summary": "開創1200年記念イベントの具体的な内容、商店街のフラッグ設置やイベント実施支援など今後の支援内容を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "開かれた学校づくり協議会とコミュニティ・スクールの推進",
+          "question_summary": "両者の違いの認識、コミュニティ・スクール化が進まなかった要因と人選の課題への対応、文部科学省が示す導入率40%要件への取り組み、開かれた学校づくり協議会の今後のあり方を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "生涯学習振興公社とあだち放課後子ども教室の今後の在り方",
+          "question_summary": "固有職員の高齢化・退職不補充が続く生涯学習振興公社について、存続を含めた抜本的な検討の方向性、放課後子ども教室事業の質を維持した継続、検討スケジュールの前倒しを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "長井まさのり",
+      "questioner_party": "足立区議会公明党",
+      "questioner_number": 37,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 1,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "子ども・若者への支援として足立区子ども・若者計画や子どもの自殺対策、障がい児の長期休暇中の居場所、新MMRワクチン、学校選択制度、知的固定学級を、区北東部の課題として六町駅前区有地や自動運転バス、花畑川の環境整備を質問した。",
+      "topics": [
+        {
+          "title": "足立区子ども・若者計画の成果と実効性の確保",
+          "question_summary": "貧困の連鎖対策など子どもの貧困対策元年からの取り組みの成果、施策の点検・評価の実施方法、PDCAサイクルによる事業見直しを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "中高生世代の自殺対策の推進",
+          "question_summary": "若年者支援協議会を通じた民間団体等へのアプローチ強化、「子どもの自殺対策に係る法定協議会」との事例共有を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "子どもの自殺対策（SOSの出し方教育・タブレットSOSフィルター）",
+          "question_summary": "10代の自殺者数の分析、SOSの出し方等教育の高校での実施拡大、タブレット端末のSOSフィルターの効果、シンポジウムの成果、法定協議会モデル事業の今後の展開を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "学校の長期休暇中における障がい児の居場所づくり",
+          "question_summary": "長期休暇中の障がい児の居場所確保の実態把握、東京都の「障害児者の居場所づくり促進事業実施要綱」を活用した居場所確保を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "麻しん・風しん・おたふくかぜの新MMRワクチン接種",
+          "question_summary": "国における定期接種化の検討状況、円滑な制度開始に向けた事前準備、定期接種化された場合の無料化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "学校選択制度の見直し（兄弟姉妹の優先入学）",
+          "question_summary": "制度の総括・検証と保護者・児童生徒への意見聴取、抽選で兄弟姉妹が別々の小学校になる世帯の負担、都内19区が実施する兄弟姉妹優先入学の導入検討を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "知的固定学級の増設と対応",
+          "question_summary": "知的固定学級数・児童生徒数の推移、5歳児健診を踏まえた早期対応、中央・東エリアや西エリアでの学級拡充の進捗、中長期的な整備方針の提示を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "病児・病後児保育室の拡充",
+          "question_summary": "第三上沼田保育園での区直営病児保育室設置の進捗、中部地域への開設、持ち物の負担軽減、病後児保育室の利用実績と将来的な拡充を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "六町駅前区有地活用事業の再公募",
+          "question_summary": "オープンハウス型説明会で寄せられた意見の反映、事業者ヒアリングを踏まえた公募条件の検討状況、撤退防止策や今後のスケジュール、期日前投票所拡充の進捗を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "自動運転バスの実証実験（西新井駅東口〜六町駅）",
+          "question_summary": "試走期間・実証運行期間それぞれの検証の視点、区民への説明で寄せられた声、愛称公募や車体ラッピング、自転車専用通行帯の整備、レベル4に向けた今後のスケジュールを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "花畑川の環境整備事業",
+          "question_summary": "花畑川川底ウォークイベントの盛況を踏まえ、完成に向けたスケジュールや整備方針、3段階の整備節目でのイベント開催を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "ただ太郎",
+      "questioner_party": "足立区議会自由民主党",
+      "questioner_number": 27,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 2,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "公共施設の更新の基本的な考え方（旧こども家庭支援センター跡地活用事業を含む）と、私立幼稚園に対する支援について質問した。",
+      "topics": [
+        {
+          "title": "公共施設等総合管理計画に基づく更新の基本的な考え方",
+          "question_summary": "歳出の抑制と歳入の確保を精査しながら施設の複合化や区有地貸付を進める基本的な考え方、多岐にわたる更新計画を支える安定的な財政出動、適正な人員確保の方策を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "旧こども家庭支援センター跡地活用事業の推進体制",
+          "question_summary": "建設単価高騰や技術者不足を踏まえた確実な事業遂行の担保策、施工事業者選定後のリスク対応力の活用、目標寿命90年に向けた事業者への期待、多目的ホールと憩いの場への区民意見の反映、バリアフリー設計、多目的ホールの柔軟な活用を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "私立幼稚園に対する支援の充実",
+          "question_summary": "私立幼稚園の社会的役割への区の評価と位置づけ、保護者負担軽減や財政支援の今後の取り組み、待機児童対策としての活用予定園数と補助額、保護者負担軽減補助金の上限額の増額、幼稚園教諭確保に向けたキャリアアップ補助、借上げバスの費用助成を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "太田せいいち",
+      "questioner_party": "足立区議会公明党",
+      "questioner_number": 9,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 3,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "デジタルトランスフォーメーション（DX）の更なる推進として計画の進捗・推進体制・窓口オンライン化・デジタルデバイド対策・防災DX・事業者DX化支援を、CO2削減など環境にやさしい取組みについて質問した。",
+      "topics": [
+        {
+          "title": "足立区DX推進計画の進捗とAI活用への計画修正",
+          "question_summary": "23区中18位というDX推進度の評価を踏まえた計画の進捗と課題、AIの積極活用に向けた計画修正の必要性、部署間の取組み格差の改善とデータ分析人材の確保を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "DXの推進体制（首長のメッセージ発信と職員コミュニティ）",
+          "question_summary": "副区長を最高DX推進責任者とする推進体制の全庁的な発信、部署をまたぐ職員コミュニティの負担配慮、他自治体を参考にした人材発掘策、DX人材を評価する人事制度の見直しを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "窓口業務のオンライン化（書かない窓口の拡大）",
+          "question_summary": "窓口DX専用端末の他窓口への導入拡大、他自治体の事例を参考にした利用者・職員目線での課題調査の実施を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "デジタルデバイド対策（LINEの活用）",
+          "question_summary": "高齢者向けスマホ教室の効果と課題、他自治体の事例を踏まえたLINEを活用した行政手続の利便性向上を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "防災DXの推進（避難所受付システム・防災チャットボット）",
+          "question_summary": "避難所受付・開設支援システムの実証実験の結果と課題、本格導入に向けたマニュアル整備とスケジュール、消防団向け防災チャットボットの活用検討を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区内事業者のDX化支援",
+          "question_summary": "都のDX推進トータルサポート事業の周知、DX化成功事例の紹介、東京電機大学との産学連携強化、サイバーセキュリティ対策の周知強化を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "CO2削減の目標と家庭部門の取組み",
+          "question_summary": "2035年度までのCO2削減目標の検討状況、排出量の多い家庭部門への取組み、エネルギー使用量の実績を踏まえた成果指標の再検討を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区民の環境配慮意識の変容（デコ活の推進）",
+          "question_summary": "区有施設のエネルギー使用量の見える化、環境省が推進する「デコ活」の区としての宣言による意識改革・行動変容の契機づくりを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "区の公共建築物の省エネ化（ZEB認証・ESCO事業）",
+          "question_summary": "公共施設のエネルギー使用量削減の取組み、ZEB認証取得に加えたESCO事業の導入による省エネと維持コスト削減の両立を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "サステナブルファッションの取組み（衣類の行政回収）",
+          "question_summary": "環境省のアクションプランを踏まえた衣類の行政回収の区の方針、商業施設での回収ボックス設置のモデル実施、リユースによる再活用を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "西の原ゆま",
+      "questioner_party": "日本共産党足立区議団",
+      "questioner_number": 4,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 4,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "災害対策として水害対策・震災対策・震災時の情報対策を、足タクについて質問した。",
+      "topics": [
+        {
+          "title": "都市型内水氾濫対策の最優先課題化",
+          "question_summary": "千葉県豪雨等を踏まえ、河川氾濫対策中心の国土強靱化に対し都市型内水氾濫対策を最優先課題とすべきこと、アンダーパスへの自動遮断機導入を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "下水道の100mm対応と雨水流出抑制（雨水ピット・雨水タンク）",
+          "question_summary": "東京都に時間雨量75mmを超える降雨への早期対応を求めること、ギャラクシティの雨水ピット貯留量拡大や環七への設置、廃止された雨水タンク助成金の復活を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "災害対応コールセンターの設置",
+          "question_summary": "千葉の被災者の要望を踏まえ、被災者がすぐに問い合わせできる災害対応コールセンターの設置準備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "震災対策（ボトムアップ型の支援体制）",
+          "question_summary": "熊本地震の教訓を踏まえ、指示待ちではなく現場の声を反映する支援体制の必要性を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "避難所の改善（ベッド・大型調理レンジの備蓄）",
+          "question_summary": "第一次避難所への折り畳みベッド・段ボールベッドの備蓄、大型調理レンジの再備蓄を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "タワーマンションの災害リスクとエレベーター停止対策",
+          "question_summary": "区内で計画が進むタワーマンションについて、震度5弱の地震でエレベーターが長時間停止した事例を踏まえた新たなリスク要因への見解を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "トイレ対策（簡易トイレの全世帯配布）",
+          "question_summary": "災害弱者や外出困難な世帯が取り残されないよう簡易トイレを全世帯に配布すること、マンホールトイレのプライバシー確保の改善を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "入浴対策（災害協定・温水シャワーの検証）",
+          "question_summary": "区内スポーツクラブや温浴施設との災害協定締結の働きかけ、乳幼児等への災害温水シャワーの実効性の検証を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "防災無線が聞こえない問題（防災ラジオの無償貸与）",
+          "question_summary": "防災無線が届かない世帯への対策として、他自治体の例を踏まえた防災ラジオの無償貸与制度の創設を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "足タクの利用促進（料金・運行エリア・住民協議会）",
+          "question_summary": "利用者が伸び悩む足タクについて、高額な料金設定の見直し、運行エリアの拡大、住民協議会を立ち上げた改善の仕組みづくりを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "加地まさなお",
+      "questioner_party": "是々非々の会（維新・参政・無所属・立憲）",
+      "questioner_number": 2,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 5,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "公共施設の課題に向けた今後の取り組み（統廃合の判断基準・旧北鹿浜小学校の東京大学提案）、公共施設を活用した認知症・介護予防と社会参加、多世代が集う複合的な地域拠点について質問した。",
+      "topics": [
+        {
+          "title": "公共施設の統廃合・複合化の判断基準と見える化",
+          "question_summary": "統廃合・複合化の目的や判断基準の明確化、利用人数・維持管理費・将来更新費など判断根拠の見える化、検討の早い段階からの地域住民との対話、庁内横断的な仕組みの構築、政策効果の事後検証を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "旧北鹿浜小学校の東京大学提案（月面基地地上実証キャンパス）",
+          "question_summary": "東京大学からの提案の評価と教育・産業・地域への期待効果、包括連携協定等による継続的な連携、公共施設活用の判断基準への地域貢献の位置づけを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "他自治体の事例を踏まえた公共施設の複合活用（学校三部制）",
+          "question_summary": "奈良県天理市の「学校三部制」を参考に、学校跡地や公共施設の複合化を多世代交流や地域づくりの拠点として活用する考え方への評価を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "認知症・介護予防における社会参加と役割づくり",
+          "question_summary": "認知症の方や高齢者を「支援される側」に固定しない役割づくり、認知症施策推進計画への位置づけ、本人の声を継続的に施策へ反映する仕組みを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "多世代が集う複合的な地域拠点（あだち脳活ラボの発展）",
+          "question_summary": "あだち脳活ラボの評価と発展の方向性、多世代が学び役割を持てる地域拠点づくり、高齢者が子どもの見守り・交流に関わる仕組み、モデル事業としての小規模実施を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "野沢てつや",
+      "questioner_party": "無会派",
+      "questioner_number": 3,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 6,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "区政満足度をさらに高めるための課題解決として元自衛隊員等による災害対策チームや駅前マイナンバーカードセンター、民泊規制、高齢者デジタルサポート窓口、ウィルチェアスポーツコートを、地域課題として地域内交通や次世代型ゴミ箱を質問した。",
+      "topics": [
+        {
+          "title": "元自衛隊員等による災害対策チームの設置",
+          "question_summary": "災害対策訓練に見られる現実性・危機感の課題を踏まえ、元自衛官・自衛隊OBを「チーム」として採用し戦略策定に活用することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "駅前マイナンバーカードセンターの設置",
+          "question_summary": "本庁舎近くの1箇所に限られる現状を踏まえ、他自治体の例のように北千住駅や竹ノ塚駅等の主要駅前にマイナンバーカードセンターを設置することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "民泊施設への規制強化とマンション一室旅館への規制条項追加",
+          "question_summary": "全民泊施設への立入調査を踏まえた不適切施設への厳しい処分、マンションの一室を旅館として運営する事業の現状、墨田区を参考にした足立区旅館業法施行条例への規制条項の追加を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "高齢者デジタルサポート窓口の設置",
+          "question_summary": "スマートフォン操作が必須となる行政サービスの拡大を踏まえ、荒川区や港区を参考にした常設の包括的相談窓口の設置を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "ウィルチェアスポーツコートの設置",
+          "question_summary": "総合スポーツセンターの大規模修繕を機に、車いすラグビー等の正式競技ができるウィルチェアスポーツコートの整備を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "地域内交通導入サポート制度の予算措置の見直し",
+          "question_summary": "花畑ぐるりん等のバリアフリー対応の義務付け記載の追加、混雑対策実証実験との比較で予算措置が不均衡であること、シルバーパス等所持者の利用料負担軽減を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "北千住駅前における次世代型ゴミ箱の設置",
+          "question_summary": "ポイ捨てゴミが持ち帰り原則に反して発生している実態を踏まえ、他自治体の事例を参考にした次世代型ゴミ箱の試験導入を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "西新井駅西口駅前交通広場の緑化推進",
+          "question_summary": "猛暑日の増加を踏まえ、駅前交通広場整備に合わせた街路樹・植栽による暑さ対策と快適性向上を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "地域包括支援センター関原跡地の有効活用",
+          "question_summary": "老朽化が進む跡地について、当初計画されていた児童館・悠々館を含む多世代交流型施設としての活用を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    },
+    {
+      "questioner_name": "川村みこと",
+      "questioner_party": "無会派",
+      "questioner_number": 7,
+      "session_day": 3,
+      "session_date": "2026-09-16",
+      "question_order": 7,
+      "source_url": null,
+      "source_stage": "notice",
+      "summary": "子育て・教育環境の更なる充実（ベビーキープ・児童館の授乳スペース・夏のプール・図書館イベント・インフルエンザ助成・ミニ列車・学校統合）と、総合交通対策（地域内交通・花畑ぐるりん・北綾瀬駅駐輪場・自転車ルール）について質問した。",
+      "topics": [
+        {
+          "title": "本庁舎トイレへのベビーキープの設置拡大",
+          "question_summary": "中央館・南館で設置状況にばらつきがあることを踏まえ、利用者の多い階や子育て関係部署のあるフロアから設置を進め全館設置を目指すことを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "東渕江小学校の施設更新の進捗",
+          "question_summary": "世界情勢による資材価格高騰・供給への影響が懸念される中、新校舎建設の現在の進捗状況を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "児童館子育てサロンのおむつ替え・授乳スペースの整備",
+          "question_summary": "設置されていない児童館が一定数ある実態を踏まえ、全児童館でのおむつ替えスペース・授乳スペースの設置を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "子どもたちの夏の遊びの機会確保（屋外プールの開設延長）",
+          "question_summary": "近年の暑さで開設期間中も中止となる日が多いことを踏まえ、総合スポーツセンターの開設期間の延長、土日祝日の9月末までの開設日追加を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "図書館を活用した子ども向けイベントの充実",
+          "question_summary": "普段図書館に足を運ばない子どもたちが訪れるきっかけとなる肝試し等のユニークな企画の充実を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "小児インフルエンザワクチン予防接種費用助成の開始日前倒し",
+          "question_summary": "例年より早い流行を踏まえ、他区の例のように助成対象の開始日を柔軟に前倒しできるよう医師会等と調整することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "公園のミニ列車のキャッシュレス対応",
+          "question_summary": "北鹿浜公園・大谷田南公園のミニ列車のチケットが現金でしか購入できない現状を踏まえ、キャッシュレス対応の導入を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "学校統合における入学予定保護者からの意見聴取",
+          "question_summary": "竹の塚中学校と渕江中学校の統合について、統合地域協議会に加えて今後入学する予定の保護者からも広く意見を聴きながら進めることを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "地域内交通導入サポート制度の運営支援の拡充",
+          "question_summary": "協議会運営支援費が創設された一方で「月150万円では足りない」との声を踏まえ、運行実績に応じた上限額・支援額の見直しを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "花畑ぐるりんの周知拡大・停留所環境改善・お試し券配布",
+          "question_summary": "車両ラッピング等による周知強化、待ち時間の負担軽減に向けた遮熱塗装・ベンチ設置、無料お試し券の効果的な再配布を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "北綾瀬駅周辺の駐輪場の増設",
+          "question_summary": "満車状態が続く北綾瀬駅北側・南側駐輪場の新規開設・増設の進捗と早期実現を質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        },
+        {
+          "title": "子どもたちへの自転車ルールの周知の低年齢化対応",
+          "question_summary": "自転車に乗り始める年齢の低年齢化を踏まえ、警察署と連携したより早い年齢からの自転車ルール学習の場を全区的に整備することを質問した。",
+          "answer_summary": "",
+          "answerer_role": "",
+          "answerer_name": ""
+        }
+      ],
+      "question_type": "general"
+    }
+  ]
+}
