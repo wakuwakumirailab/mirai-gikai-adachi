@@ -13,6 +13,7 @@ import { getSessionsWithBudget } from "@/features/budget-overview/server/loaders
 import { ArchiveView } from "@/features/archive/server/components/archive-view";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { countPublishedBillsByDietSession } from "@/features/bills/server/repositories/bill-repository";
+import { getSessionsWithGeneralQuestions } from "@/features/general-questions/server/loaders/get-sessions-with-general-questions";
 
 export const metadata: Metadata = {
   title: `過去の資料 | ${siteConfig.siteName}`,
@@ -20,11 +21,13 @@ export const metadata: Metadata = {
 };
 
 export default async function ArchivePage() {
-  const [pastSessions, budgetSessions, difficultyLevel] = await Promise.all([
-    getAllPastSessions(),
-    getSessionsWithBudget(),
-    getDifficultyLevel(),
-  ]);
+  const [pastSessions, budgetSessions, questionSessions, difficultyLevel] =
+    await Promise.all([
+      getAllPastSessions(),
+      getSessionsWithBudget(),
+      getSessionsWithGeneralQuestions(),
+      getDifficultyLevel(),
+    ]);
 
   const contentCounts = await Promise.all(
     pastSessions.map((session) =>
@@ -64,6 +67,7 @@ export default async function ArchivePage() {
         <ArchiveView
           pastSessions={pastSessions}
           pastBudgetSessions={budgetSessions}
+          pastQuestionSessions={questionSessions}
           sessionsWithoutContent={sessionsWithoutContent}
         />
 

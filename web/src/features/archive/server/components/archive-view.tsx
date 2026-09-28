@@ -10,6 +10,7 @@ import {
 type Props = {
   pastSessions: CouncilSession[];
   pastBudgetSessions: CouncilSession[];
+  pastQuestionSessions: CouncilSession[];
   /** bill_contents が0件（未整備）の定例会IDの集合 */
   sessionsWithoutContent: Set<string>;
 };
@@ -25,15 +26,18 @@ function toBudgetLabel(sessionName: string): string {
 export function ArchiveView({
   pastSessions,
   pastBudgetSessions,
+  pastQuestionSessions,
   sessionsWithoutContent,
 }: Props) {
   const sessionsByYear = groupSessionsByYear(pastSessions);
   const budgetSessionsByYear = groupSessionsByYear(pastBudgetSessions);
+  const questionSessionsByYear = groupSessionsByYear(pastQuestionSessions);
 
   const years = Array.from(
     new Set([
       ...sessionsByYear.map((g) => g.year),
       ...budgetSessionsByYear.map((g) => g.year),
+      ...questionSessionsByYear.map((g) => g.year),
     ])
   ).sort((a, b) => b - a);
 
@@ -52,6 +56,8 @@ export function ArchiveView({
           sessionsByYear.find((g) => g.year === year)?.sessions ?? [];
         const budgetSessions =
           budgetSessionsByYear.find((g) => g.year === year)?.sessions ?? [];
+        const questionSessions =
+          questionSessionsByYear.find((g) => g.year === year)?.sessions ?? [];
 
         return (
           <section key={year} className="flex flex-col gap-6">
@@ -113,6 +119,37 @@ export function ArchiveView({
                           <span className="font-bold text-mirai-text">
                             {toBudgetLabel(session.name)}
                           </span>
+                          <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
+
+            {questionSessions.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <h3 className="text-sm font-bold text-mirai-text-secondary">
+                  一般質問・代表質問
+                </h3>
+                <ul className="flex flex-col divide-y divide-mirai-border">
+                  {questionSessions.map((session) => {
+                    if (!session.slug) return null;
+                    return (
+                      <li key={session.id}>
+                        <Link
+                          href={`/sessions/${session.slug}/questions`}
+                          className="group flex items-center justify-between gap-2 rounded-lg px-2 py-3 transition-colors hover:bg-mirai-surface-grouped"
+                        >
+                          <div className="flex flex-col gap-0.5">
+                            <span className="font-bold text-mirai-text">
+                              {session.name}
+                            </span>
+                            <span className="text-xs text-mirai-text-secondary">
+                              {formatSessionPeriod(session)}
+                            </span>
+                          </div>
                           <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
                         </Link>
                       </li>

@@ -1,5 +1,6 @@
 import "server-only";
 import { createAdminClient } from "@mirai-gikai/supabase";
+import type { CouncilSession } from "@/features/council-sessions/shared/types";
 import type {
   GeneralQuestion,
   SessionQuestionOverview,
@@ -94,6 +95,43 @@ export async function findLatestSessionSlugWithPublishedQuestions(): Promise<
 
   if (sErr) return null;
   return session?.slug ?? null;
+}
+
+/**
+ * 公開済みの一般質問が1件以上ある会期を新しい順に取得する（過去の資料一覧用）
+ * is_active = false かつ既に閉会済み（end_date < targetDate）の会期のみを対象とする
+ */
+export async function findAllSessionsWithGeneralQuestions(
+  targetDate: string
+): Promise<CouncilSession[]> {
+  const supabase = createAdminClient();
+
+  const { data, error } = await supabase
+    .from("general_questions")
+    .select("council_session_id, council_sessions!inner(*)")
+    .eq("publish_status", "published")
+    .eq("council_sessions.is_active", false)
+    .lt("council_sessions.end_date", targetDate);
+
+  if (error) {
+    console.error("Failed to fetch sessions with general questions:", error);
+    return [];
+  }
+
+  const seen = new Set<string>();
+  const sessions: CouncilSession[] = [];
+  for (const row of data ?? []) {
+    const session = row.council_sessions as unknown as CouncilSession;
+    if (session && !seen.has(session.id)) {
+      seen.add(session.id);
+      sessions.push(session);
+    }
+  }
+
+  return sessions.sort(
+    (a, b) =>
+      new Date(b.start_date).getTime() - new Date(a.start_date).getTime()
+  );
 }
 
 export async function findPublishedGeneralQuestionById(

@@ -1,4 +1,9 @@
-import { Calendar, ChevronLeft } from "lucide-react";
+import {
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink,
+} from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
@@ -9,6 +14,7 @@ import { SessionTopicsView } from "@/features/general-questions/server/component
 import { getGeneralQuestionOverviewBySession } from "@/features/general-questions/server/loaders/get-general-question-overview-by-session";
 import { getGeneralQuestionsBySession } from "@/features/general-questions/server/loaders/get-general-questions-by-session";
 import { applyQuestionDifficulty } from "@/features/general-questions/shared/utils/apply-question-difficulty";
+import { buildGeneralQuestionsSourceUrl } from "@/features/general-questions/shared/utils/build-source-url";
 import { parseQuestionView } from "@/features/general-questions/shared/utils/question-view";
 
 type Props = {
@@ -55,6 +61,7 @@ export default async function SessionQuestionsPage({
   const eyebrowLabel = roundMatch
     ? `${startDate.getFullYear()}年 第${roundMatch[1]}回`
     : `${startDate.getFullYear()}年`;
+  const sourceUrl = buildGeneralQuestionsSourceUrl(session.council_url);
 
   return (
     <Container className="py-8">
@@ -85,6 +92,32 @@ export default async function SessionQuestionsPage({
         sessionSlug={session_slug}
         view={view}
       />
+
+      <div className="mt-10 flex flex-col gap-4">
+        {sourceUrl && (
+          <div className="flex items-center gap-1 text-[13px] font-medium text-mirai-text">
+            {startDate.getFullYear()}年{session.name}
+            に行われた全ての代表・一般質問は
+            <a
+              href={sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1"
+            >
+              足立区議会情報へ
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        )}
+
+        <Link
+          href="/archive"
+          className="group flex items-center justify-between gap-2 rounded-2xl border border-mirai-border bg-white px-5 py-4 hover:border-primary/50 hover:shadow-md transition-all duration-200"
+        >
+          <p className="font-bold text-mirai-text">過去の資料一覧へ</p>
+          <ChevronRight className="w-5 h-5 text-mirai-text-muted shrink-0" />
+        </Link>
+      </div>
     </Container>
   );
 }
