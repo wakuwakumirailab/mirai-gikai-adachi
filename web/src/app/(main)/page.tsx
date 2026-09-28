@@ -88,13 +88,13 @@ export default async function Home() {
 
       {/* 一般質問バナー */}
       {questionsSlug && (
-        <Container className="pt-6">
+        <Container className="pt-6 pb-6">
           <GeneralQuestionsBanner sessionSlug={questionsSlug} />
         </Container>
       )}
 
       {/* Archive セクション（区長記者会見・事務事業評価のアーカイブ＋過去の資料への導線） */}
-      <div className="bg-mirai-surface-muted py-10">
+      <div className="bg-mirai-surface-muted pt-6 pb-10">
         <Container>
           <div className="flex flex-col gap-8">
             <ArchiveBanner />
