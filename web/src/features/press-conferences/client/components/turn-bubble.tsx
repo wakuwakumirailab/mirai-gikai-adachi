@@ -8,6 +8,7 @@ type Props = {
 
 export function TurnBubble({ turn }: Props) {
   const isMayor = turn.speaker === "mayor";
+  const label = isMayor ? "足立区長" : "記者";
 
   return (
     <div className={`flex gap-3 ${isMayor ? "flex-row-reverse" : "flex-row"}`}>
@@ -30,7 +31,10 @@ export function TurnBubble({ turn }: Props) {
         className={`flex flex-col gap-1 max-w-[85%] ${isMayor ? "items-end" : "items-start"}`}
       >
         <span className="text-xs font-medium text-mirai-text-muted px-1">
-          {isMayor ? "足立区長" : "記者"}
+          {label}
+          {turn.speakerName && (
+            <span className="font-normal">（{turn.speakerName}）</span>
+          )}
         </span>
         <div
           className={`rounded-2xl px-4 py-3 text-sm leading-relaxed text-mirai-text shadow-sm ${
