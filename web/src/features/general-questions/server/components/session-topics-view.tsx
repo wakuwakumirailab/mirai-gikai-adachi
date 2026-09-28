@@ -1,3 +1,4 @@
+import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { SessionQuestionsOverview } from "../../client/components/session-questions-overview";
 import { SessionSummaryLines } from "../../client/components/session-summary-lines";
 import type {
@@ -17,6 +18,7 @@ interface SessionTopicsViewProps {
   overview: SessionQuestionOverview;
   sessionSlug: string;
   view: QuestionView;
+  difficultyLevel?: DifficultyLevelEnum;
 }
 
 export function SessionTopicsView({
@@ -24,6 +26,7 @@ export function SessionTopicsView({
   overview,
   sessionSlug,
   view,
+  difficultyLevel = "normal",
 }: SessionTopicsViewProps) {
   if (questions.length === 0) {
     return (
@@ -39,6 +42,7 @@ export function SessionTopicsView({
       <SourceStageNotice
         stage={getSessionSourceStage(questions)}
         scope="session"
+        level={difficultyLevel}
       />
       <SessionSummaryLines lines={overview?.lines} />
       <QuestionViewTabs sessionSlug={sessionSlug} current={view} />

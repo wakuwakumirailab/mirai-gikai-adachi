@@ -94,7 +94,11 @@ export default async function GeneralQuestionDetailPage({
 
       {question.source_stage && question.source_stage !== "final" && (
         <div className="mb-6">
-          <SourceStageNotice stage={question.source_stage} scope="question" />
+          <SourceStageNotice
+            stage={question.source_stage}
+            scope="question"
+            level={difficultyLevel}
+          />
         </div>
       )}
 
