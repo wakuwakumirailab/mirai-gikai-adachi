@@ -85,7 +85,7 @@ export function ArchiveView({
                               {session.name}
                               {noContent && (
                                 <span className="ml-2 rounded-full bg-mirai-surface-muted px-2 py-0.5 text-xs font-medium text-mirai-text-muted align-middle">
-                                  データ未整備
+                                  解説データ未整備
                                 </span>
                               )}
                             </span>
