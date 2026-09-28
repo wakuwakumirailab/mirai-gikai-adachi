@@ -61,7 +61,7 @@ export default async function AssemblyPage() {
         ? `/sessions/${latestSessionSlug}/bills`
         : "/sessions",
       icon: CalendarDays,
-      label: "議会",
+      label: "定例会・議案",
       description: "直近の定例会の議案をまとめて確認できます",
     },
     ...(latestQuestionsSlug
@@ -69,9 +69,9 @@ export default async function AssemblyPage() {
           {
             href: `/sessions/${latestQuestionsSlug}/questions`,
             icon: MessageSquare,
-            label: "一般質問",
+            label: "一般質問・代表質問",
             description:
-              "議員が区長・部長に直接質問した内容をわかりやすく解説します",
+              "区議会議員が行政・区長に質問した内容をわかりやすく解説します",
           },
         ]
       : []),
