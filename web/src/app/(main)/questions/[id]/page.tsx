@@ -17,6 +17,7 @@ import { getGeneralQuestionsBySession } from "@/features/general-questions/serve
 import { applyQuestionDifficulty } from "@/features/general-questions/shared/utils/apply-question-difficulty";
 import { formatQuestionDay } from "@/features/general-questions/shared/utils/format-question-day";
 import { formatSourceLabel } from "@/features/general-questions/shared/utils/format-source-label";
+import { shortenPartyName } from "@/features/general-questions/shared/utils/shorten-party-name";
 import {
   buildSessionQuestionsHref,
   parseQuestionView,
@@ -86,7 +87,7 @@ export default async function GeneralQuestionDetailPage({
         </div>
         <p className="mt-1 text-sm text-mirai-text-secondary">
           {question.questioner_party && (
-            <span>{question.questioner_party}　｜　</span>
+            <span>{shortenPartyName(question.questioner_party)}　｜　</span>
           )}
           {dayLabel}
         </p>
