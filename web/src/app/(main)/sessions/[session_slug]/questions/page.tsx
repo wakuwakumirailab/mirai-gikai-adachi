@@ -1,4 +1,4 @@
-import { ChevronLeft } from "lucide-react";
+import { Calendar, ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
@@ -50,6 +50,11 @@ export default async function SessionQuestionsPage({
   const questions = rawQuestions.map((q) =>
     applyQuestionDifficulty(q, difficultyLevel)
   );
+  const startDate = new Date(session.start_date);
+  const roundMatch = session.name.match(/第(\d+)回/);
+  const eyebrowLabel = roundMatch
+    ? `${startDate.getFullYear()}年 第${roundMatch[1]}回`
+    : `${startDate.getFullYear()}年`;
 
   return (
     <Container className="py-8">
@@ -62,7 +67,11 @@ export default async function SessionQuestionsPage({
           議会に戻る
         </Link>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 flex flex-col gap-2">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-mirai-surface-tag px-3 py-1 text-xs font-medium text-primary-accent">
+          <Calendar className="size-3.5" />
+          {eyebrowLabel}
+        </span>
         <h1 className="text-2xl font-bold text-mirai-text">
           {session.name}の一般質問
         </h1>
