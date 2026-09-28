@@ -24,7 +24,12 @@ export function middleware(request: NextRequest) {
 
   // メンテナンス中はトップページのみ、ヘッダー・ナビの無い専用画面へリライトする
   // （ヘッダー/ボトムナビ経由で他ページへ遷移できてしまうのを防ぐ。他ページは通常通り）
-  if (siteConfig.features.maintenanceMode && request.nextUrl.pathname === "/") {
+  // ローカル開発時は常にスキップし、通常のトップページを見られるようにする
+  if (
+    siteConfig.features.maintenanceMode &&
+    process.env.NODE_ENV !== "development" &&
+    request.nextUrl.pathname === "/"
+  ) {
     return NextResponse.rewrite(new URL("/maintenance-screen", request.url));
   }
 
