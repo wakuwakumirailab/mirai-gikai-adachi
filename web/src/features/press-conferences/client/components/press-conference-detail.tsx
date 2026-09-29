@@ -32,7 +32,7 @@ export function PressConferenceDetail({ pressConference }: Props) {
           {pressConference.title}
         </h1>
         <p className="text-sm text-mirai-text-secondary leading-relaxed">
-          足立区長が記者の皆さんと直接やりとりした内容を、わかりやすくお届けします。
+          区長記者会見の内容を、わかりやすくお届けします。記者の方とのやりとりも掲載しています。
         </p>
         {pressConference.youtubeUrl && (
           <a

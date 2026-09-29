@@ -14,7 +14,7 @@ export function PressConferenceList({ pressConferences }: Props) {
       <div className="flex flex-col gap-1">
         <h1 className="text-xl font-bold text-mirai-text">区長記者会見</h1>
         <p className="text-sm text-mirai-text-secondary">
-          足立区長が記者の皆さんと直接やりとりした内容をわかりやすくお届けします。
+          区長記者会見の内容を、わかりやすくお届けします。記者の方とのやりとりも掲載しています。
         </p>
       </div>
 

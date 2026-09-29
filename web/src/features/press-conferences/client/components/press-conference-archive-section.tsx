@@ -19,7 +19,7 @@ export function PressConferenceArchiveSection({ pressConferences }: Props) {
           区長記者会見
         </h2>
         <p className="text-xs text-mirai-text-secondary">
-          足立区長が記者の皆さんと直接やりとりした内容をわかりやすくお届けします
+          区長記者会見の内容を、わかりやすくお届けします。記者の方とのやりとりも掲載しています。
         </p>
       </div>
 
