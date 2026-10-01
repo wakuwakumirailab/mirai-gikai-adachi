@@ -2,6 +2,9 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
+import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
+import { DifficultyInfoCard } from "@/features/bills/server/components/bill-detail/difficulty-info-card";
+import { ContentShareButtons } from "@/features/bills/server/components/share/content-share-buttons";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { PressConferenceDetail } from "@/features/press-conferences/client/components/press-conference-detail";
 import { getPressConferenceBySlug } from "@/features/press-conferences/server/loaders/get-press-conference-by-slug";
@@ -38,6 +41,17 @@ export default async function PressConferencePage({ params }: Props) {
         </Link>
       </div>
       <PressConferenceDetail pressConference={pressConference} />
+      <DifficultyInfoCard />
+      <div className="my-8">
+        <ContentShareButtons
+          path={`/press-conferences/${slug}`}
+          title={pressConference.title}
+        />
+      </div>
+      <BillDisclaimer
+        contentLabel="区長記者会見の情報"
+        sourceText="足立区が公開している記者会見の記録など"
+      />
     </Container>
   );
 }

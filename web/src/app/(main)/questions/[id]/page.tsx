@@ -4,6 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
 import { siteConfig } from "@/config/site.config";
+import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
+import { DifficultyInfoCard } from "@/features/bills/server/components/bill-detail/difficulty-info-card";
+import { ContentShareButtons } from "@/features/bills/server/components/share/content-share-buttons";
 import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
 import { getCouncilSessionById } from "@/features/council-sessions/server/loaders/get-council-session-by-id";
 import { QuestionChatView } from "@/features/general-questions/client/components/question-chat-view";
@@ -120,6 +123,8 @@ export default async function GeneralQuestionDetailPage({
         <QuestionChatView topics={question.topics} />
       )}
 
+      <DifficultyInfoCard />
+
       <AdjacentQuestionNav
         questions={sessionQuestions}
         currentId={question.id}
@@ -142,6 +147,18 @@ export default async function GeneralQuestionDetailPage({
           </a>
         </div>
       )}
+
+      <div className="my-8">
+        <ContentShareButtons
+          path={`/questions/${question.id}`}
+          title={`${question.questioner_name} 議員の一般質問`}
+        />
+      </div>
+
+      <BillDisclaimer
+        contentLabel="一般質問の情報"
+        sourceText={`${siteConfig.councilName}の会議録などの公開情報`}
+      />
     </Container>
   );
 }

@@ -2,10 +2,13 @@ import { ChevronLeft, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BillDisclaimer } from "@/features/bills/client/components/bill-detail/bill-disclaimer";
 import { Container } from "@/components/layouts/container";
 import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site.config";
 import { BillContent } from "@/features/bills/server/components/bill-detail/bill-content";
+import { DifficultyInfoCard } from "@/features/bills/server/components/bill-detail/difficulty-info-card";
+import { BillShareButtons } from "@/features/bills/server/components/share/bill-share-buttons";
 import { getPetitionById } from "@/features/bills/server/loaders/get-petition-by-id";
 import {
   getCardStatusLabel,
@@ -83,16 +86,30 @@ export default async function PetitionDetailPage({ params }: Props) {
         <PetitionDiscussions discussions={discussions} />
 
         {petition.source_url && (
-          <a
-            href={petition.source_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex w-fit items-center gap-1.5 text-sm text-primary-accent hover:underline"
-          >
-            <ExternalLink className="h-3.5 w-3.5" />
-            議事録を見る
-          </a>
+          <div className="rounded-2xl border border-mirai-border bg-white p-5">
+            <a
+              href={petition.source_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-bold text-primary-accent hover:underline"
+            >
+              <ExternalLink className="w-4 h-4" />
+              請願・陳情の原文を見る（足立区議会）
+            </a>
+            <p className="mt-2 text-xs text-mirai-text-muted">
+              この画面の内容は、請願・陳情の原文をもとにAIが要約したものです。正確な内容は原文をご確認ください。
+            </p>
+          </div>
         )}
+
+        {petition.bill_content?.content && <DifficultyInfoCard />}
+
+        <BillShareButtons bill={petition} />
+
+        <BillDisclaimer
+          contentLabel="請願・陳情の情報"
+          sourceText={`${siteConfig.councilName}に提出された請願・陳情などの公開情報`}
+        />
       </div>
     </Container>
   );

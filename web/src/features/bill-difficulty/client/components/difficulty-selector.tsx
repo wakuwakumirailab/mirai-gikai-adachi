@@ -14,6 +14,7 @@ interface DifficultySelectorProps {
   currentLevel: DifficultyLevelEnum;
   label?: string;
   labelStyle?: CSSProperties;
+  className?: string;
   scrollToTop?: boolean;
   maintainScrollFromBottom?: boolean;
 }
@@ -22,6 +23,7 @@ export function DifficultySelector({
   currentLevel,
   label,
   labelStyle,
+  className,
   scrollToTop,
   maintainScrollFromBottom,
 }: DifficultySelectorProps) {
@@ -71,7 +73,7 @@ export function DifficultySelector({
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={className ?? "flex items-center gap-2"}>
       <span className="text-xs font-bold" style={labelStyle}>
         {label != null ? (
           label

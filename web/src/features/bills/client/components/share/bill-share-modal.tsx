@@ -1,12 +1,16 @@
 "use client";
 
+import { Check, Link2 } from "lucide-react";
 import type { MouseEvent, KeyboardEvent } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
+  copyShareUrl,
   shareNative,
   shareOnFacebook,
   shareOnLine,
+  shareOnNote,
   shareOnThreads,
   shareOnTwitter,
 } from "@/features/bills/client/utils/share-handlers";
@@ -26,9 +30,19 @@ export function BillShareModal({
   shareUrl,
   thumbnailUrl,
 }: BillShareModalProps) {
+  const [copied, setCopied] = useState(false);
+
   if (!isOpen) return null;
 
-  // 共有ボタンの設定
+  const handleCopy = async () => {
+    const ok = await copyShareUrl(shareUrl);
+    if (ok) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  // 共有ボタンの設定（PC: X, Facebook, note, Threads, リンクコピー / スマホ: X, LINE, note, Threads, 共有）
   const shareButtons = [
     {
       name: "X (Twitter)",
@@ -39,6 +53,7 @@ export function BillShareModal({
       name: "Facebook",
       iconPath: "/icons/sns/icon_facebook.png",
       onClick: () => shareOnFacebook(shareUrl),
+      className: "hidden md:inline-flex",
     },
     {
       name: "LINE",
@@ -47,10 +62,14 @@ export function BillShareModal({
       className: "md:hidden",
     },
     {
+      name: "note",
+      iconPath: "/icons/sns/icon_note.png",
+      onClick: () => shareOnNote(shareUrl),
+    },
+    {
       name: "Threads",
       iconPath: "/icons/sns/icon_threads.png",
       onClick: () => shareOnThreads(shareMessage, shareUrl),
-      className: "md:hidden",
     },
     {
       name: "共有",
@@ -108,7 +127,7 @@ export function BillShareModal({
           </p>
 
           {/* SNSアイコン */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
             {shareButtons.map((button) => (
               <Button
                 key={button.name}
@@ -128,7 +147,27 @@ export function BillShareModal({
                 />
               </Button>
             ))}
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={handleCopy}
+              aria-label="URLをコピー"
+              className={`hidden md:inline-flex w-12 h-12 p-0 rounded-full border-2 ${
+                copied
+                  ? "border-green-600 bg-green-600 text-white hover:bg-green-600 hover:text-white"
+                  : "border-gray-800 bg-white text-gray-800 hover:bg-gray-50"
+              }`}
+            >
+              {copied ? (
+                <Check className="size-6" />
+              ) : (
+                <Link2 className="size-6" />
+              )}
+            </Button>
           </div>
+          <p className="h-4 text-xs text-gray-600" aria-live="polite">
+            {copied ? "URLをコピーしました" : ""}
+          </p>
         </div>
 
         {/* 閉じるボタン */}

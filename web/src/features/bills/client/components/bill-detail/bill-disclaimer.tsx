@@ -1,15 +1,25 @@
 import { LinkButton } from "@/components/top/link-button";
 import { siteConfig } from "@/config/site.config";
 
-export function BillDisclaimer() {
+interface BillDisclaimerProps {
+  /** 掲載コンテンツの呼び方（例: 議案情報） */
+  contentLabel?: string;
+  /** 情報の出典の説明（例: 足立区議会に上程された議案などの公開情報） */
+  sourceText?: string;
+}
+
+export function BillDisclaimer({
+  contentLabel = "議案情報",
+  sourceText = `${siteConfig.councilName}に上程された議案などの公開情報`,
+}: BillDisclaimerProps) {
   return (
     <div className="space-y-6 pt-4 pb-10">
       {/* データの出典について */}
       <div className="space-y-3">
         <h3 className="text-sm font-bold text-black">掲載コンテンツについて</h3>
         <p className="text-xs leading-relaxed text-mirai-text-note">
-          掲載されている議案情報は、{siteConfig.councilName}
-          に上程された議案などの公開情報を基に、AIを活用しながら背景情報を整理したものです。
+          掲載されている{contentLabel}は、{sourceText}
+          を基に、AIを活用しながら背景情報を整理したものです。
         </p>
       </div>
 

@@ -28,6 +28,23 @@ export function shareOnThreads(message: string, url: string) {
   window.open(shareUrl, "_blank", "noopener,noreferrer");
 }
 
+export function shareOnNote(url: string) {
+  const shareUrl = `https://note.com/intent/post?url=${encodeURIComponent(
+    url
+  )}`;
+  window.open(shareUrl, "_blank", "noopener,noreferrer");
+}
+
+export async function copyShareUrl(url: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(url);
+    return true;
+  } catch (error) {
+    console.error("Failed to copy:", error);
+    return false;
+  }
+}
+
 export async function shareNative(message: string, url: string) {
   // Web Share API が利用可能な場合
   if (navigator.share) {

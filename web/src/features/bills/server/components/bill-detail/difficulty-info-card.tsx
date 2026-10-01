@@ -5,26 +5,26 @@ import { DifficultySelector } from "@/features/bill-difficulty/client/components
 export async function DifficultyInfoCard() {
   const level = await getDifficultyLevel();
   return (
-    <div className="relative overflow-hidden rounded-xl bg-white p-6 my-10 h-38 flex flex-col justify-center">
-      <div className="relative z-1 flex flex-col gap-0">
-        <p className="text-base font-medium leading-[1.875em] text-gray-800">
-          説明の詳しさを
-          <br className="pc:hidden" />
-          いつでも切り替えられます
-        </p>
+    <div className="rounded-xl bg-white p-6 my-10 flex flex-col gap-4">
+      <p className="text-base font-medium leading-[1.875em] text-gray-800">
+        説明の詳しさを
+        <br className="pc:hidden" />
+        いつでも切り替えられます
+      </p>
+      <div className="flex items-center gap-3">
+        <Image
+          src="/images/difficulty-icon-detail.png"
+          alt=""
+          width={290}
+          height={235}
+          className="h-12 w-auto object-contain"
+        />
         <DifficultySelector
           currentLevel={level}
+          label="説明をもっと詳しく"
           labelStyle={{ fontSize: "16px" }}
+          className="flex items-center gap-4"
           maintainScrollFromBottom
-        />
-      </div>
-      <div className="absolute right-6 top-6 w-[121px] h-[128px]">
-        <Image
-          src="/images/readingbook_woman_green.png"
-          alt=""
-          width={121}
-          height={128}
-          className="object-contain"
         />
       </div>
     </div>

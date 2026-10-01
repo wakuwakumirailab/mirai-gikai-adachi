@@ -10,9 +10,10 @@ import type { BillWithContent } from "../../shared/types";
 export function createBillShareUrl(
   origin: string,
   billId: string,
-  difficulty: DifficultyLevelEnum
+  difficulty: DifficultyLevelEnum,
+  basePath: "bills" | "petitions" = "bills"
 ): string {
-  return `${origin}/bills/${billId}?difficulty=${difficulty}`;
+  return `${origin}/${basePath}/${billId}?difficulty=${difficulty}`;
 }
 
 /**
@@ -45,7 +46,12 @@ export async function getBillShareData(bill: BillWithContent) {
   const { origin, difficulty } = await getShareContext();
 
   return {
-    shareUrl: createBillShareUrl(origin, bill.id, difficulty),
+    shareUrl: createBillShareUrl(
+      origin,
+      bill.id,
+      difficulty,
+      bill.bill_type === "petition" ? "petitions" : "bills"
+    ),
     shareMessage: createShareMessage(bill),
     // シェア用OGP画像を優先的に使用、なければ通常のサムネイル
     thumbnailUrl: bill.share_thumbnail_url || bill.thumbnail_url,
