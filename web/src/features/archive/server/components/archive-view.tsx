@@ -131,7 +131,7 @@ export function ArchiveView({
             {questionSessions.length > 0 && (
               <div className="flex flex-col gap-3">
                 <h3 className="text-sm font-bold text-mirai-text-secondary">
-                  一般質問・代表質問
+                  代表・一般質問
                 </h3>
                 <ul className="flex flex-col divide-y divide-mirai-border">
                   {questionSessions.map((session) => {

@@ -4,7 +4,6 @@ import {
   ChevronRight,
   FileText,
   Landmark,
-  Megaphone,
   MessageSquare,
 } from "lucide-react";
 import Link from "next/link";
@@ -19,7 +18,7 @@ import { getJapanTime } from "@/lib/utils/date";
 
 export const metadata: Metadata = {
   title: `議会 | ${siteConfig.siteName}`,
-  description: `${siteConfig.councilName}の定例会・委員会・区長記者会見をまとめて確認できます。`,
+  description: `${siteConfig.councilName}の定例会・委員会をまとめて確認できます。`,
 };
 
 const OTHER_CHILD_LINKS = [
@@ -28,12 +27,6 @@ const OTHER_CHILD_LINKS = [
     icon: Landmark,
     label: "委員会",
     description: "委員会でどんな質疑・答弁があったかをまとめています",
-  },
-  {
-    href: "/press-conferences",
-    icon: Megaphone,
-    label: "区長記者会見",
-    description: "区長が定例で発表している内容をまとめています",
   },
   {
     href: "/petitions",
@@ -69,7 +62,7 @@ export default async function AssemblyPage() {
           {
             href: `/sessions/${latestQuestionsSlug}/questions`,
             icon: MessageSquare,
-            label: "一般質問・代表質問",
+            label: "代表・一般質問",
             description:
               "区議会議員が行政・区長に質問した内容をわかりやすく解説します",
           },
@@ -90,7 +83,7 @@ export default async function AssemblyPage() {
             {siteConfig.councilName}
           </h1>
           <p className="text-sm leading-relaxed text-mirai-text-secondary">
-            今開かれている定例会や、委員会・区長記者会見の内容を確認できます。
+            今開かれている定例会や、委員会の内容を確認できます。
           </p>
         </header>
 

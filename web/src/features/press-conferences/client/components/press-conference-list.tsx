@@ -11,12 +11,18 @@ type Props = {
 export function PressConferenceList({ pressConferences }: Props) {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-xl font-bold text-mirai-text">区長記者会見</h1>
-        <p className="text-sm text-mirai-text-secondary">
+      <header className="flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
+          <Megaphone className="size-3.5" />
+          区長記者会見
+        </span>
+        <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
+          足立区長の記者会見
+        </h1>
+        <p className="text-sm leading-relaxed text-mirai-text-secondary">
           区長記者会見の内容を、わかりやすくお届けします。記者の方とのやりとりも掲載しています。
         </p>
-      </div>
+      </header>
 
       <div className="flex flex-col gap-3">
         {pressConferences.map((pc) => {

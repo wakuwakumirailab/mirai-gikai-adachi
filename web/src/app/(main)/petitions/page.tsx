@@ -2,7 +2,6 @@ import { ChevronLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
-import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site.config";
 import { getPetitions } from "@/features/bills/server/loaders/get-petitions";
 import {
@@ -10,6 +9,7 @@ import {
   getStatusVariant,
 } from "@/features/bills/shared/utils/bill-status";
 import { formatDateJST } from "@/lib/utils/date";
+import { PetitionList } from "@/features/bills/client/components/petitions/petition-list";
 
 export const metadata: Metadata = {
   title: `請願・陳情 | ${siteConfig.siteName}`,
@@ -18,6 +18,17 @@ export const metadata: Metadata = {
 
 export default async function PetitionsPage() {
   const petitions = await getPetitions();
+  const items = petitions.map((petition) => ({
+    id: petition.id,
+    billNumber: petition.bill_number,
+    name: petition.name,
+    committeeName: petition.committees?.name ?? null,
+    statusLabel: petition.status_note ?? getCardStatusLabel(petition.status),
+    statusVariant: getStatusVariant(petition.status),
+    publishedDate: petition.published_at
+      ? formatDateJST(petition.published_at)
+      : null,
+  }));
 
   return (
     <Container className="py-10">
@@ -42,38 +53,7 @@ export default async function PetitionsPage() {
             公開中の請願・陳情はありません。
           </p>
         ) : (
-          <ul className="flex flex-col divide-y divide-mirai-border rounded-2xl border border-mirai-border bg-white">
-            {petitions.map((petition) => (
-              <li
-                key={petition.id}
-                className="flex flex-col gap-1.5 px-4 py-3 sm:flex-row sm:items-center sm:justify-between"
-              >
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-xs text-mirai-text-muted">
-                    {petition.bill_number}
-                    {petition.committees?.name && (
-                      <> ・ {petition.committees.name}</>
-                    )}
-                  </span>
-                  <Link
-                    href={`/petitions/${petition.id}`}
-                    className="font-medium text-mirai-text hover:text-primary-accent hover:underline"
-                  >
-                    {petition.name}
-                  </Link>
-                </div>
-                <div className="flex shrink-0 items-center gap-2 text-xs text-mirai-text-muted">
-                  {petition.published_at && (
-                    <time>{formatDateJST(petition.published_at)}</time>
-                  )}
-                  <Badge variant={getStatusVariant(petition.status)}>
-                    {petition.status_note ??
-                      getCardStatusLabel(petition.status)}
-                  </Badge>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <PetitionList petitions={items} />
         )}
       </div>
     </Container>

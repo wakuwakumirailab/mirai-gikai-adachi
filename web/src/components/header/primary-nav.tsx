@@ -1,16 +1,17 @@
 "use client";
 
-import { BookOpen, Home, Landmark, Users, Wallet } from "lucide-react";
+import { Home, Landmark, Megaphone, Users, Wallet } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
+// 学ぶページは一旦非表示（ページ自体は残している）
 export const PRIMARY_NAV_LINKS = [
   { href: "/", label: "ホーム", icon: Home, exact: true },
+  { href: "/press-conferences", label: "会見", icon: Megaphone, exact: false },
   { href: "/assembly", label: "議会", icon: Landmark, exact: false },
   { href: "/budget", label: "予算", icon: Wallet, exact: false },
   { href: "/members", label: "議員", icon: Users, exact: false },
-  { href: "/learn", label: "学ぶ", icon: BookOpen, exact: false },
 ] as const;
 
 export function isPrimaryNavActive(
@@ -22,7 +23,7 @@ export function isPrimaryNavActive(
 }
 
 /**
- * ヘッダーの主要ナビゲーション（ホーム・議会・予算・議員・学ぶ）。
+ * ヘッダーの主要ナビゲーション（ホーム・会見・議会・予算・議員）。
  * 狭い画面では収まらないため sm 以上でのみ表示し、
  * それ未満の画面幅では BottomNav（画面下部の固定タブバー）が同じ役割を担う。
  */
