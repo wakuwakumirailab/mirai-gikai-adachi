@@ -1,6 +1,7 @@
 import "server-only";
 
 import { createAdminClient } from "@mirai-gikai/supabase";
+import { shortenPartyName } from "@/features/general-questions/shared/utils/shorten-party-name";
 import type { CouncilMember } from "../../shared/types";
 
 type RawCouncilMember = {
@@ -14,7 +15,15 @@ function mapCouncilMember(raw: RawCouncilMember): CouncilMember {
   return {
     id: raw.id,
     name: raw.name,
-    faction: raw.faction,
+    faction: raw.faction
+      ? {
+          ...raw.faction,
+          // 「足立区議会」などの冠称や（）書きを除いた略称で表示する
+          display_name:
+            shortenPartyName(raw.faction.display_name) ??
+            raw.faction.display_name,
+        }
+      : null,
     committees: raw.committees
       .map((c) => c.committee)
       .filter((c): c is { id: string; name: string } => c !== null),

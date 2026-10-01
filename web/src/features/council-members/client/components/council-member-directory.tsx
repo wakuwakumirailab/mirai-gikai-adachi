@@ -27,11 +27,24 @@ export function CouncilMemberDirectory({ members }: Props) {
   }, []);
 
   const factionOptions = useMemo(() => {
-    const seen = new Map<string, string>();
+    const seen = new Map<string, { label: string; count: number }>();
     for (const m of members) {
-      if (m.faction) seen.set(m.faction.id, m.faction.display_name);
+      if (!m.faction) continue;
+      const prev = seen.get(m.faction.id);
+      seen.set(m.faction.id, {
+        label: m.faction.display_name,
+        count: (prev?.count ?? 0) + 1,
+      });
     }
-    return Array.from(seen, ([id, label]) => ({ id, label }));
+    // 所属人数の多い会派順。無会派は最後に置く
+    return Array.from(seen, ([id, { label, count }]) => ({ id, label, count }))
+      .sort((a, b) => {
+        if ((a.label === "無会派") !== (b.label === "無会派")) {
+          return a.label === "無会派" ? 1 : -1;
+        }
+        return b.count - a.count;
+      })
+      .map(({ id, label }) => ({ id, label }));
   }, [members]);
 
   const committeeOptions = useMemo(() => {
