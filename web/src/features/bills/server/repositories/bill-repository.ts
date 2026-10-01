@@ -262,6 +262,7 @@ export async function findAllPublishedPetitions() {
       status,
       status_note,
       published_at,
+      source_url,
       committees (
         id,
         name

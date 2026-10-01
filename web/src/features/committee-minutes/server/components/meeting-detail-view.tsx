@@ -1,28 +1,15 @@
 import "server-only";
-import { ArrowLeft, ArrowRight, CalendarDays, FileText } from "lucide-react";
+import { ArrowLeft, CalendarDays, ExternalLink } from "lucide-react";
 import Link from "next/link";
-import type { CommitteeMeetingDetail } from "../../shared/types";
-import { buildTranscriptSections } from "../../shared/utils/build-transcript-sections";
+import type { CommitteeMeeting } from "../../shared/types";
 import { getCommitteeTypeLabel } from "../../shared/utils/committee-type";
-import { countSpeechTypes } from "../../shared/utils/count-speech-types";
 import { formatJapaneseDate } from "../../shared/utils/format-japanese-date";
 
 type Props = {
-  meeting: CommitteeMeetingDetail;
+  meeting: CommitteeMeeting;
 };
 
 export function MeetingDetailView({ meeting }: Props) {
-  const transcriptPath = `/committees/${meeting.committeeSlug}/${meeting.sourceDocumentId}/transcript`;
-  const exchangeCount = meeting.speeches.filter(
-    (s) => s.speakerType !== "note"
-  ).length;
-
-  // 議題の範囲（seq）で発言を分割し、議題を持つセクションだけを議題リストに使う
-  const topicSections = buildTranscriptSections(
-    meeting.speeches,
-    meeting.topics
-  ).filter((section) => section.topic !== null);
-
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-4">
@@ -52,74 +39,122 @@ export function MeetingDetailView({ meeting }: Props) {
         </div>
       </div>
 
-      {topicSections.length === 0 ? (
+      {meeting.topics.length === 0 ? (
         <div className="rounded-2xl border border-mirai-border bg-white p-5">
           <p className="text-sm text-mirai-text-secondary leading-relaxed">
-            この会議では、委員長の選出など会議を運営するための手続きが中心でした。くわしい内容は「発言のやり取り」をご覧ください。
+            この会議では、会議を運営するための手続きが中心でした。
           </p>
         </div>
       ) : (
         <section className="flex flex-col gap-4">
           <h2 className="text-lg font-bold text-mirai-text">
-            この日に話し合われた議題
+            この日に話し合われたこと
           </h2>
           <ol className="flex flex-col gap-4">
-            {topicSections.map((section) => {
-              const topic = section.topic;
-              if (!topic) return null;
-              const counts = countSpeechTypes(section.speeches);
-              return (
-                <li
-                  key={topic.id}
-                  className="rounded-2xl border-l-4 border-primary bg-white shadow-sm px-5 py-4"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-full bg-mirai-gradient-start text-primary-accent text-xs font-bold flex items-center justify-center">
-                      {topic.topicOrder}
-                    </span>
-                    <h3 className="font-bold text-mirai-text leading-relaxed">
-                      {topic.title}
-                    </h3>
-                  </div>
-                  {topic.summary && (
-                    <p className="mt-2 pl-9 text-sm text-mirai-text-secondary leading-relaxed">
-                      {topic.summary}
-                    </p>
-                  )}
-                  <div className="mt-3 pl-9 flex flex-wrap gap-1.5">
-                    <span className="rounded-full bg-mirai-gradient-end px-2.5 py-0.5 text-xs text-mirai-text-secondary">
-                      質疑・意見 {counts.member}件
-                    </span>
-                    <span className="rounded-full bg-mirai-surface-grouped px-2.5 py-0.5 text-xs text-mirai-text-secondary">
-                      答弁 {counts.executive}件
-                    </span>
-                  </div>
+            {meeting.topics.map((topic) => (
+              <li
+                key={topic.id}
+                className="rounded-2xl border-l-4 border-primary bg-white shadow-sm px-5 py-4"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="flex-shrink-0 mt-0.5 w-6 h-6 rounded-full bg-mirai-gradient-start text-primary-accent text-xs font-bold flex items-center justify-center">
+                    {topic.topicOrder}
+                  </span>
+                  <h3 className="font-bold text-mirai-text leading-relaxed">
+                    {topic.title}
+                  </h3>
+                </div>
+
+                {topic.relatedBills.length > 0 && (
+                  <ul className="mt-2 pl-9 flex flex-col gap-1">
+                    {topic.relatedBills.map((b) => (
+                      <li key={b.href}>
+                        <Link
+                          href={b.href}
+                          className="inline-flex items-start gap-1 text-xs text-primary-accent hover:underline"
+                        >
+                          <span className="shrink-0 rounded-full bg-mirai-gradient-end px-2 py-0.5 font-medium">
+                            {b.billType === "petition" ? "陳情・請願" : "議案"}
+                          </span>
+                          <span className="leading-relaxed">{b.name}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {topic.conclusion && (
                   <div className="mt-3 pl-9">
-                    <Link
-                      href={`${transcriptPath}#topic-${topic.topicOrder}`}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-primary-accent hover:underline"
-                    >
-                      このやり取りを読む
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                    <div className="rounded-xl bg-mirai-gradient-end px-4 py-3">
+                      <div className="text-xs font-bold text-primary-accent">
+                        結論
+                      </div>
+                      <p className="mt-1 text-sm text-mirai-text leading-relaxed">
+                        {topic.conclusion}
+                      </p>
+                    </div>
                   </div>
-                </li>
-              );
-            })}
+                )}
+
+                {topic.summary && (
+                  <p className="mt-3 pl-9 text-sm text-mirai-text-secondary leading-relaxed">
+                    {topic.summary}
+                  </p>
+                )}
+
+                {topic.positions.length > 0 && (
+                  <div className="mt-3 pl-9">
+                    <div className="text-xs font-bold text-mirai-text-muted">
+                      発言者ごとの意見
+                    </div>
+                    <ul className="mt-2 flex flex-col gap-2">
+                      {topic.positions.map((p, i) => (
+                        <li
+                          // biome-ignore lint/suspicious/noArrayIndexKey: 表示専用の固定リスト
+                          key={i}
+                          className="rounded-xl border border-mirai-border bg-mirai-surface-grouped px-4 py-3"
+                        >
+                          <div className="flex flex-wrap items-center gap-1.5 text-xs">
+                            <span className="font-bold text-mirai-text">
+                              {p.speaker}
+                            </span>
+                            {p.party && (
+                              <span className="rounded-full bg-white px-2 py-0.5 text-mirai-text-secondary">
+                                {p.party}
+                              </span>
+                            )}
+                            {p.role === "executive" && (
+                              <span className="rounded-full bg-white px-2 py-0.5 text-mirai-text-secondary">
+                                区の説明
+                              </span>
+                            )}
+                          </div>
+                          <p className="mt-1 text-sm text-mirai-text-secondary leading-relaxed">
+                            {p.text}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </li>
+            ))}
           </ol>
         </section>
       )}
 
       <div className="rounded-2xl border border-mirai-border bg-white p-5">
-        <Link
-          href={transcriptPath}
+        <a
+          href={meeting.sourceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 font-bold text-primary-accent hover:underline"
         >
-          <FileText className="w-4 h-4" />
-          発言のやり取りを読む（質疑・答弁{exchangeCount}件）
-        </Link>
+          <ExternalLink className="w-4 h-4" />
+          会議録の原文を見る（足立区議会）
+        </a>
         <p className="mt-2 text-xs text-mirai-text-muted">
-          チャット形式で会議のやり取りを読めます。わかりやすい表現と原文を切り替えられます。
+          この画面の内容は、会議録をもとにAIが要約したものです。正確な発言は原文をご確認ください。
         </p>
       </div>
     </div>

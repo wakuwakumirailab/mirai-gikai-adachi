@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
 import { ChevronLeft } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layouts/container";
+import { Badge } from "@/components/ui/badge";
+import { siteConfig } from "@/config/site.config";
 import { getPetitions } from "@/features/bills/server/loaders/get-petitions";
 import {
   getCardStatusLabel,
   getStatusVariant,
 } from "@/features/bills/shared/utils/bill-status";
-import { siteConfig } from "@/config/site.config";
 import { formatDateJST } from "@/lib/utils/date";
 
 export const metadata: Metadata = {
@@ -55,9 +55,12 @@ export default async function PetitionsPage() {
                       <> ・ {petition.committees.name}</>
                     )}
                   </span>
-                  <span className="font-medium text-mirai-text">
+                  <Link
+                    href={`/petitions/${petition.id}`}
+                    className="font-medium text-mirai-text hover:text-primary-accent hover:underline"
+                  >
                     {petition.name}
-                  </span>
+                  </Link>
                 </div>
                 <div className="flex shrink-0 items-center gap-2 text-xs text-mirai-text-muted">
                   {petition.published_at && (

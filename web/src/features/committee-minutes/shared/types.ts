@@ -6,37 +6,48 @@ export type CommitteeType =
   | "audit"
   | "management";
 
-/** 発言セグメントの種別（足立区は発言者名が無い匿名・要約形式） */
-export type SpeakerType =
-  | "member" // 委員の質疑・意見
-  | "executive" // 執行部の答弁
-  | "note"; // 開会時刻・傍聴・調査事項などの記録・進行
-
-/** 会議録の1発言セグメント */
-export type CommitteeSpeech = {
-  /** 文書内で一意の連番（会議全体の発言順） */
-  seq: number;
-  /** 元の発言ブロック番号（VoiceNoN） */
-  voiceNo: number;
-  speakerType: SpeakerType;
+/** 意見が分かれたトピックでの、発言者ごとの主張要約 */
+export type TopicPosition = {
+  /** 発言者の表示名（例: ○○委員／足立福祉事務所長） */
+  speaker: string;
+  /** 委員の所属会派。執行機関や不明の場合は null */
+  party: string | null;
+  /** member=委員／executive=執行機関（区側） */
+  role: "member" | "executive";
+  /** 主張の要約（詳しい版） */
   text: string;
-  /** 中学生でも伝わる表現に直した本文（AI生成・確認後に格納） */
-  simpleText?: string;
+  /** やさしい版。未設定なら text を使う */
+  text_easy?: string | null;
 };
 
-/** 会議内の1議題（市の議事録では通常空。将来の手動議題用） */
+/** トピックで審査された議案・請願陳情（表示時に bills を引いて解決済み） */
+export type RelatedBill = {
+  billType: "bill" | "petition";
+  billNumber: string;
+  name: string;
+  /** 詳細ページへのパス（/bills/xxx または /petitions/xxx） */
+  href: string;
+};
+
+/** 会議内の1トピック（議題・話題のまとまり） */
 export type CommitteeMeetingTopic = {
   id: string;
   topicOrder: number;
   title: string;
+  /** 何が話し合われたか */
   summary: string | null;
-  discussionSummary: string | null;
-  startVoiceNo: number | null;
-  endVoiceNo: number | null;
+  summaryEasy: string | null;
+  /** 結論（可決・継続審査など、または議論の到達点） */
+  conclusion: string | null;
+  conclusionEasy: string | null;
+  /** 意見が分かれた場合の発言者別整理。空なら対立なし */
+  positions: TopicPosition[];
+  /** このトピックで審査された議案・請願陳情 */
+  relatedBills: RelatedBill[];
 };
 
-/** 委員会の開催1回分（一覧用・発言なし） */
-export type CommitteeMeetingSummary = {
+/** 委員会の開催1回分 */
+export type CommitteeMeeting = {
   id: string;
   committeeName: string;
   committeeSlug: string;
@@ -44,15 +55,12 @@ export type CommitteeMeetingSummary = {
   meetingDate: string;
   title: string;
   sourceDocumentId: number;
+  /** 会議録検索システムの該当会議へのリンク（原文を見たい人向け） */
   sourceUrl: string;
-  /** 会議全体の要約（AI生成・確認後に格納） */
+  /** 会議全体の要約（詳しい版） */
   summary: string | null;
+  summaryEasy: string | null;
   topics: CommitteeMeetingTopic[];
-};
-
-/** 委員会の開催1回分（詳細用・発言つき） */
-export type CommitteeMeetingDetail = CommitteeMeetingSummary & {
-  speeches: CommitteeSpeech[];
 };
 
 /** 委員会（アーカイブの単位） */

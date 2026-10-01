@@ -1,12 +1,12 @@
 import "server-only";
 import { ArrowLeft, CalendarDays, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import type { CommitteeMeetingSummary } from "../../shared/types";
+import type { CommitteeMeeting } from "../../shared/types";
 import { getCommitteeTypeLabel } from "../../shared/utils/committee-type";
 import { formatJapaneseDate } from "../../shared/utils/format-japanese-date";
 
 type Props = {
-  meetings: CommitteeMeetingSummary[];
+  meetings: CommitteeMeeting[];
 };
 
 export function CommitteeArchiveView({ meetings }: Props) {
@@ -31,7 +31,7 @@ export function CommitteeArchiveView({ meetings }: Props) {
             {committeeName}
           </h1>
           <p className="text-sm text-mirai-text-secondary">
-            開催日ごとの質疑・意見と答弁を、新しい順に並べています。
+            開催日ごとに話し合われたことと結論を、新しい順に並べています。
           </p>
         </div>
       </div>
@@ -54,7 +54,7 @@ export function CommitteeArchiveView({ meetings }: Props) {
                 </div>
                 <p className="mt-3 text-sm text-mirai-text-secondary leading-relaxed line-clamp-3">
                   {m.summary ??
-                    "委員から出された質疑・意見と、市の答弁を記録しています。"}
+                    "この日の委員会で話し合われたことをまとめています。"}
                 </p>
                 <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-primary-accent">
                   くわしく見る

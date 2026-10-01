@@ -144,3 +144,34 @@ slug は `r8-3` 形式（令和8年第3回 → r8-3）。`name` は「令和8年
 ### 環境メモ
 
 - `pdftoppm`（poppler）は本リポジトリの開発環境に未導入だったが、`winget install --id=oschwartz10612.Poppler -e` でインストール可能（Claude Codeアプリの再起動後にPATHが反映される）。
+
+### 請願・陳情（petitions）の更新
+
+請願・陳情は`bills`テーブルに`bill_type: "petition"`として格納する（議案と同じテーブル・同じ`status`/`status_note`の仕組みを共用）。`/petitions`（一覧）・`/petitions/[id]`（詳細）で表示する。
+
+**更新タイミング**: 議案の更新作業と同じく、**定例会が1つ閉会するたびにまとめて確認する**のが基本サイクル。以下2つのタイミングが合流するので、議案の更新と合わせて一度に処理してよい。
+
+1. **各定例会の付託日直後**（新規陳情の取り込み）: 定例会の開会日ごろに新しい請願・陳情が委員会へ付託される。この時点で内容（陳情理由・陳情項目）は確定しているため、詳細ページの解説はすぐに作成できる。ステータスは「新規付託」→`status: in_committee`, `status_note: "新規付託"`。
+2. **審査結果が更新されたとき**（ステータス更新）: 継続審査中の案件は次の定例会の委員会で改めて審査され、「採択」「不採択」「継続審査」等に更新される。解説本文は基本そのまま、ステータスの`status`/`status_note`のPATCHのみでよい。
+
+**データソース**:
+- 一覧・検索: `https://www.gikai-adachi.jp/g07_Seigan.asp?Sflg=2`（`受理番号`・`件名`・`付託委員会・付託日`・`審査結果`の一覧。`?kensu=100`で100件表示にできる）
+- 個別詳細（`bill_contents`の情報源、かつ`bills.source_url`のリンク先）: `g07_SeiganView.asp?SrchID=<ID>&Title=<Shift_JIS percent-encoded タイトル>&kword1=&kword2=`
+  - `SrchID`は受理番号と1対1で対応するが機械的に算出できないため、一覧ページのHTMLから対象陳情の`<a href="g07_SeiganView.asp?SrchID=...">`をJS実行で抽出し、`href`をそのまま`https://www.gikai-adachi.jp/`と連結して使う（Titleパラメータは手で組み立てず、抽出したエンコード済み文字列をそのまま使うこと）
+  - 詳細ページには「受理年月日」「付託委員会」「委員会付託日」「議決年月日」「議決結果」「内容（陳情の理由・陳情項目）」「会議録」（採決済みで会議録が公開されていれば「会議録を検索」リンク、未公開なら「会議録は掲載されていません」）が載っている
+
+**bill_contents（わかりやすい解説）の作り方**:
+- 情報源は委員会会議録ではなく、**陳情そのものの「陳情の理由」「陳情項目」**（通常の議案の「理由」セクション要約と同じ位置づけ）。それを自分の言葉で要約し直す（[[feedback-no-full-text-reproduction]]により原文の逐語転載はしない）
+- normal（やさしい版）/hard（詳しい版）の2件を作成し、`bills`と同じ`bill_contents`テーブルに`bill_id`で紐付ける
+- 継続審査中で議決結果が出ていない案件は「審査状況」として付託日・現状を書くのみでよい（採決理由の記載は不要、そもそも情報がない）
+- 採択・不採択が確定した案件について、委員会でのやりとりまで解説に含めたい場合は委員会会議録の追加リサーチが必要になる（現状では未実施。/committeesページの整備と合わせて検討）
+
+**status/status_note マッピング**: 請願・陳情も議案と同じ`bill_status_enum`を使う。`adopted`/`partially_adopted`という請願向けの専用値がスキーマ上は存在するが、**現状のデータでは使っておらず、`approved`/`rejected`を議案と共用し`status_note`で日本語ラベルを出し分けている**（実データで確認済み: 本番の請願・陳情27件は`rejected`/`approved`/`in_committee`の3値のみ）。この慣習を踏襲すること。
+
+| 審査結果 | status | status_note |
+|---|---|---|
+| 新規付託 | `in_committee` | `新規付託` |
+| 継続審査 | `in_committee` | `継続審査中` |
+| 採択 | `approved` | `採択` |
+| 不採択 | `rejected` | `不採択` |
+| 撤回承認・審議未了 | 未確定（実例なし） | 発生時に`getCardStatusLabel`/`getStatusVariant`（`web/src/features/bills/shared/utils/bill-status.ts`）のフォールバック挙動を確認し、必要ならcaseを追加してから決める |

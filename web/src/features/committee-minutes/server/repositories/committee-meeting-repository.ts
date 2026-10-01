@@ -2,11 +2,11 @@ import "server-only";
 import { createAdminClient } from "@mirai-gikai/supabase";
 import type {
   CommitteeArchive,
-  CommitteeMeetingDetail,
-  CommitteeMeetingSummary,
+  CommitteeMeeting,
   CommitteeMeetingTopic,
-  CommitteeSpeech,
   CommitteeType,
+  RelatedBill,
+  TopicPosition,
 } from "../../shared/types";
 
 type TopicRow = {
@@ -14,9 +14,17 @@ type TopicRow = {
   topic_order: number;
   title: string;
   summary: string | null;
-  discussion_summary: string | null;
-  start_voice_no: number | null;
-  end_voice_no: number | null;
+  summary_easy: string | null;
+  conclusion: string | null;
+  conclusion_easy: string | null;
+  positions: unknown;
+  related_bills: unknown;
+};
+
+type BillRef = {
+  bill_type: "bill" | "petition";
+  bill_number: string;
+  session_slug?: string;
 };
 
 type MeetingRow = {
@@ -29,11 +37,14 @@ type MeetingRow = {
   source_document_id: number;
   source_url: string;
   summary: string | null;
-  speeches: unknown;
+  summary_easy: string | null;
   committee_meeting_topics: TopicRow[];
 };
 
-function mapTopics(rows: TopicRow[]): CommitteeMeetingTopic[] {
+function mapTopics(
+  rows: TopicRow[],
+  resolve: (ref: BillRef) => RelatedBill | null
+): CommitteeMeetingTopic[] {
   return [...rows]
     .sort((a, b) => a.topic_order - b.topic_order)
     .map((t) => ({
@@ -41,13 +52,25 @@ function mapTopics(rows: TopicRow[]): CommitteeMeetingTopic[] {
       topicOrder: t.topic_order,
       title: t.title,
       summary: t.summary,
-      discussionSummary: t.discussion_summary,
-      startVoiceNo: t.start_voice_no,
-      endVoiceNo: t.end_voice_no,
+      summaryEasy: t.summary_easy,
+      conclusion: t.conclusion,
+      conclusionEasy: t.conclusion_easy,
+      positions: Array.isArray(t.positions)
+        ? (t.positions as TopicPosition[])
+        : [],
+      relatedBills: (Array.isArray(t.related_bills)
+        ? (t.related_bills as BillRef[])
+        : []
+      )
+        .map(resolve)
+        .filter((b): b is RelatedBill => b !== null),
     }));
 }
 
-function mapSummary(row: MeetingRow): CommitteeMeetingSummary {
+function mapMeeting(
+  row: MeetingRow,
+  resolve: (ref: BillRef) => RelatedBill | null
+): CommitteeMeeting {
   return {
     id: row.id,
     committeeName: row.committee_name,
@@ -58,7 +81,8 @@ function mapSummary(row: MeetingRow): CommitteeMeetingSummary {
     sourceDocumentId: row.source_document_id,
     sourceUrl: row.source_url,
     summary: row.summary,
-    topics: mapTopics(row.committee_meeting_topics ?? []),
+    summaryEasy: row.summary_easy,
+    topics: mapTopics(row.committee_meeting_topics ?? [], resolve),
   };
 }
 
@@ -71,7 +95,8 @@ function isMissingTableError(error: { code?: string | null }): boolean {
   return error.code === "42P01" || error.code === "PGRST205";
 }
 
-const LIST_SELECT = `
+// 会議録の原文（raw_text / speeches）は全文転載しない方針のため取得しない
+const SELECT = `
   id,
   committee_name,
   committee_slug,
@@ -81,14 +106,68 @@ const LIST_SELECT = `
   source_document_id,
   source_url,
   summary,
+  summary_easy,
   committee_meeting_topics (*)
 ` as const;
 
-export async function findAllMeetings(): Promise<CommitteeMeetingSummary[]> {
+/** 全トピックの関連議案・陳情の参照を、bills を1回引いて表示用リンクに解決する関数を作る */
+async function buildBillResolver(
+  rows: MeetingRow[]
+): Promise<(ref: BillRef) => RelatedBill | null> {
+  const refs = rows
+    .flatMap((m) => m.committee_meeting_topics ?? [])
+    .flatMap((t) =>
+      Array.isArray(t.related_bills) ? (t.related_bills as BillRef[]) : []
+    );
+  if (refs.length === 0) return () => null;
+
+  const numbers = [...new Set(refs.map((r) => r.bill_number))];
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("bills")
+    .select(
+      "id, name, bill_number, bill_type, publish_status, council_sessions(slug)"
+    )
+    .in("bill_number", numbers)
+    .eq("publish_status", "published");
+  if (error) {
+    throw new Error(`関連議案の取得に失敗しました: ${error.message}`);
+  }
+  const bills = (data ?? []) as unknown as {
+    id: string;
+    name: string;
+    bill_number: string;
+    bill_type: "bill" | "petition";
+    council_sessions: { slug: string } | null;
+  }[];
+
+  return (ref) => {
+    const hit = bills.find(
+      (b) =>
+        b.bill_type === ref.bill_type &&
+        b.bill_number === ref.bill_number &&
+        (ref.bill_type === "petition" ||
+          !ref.session_slug ||
+          b.council_sessions?.slug === ref.session_slug)
+    );
+    if (!hit) return null;
+    return {
+      billType: hit.bill_type,
+      billNumber: hit.bill_number,
+      name: hit.name,
+      href:
+        hit.bill_type === "petition"
+          ? `/petitions/${hit.id}`
+          : `/bills/${hit.id}`,
+    };
+  };
+}
+
+export async function findAllMeetings(): Promise<CommitteeMeeting[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("committee_meetings")
-    .select(LIST_SELECT)
+    .select(SELECT)
     .eq("publish_status", "published")
     .order("meeting_date", { ascending: false });
 
@@ -96,16 +175,18 @@ export async function findAllMeetings(): Promise<CommitteeMeetingSummary[]> {
     if (isMissingTableError(error)) return [];
     throw new Error(`委員会会議の取得に失敗しました: ${error.message}`);
   }
-  return (data ?? []).map((row) => mapSummary(row as unknown as MeetingRow));
+  const rows = (data ?? []) as unknown as MeetingRow[];
+  const resolve = await buildBillResolver(rows);
+  return rows.map((row) => mapMeeting(row, resolve));
 }
 
 export async function findMeetingsBySlug(
   slug: string
-): Promise<CommitteeMeetingSummary[]> {
+): Promise<CommitteeMeeting[]> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("committee_meetings")
-    .select(LIST_SELECT)
+    .select(SELECT)
     .eq("committee_slug", slug)
     .eq("publish_status", "published")
     .order("meeting_date", { ascending: false });
@@ -114,16 +195,18 @@ export async function findMeetingsBySlug(
     if (isMissingTableError(error)) return [];
     throw new Error(`委員会会議の取得に失敗しました: ${error.message}`);
   }
-  return (data ?? []).map((row) => mapSummary(row as unknown as MeetingRow));
+  const rows = (data ?? []) as unknown as MeetingRow[];
+  const resolve = await buildBillResolver(rows);
+  return rows.map((row) => mapMeeting(row, resolve));
 }
 
 export async function findMeetingByDocumentId(
   documentId: number
-): Promise<CommitteeMeetingDetail | null> {
+): Promise<CommitteeMeeting | null> {
   const supabase = createAdminClient();
   const { data, error } = await supabase
     .from("committee_meetings")
-    .select(`*, committee_meeting_topics (*)`)
+    .select(SELECT)
     .eq("source_document_id", documentId)
     .eq("publish_status", "published")
     .maybeSingle();
@@ -133,21 +216,15 @@ export async function findMeetingByDocumentId(
     throw new Error(`委員会会議の取得に失敗しました: ${error.message}`);
   }
   if (!data) return null;
-
   const row = data as unknown as MeetingRow;
-  return {
-    ...mapSummary(row),
-    speeches: Array.isArray(row.speeches)
-      ? (row.speeches as CommitteeSpeech[])
-      : [],
-  };
+  return mapMeeting(row, await buildBillResolver([row]));
 }
 
 /** 会議データから委員会の一覧（最新開催日つき）を組み立てる */
 export function buildArchives(
-  meetings: CommitteeMeetingSummary[]
+  meetings: CommitteeMeeting[]
 ): CommitteeArchive[] {
-  const bySlug = new Map<string, CommitteeMeetingSummary[]>();
+  const bySlug = new Map<string, CommitteeMeeting[]>();
   for (const m of meetings) {
     const list = bySlug.get(m.committeeSlug) ?? [];
     list.push(m);
@@ -164,4 +241,62 @@ export function buildArchives(
       latestMeetingDate: latest.meetingDate,
     };
   });
+}
+
+export type PetitionDiscussionRow = {
+  meetingDate: string;
+  committeeName: string;
+  committeeSlug: string;
+  sourceDocumentId: number;
+  topicTitle: string;
+  conclusion: string | null;
+  conclusionEasy: string | null;
+};
+
+/** 指定した請願・陳情（bill_number）が審査された委員会のトピックを開催日順に返す */
+export async function findDiscussionsByPetitionNumber(
+  billNumber: string
+): Promise<PetitionDiscussionRow[]> {
+  const supabase = createAdminClient();
+  const { data, error } = await supabase
+    .from("committee_meeting_topics")
+    .select(
+      `title, conclusion, conclusion_easy,
+       committee_meetings!inner (committee_name, committee_slug, meeting_date, source_document_id, publish_status)`
+    )
+    // 配列を直接渡すとPostgres配列リテラルとして送られるため、JSON文字列で渡す
+    .contains(
+      "related_bills",
+      JSON.stringify([{ bill_type: "petition", bill_number: billNumber }])
+    )
+    .eq("committee_meetings.publish_status", "published");
+
+  if (error) {
+    if (isMissingTableError(error)) return [];
+    throw new Error(`委員会の審査状況の取得に失敗しました: ${error.message}`);
+  }
+
+  return (
+    (data ?? []) as unknown as {
+      title: string;
+      conclusion: string | null;
+      conclusion_easy: string | null;
+      committee_meetings: {
+        committee_name: string;
+        committee_slug: string;
+        meeting_date: string;
+        source_document_id: number;
+      };
+    }[]
+  )
+    .map((r) => ({
+      meetingDate: r.committee_meetings.meeting_date,
+      committeeName: r.committee_meetings.committee_name,
+      committeeSlug: r.committee_meetings.committee_slug,
+      sourceDocumentId: r.committee_meetings.source_document_id,
+      topicTitle: r.title,
+      conclusion: r.conclusion,
+      conclusionEasy: r.conclusion_easy,
+    }))
+    .sort((a, b) => a.meetingDate.localeCompare(b.meetingDate));
 }
