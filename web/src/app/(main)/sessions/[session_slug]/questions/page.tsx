@@ -81,15 +81,15 @@ export default async function SessionQuestionsPage({
           {backLabel}
         </Link>
       </div>
-      <div className="mb-6 flex flex-col gap-2">
-        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-mirai-surface-tag px-3 py-1 text-xs font-medium text-primary-accent">
+      <div className="mb-6 flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
           <Calendar className="size-3.5" />
           {eyebrowLabel}
         </span>
-        <h1 className="text-[28px] font-bold text-black leading-[1.4]">
+        <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
           {session.name}の代表・一般質問
         </h1>
-        <p className="mt-2 text-sm text-mirai-text-secondary">
+        <p className="text-sm leading-relaxed text-mirai-text-secondary">
           区議会議員が問い、区が答えた内容をわかりやすく解説します。あなたの暮らしに関わる取り組みを、テーマ別・議員別にまとめました。
         </p>
       </div>

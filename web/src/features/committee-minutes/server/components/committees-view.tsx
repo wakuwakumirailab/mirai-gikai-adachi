@@ -24,7 +24,7 @@ export function CommitteesView({ archives, meetings }: Props) {
       <header className="rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6 flex flex-col gap-3">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-primary-accent bg-white/70 rounded-full px-3 py-1 w-fit">
           <Landmark className="w-3.5 h-3.5" />
-          委員会アーカイブ
+          委員会
         </span>
         <h1 className="text-xl sm:text-2xl font-bold text-mirai-text leading-snug">
           委員会で話し合われたこと

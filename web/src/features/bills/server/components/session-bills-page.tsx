@@ -69,15 +69,15 @@ export function SessionBillsPage({
           {isPastSession ? "過去の資料に戻る" : "議会に戻る"}
         </Link>
 
-        <div className="flex flex-col gap-2">
-          <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-mirai-surface-tag px-3 py-1 text-xs font-medium text-primary-accent">
+        <div className="flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
             <Calendar className="size-3.5" />
             {eyebrowLabel}
           </span>
-          <h1 className="text-[28px] font-bold text-black leading-[1.4]">
+          <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
             {session.name}に上程された議案
           </h1>
-          <p className="text-xs font-medium text-mirai-text">
+          <p className="text-sm leading-relaxed text-mirai-text-secondary">
             {sessionDescription}・{bills.length}件
           </p>
         </div>
