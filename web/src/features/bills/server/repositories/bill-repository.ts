@@ -231,6 +231,7 @@ export async function findPublishedBillsByDietSession(
     )
     .eq("council_session_id", councilSessionId)
     .eq("publish_status", "published")
+    .neq("bill_type", "petition")
     .eq("is_procedural", false)
     .eq("bill_contents.difficulty_level", difficultyLevel)
     .order("status_order", { ascending: true })
@@ -359,6 +360,7 @@ export async function findPreviousSessionBills(
     )
     .eq("council_session_id", councilSessionId)
     .eq("publish_status", "published")
+    .neq("bill_type", "petition")
     .eq("bill_contents.difficulty_level", difficultyLevel)
     .order("status_order", { ascending: true })
     .order("published_at", { ascending: false })
@@ -388,6 +390,7 @@ export async function countPublishedBillsByDietSession(
     })
     .eq("council_session_id", councilSessionId)
     .eq("publish_status", "published")
+    .neq("bill_type", "petition")
     .eq("bill_contents.difficulty_level", difficultyLevel);
 
   if (error) {
