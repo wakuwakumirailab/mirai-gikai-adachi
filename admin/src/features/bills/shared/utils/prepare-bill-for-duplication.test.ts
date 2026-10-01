@@ -17,6 +17,7 @@ const baseBill: Bill = {
   committee_id: null,
   is_featured: true,
   is_procedural: false,
+  procedural_summary: null,
   publish_status: "published",
   published_at: null,
   share_thumbnail_url: null,

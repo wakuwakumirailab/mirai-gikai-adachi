@@ -484,36 +484,51 @@ export type Database = {
       committee_meeting_topics: {
         Row: {
           created_at: string
+          conclusion: string | null
+          conclusion_easy: string | null
           discussion_summary: string | null
           end_voice_no: number | null
           id: string
           meeting_id: string
+          positions: Json
+          related_bills: Json
           start_voice_no: number | null
           summary: string | null
+          summary_easy: string | null
           title: string
           topic_order: number
           updated_at: string
         }
         Insert: {
           created_at?: string
+          conclusion?: string | null
+          conclusion_easy?: string | null
           discussion_summary?: string | null
           end_voice_no?: number | null
           id?: string
           meeting_id: string
+          positions?: Json
+          related_bills?: Json
           start_voice_no?: number | null
           summary?: string | null
+          summary_easy?: string | null
           title: string
           topic_order: number
           updated_at?: string
         }
         Update: {
           created_at?: string
+          conclusion?: string | null
+          conclusion_easy?: string | null
           discussion_summary?: string | null
           end_voice_no?: number | null
           id?: string
           meeting_id?: string
+          positions?: Json
+          related_bills?: Json
           start_voice_no?: number | null
           summary?: string | null
+          summary_easy?: string | null
           title?: string
           topic_order?: number
           updated_at?: string
@@ -537,11 +552,12 @@ export type Database = {
           id: string
           meeting_date: string
           publish_status: string
-          raw_text: string
+          raw_text: string | null
           source_document_id: number
           source_url: string
           speeches: Json
           summary: string | null
+          summary_easy: string | null
           title: string
           updated_at: string
         }
@@ -553,11 +569,12 @@ export type Database = {
           id?: string
           meeting_date: string
           publish_status?: string
-          raw_text: string
+          raw_text: string | null
           source_document_id: number
           source_url: string
           speeches?: Json
           summary?: string | null
+          summary_easy?: string | null
           title: string
           updated_at?: string
         }
@@ -569,11 +586,12 @@ export type Database = {
           id?: string
           meeting_date?: string
           publish_status?: string
-          raw_text?: string
+          raw_text?: string | null
           source_document_id?: number
           source_url?: string
           speeches?: Json
           summary?: string | null
+          summary_easy?: string | null
           title?: string
           updated_at?: string
         }
