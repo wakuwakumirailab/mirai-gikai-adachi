@@ -3,6 +3,7 @@
 import { MessageCircle, User } from "lucide-react";
 import { useEffect } from "react";
 import type { GeneralQuestionTopic } from "../../shared/types";
+import { noRubyAttr } from "../../shared/utils/answerer-ruby";
 import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 /**
@@ -51,7 +52,12 @@ function ChatBubbleAnswer({
       <div className="max-w-[75%]">
         <p className="mb-1 text-xs text-mirai-text-secondary">
           {role}
-          {name ? `　${name}` : ""}
+          {name && (
+            <>
+              {"　"}
+              <span {...noRubyAttr(role)}>{name}</span>
+            </>
+          )}
         </p>
         <div className="rounded-2xl rounded-bl-sm bg-card border border-border px-4 py-3">
           <p className="text-sm leading-relaxed text-mirai-text">{text}</p>

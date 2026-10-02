@@ -69,7 +69,7 @@ export function PressConferenceList({ pressConferences }: Props) {
                           className="flex items-start gap-2 text-sm text-mirai-text"
                         >
                           <span className="flex-shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-primary" />
-                          {item.title}
+                          <span>{item.title}</span>
                         </li>
                       ))}
                     </ul>

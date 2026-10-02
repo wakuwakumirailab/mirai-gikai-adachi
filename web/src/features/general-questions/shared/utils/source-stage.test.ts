@@ -35,14 +35,26 @@ describe("getSessionSourceStage", () => {
 });
 
 describe("getSourceStageNotice", () => {
-  it("質問通告の注記は答弁が未掲載であることを伝える", () => {
+  it("質問通告の注記（やさしい版）は答弁が未掲載であることを伝える", () => {
     expect(getSourceStageNotice("notice", "question")).toContain(
+      "区の答弁は、会議録が出たあとにのせます"
+    );
+  });
+
+  it("質問通告の注記（詳しい版）は答弁が未掲載であることを伝える", () => {
+    expect(getSourceStageNotice("notice", "question", "hard")).toContain(
       "答弁は、会議録の公開後に掲載します"
     );
   });
 
-  it("速報版の注記は見直しの可能性を伝える", () => {
+  it("速報版の注記（やさしい版）は見直しの可能性を伝える", () => {
     expect(getSourceStageNotice("preliminary", "session")).toContain(
+      "内容を直すことがあります"
+    );
+  });
+
+  it("速報版の注記（詳しい版）は見直しの可能性を伝える", () => {
+    expect(getSourceStageNotice("preliminary", "session", "hard")).toContain(
       "速報版会議録"
     );
   });

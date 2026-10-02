@@ -43,7 +43,7 @@ export function TurnBubble({ turn }: Props) {
               : "bg-white border border-mirai-border rounded-tl-sm"
           }`}
         >
-          {turn.content}
+          <p>{turn.content}</p>
         </div>
       </div>
     </div>

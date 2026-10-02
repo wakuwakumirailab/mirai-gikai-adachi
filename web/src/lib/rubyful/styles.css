@@ -11,3 +11,14 @@ rt {
   -webkit-user-select: none;
   -moz-user-select: none;
 }
+
+/* ふりがなが漢字や上の行に詰まって重ならないよう、
+   ふりがなの下に余白を取り、ふりがなを含む行の行間を広げる（文字サイズは変えない） */
+rt {
+  padding-bottom: 0.2em;
+  line-height: 1.2;
+}
+
+:has(> ruby) {
+  line-height: 2 !important;
+}

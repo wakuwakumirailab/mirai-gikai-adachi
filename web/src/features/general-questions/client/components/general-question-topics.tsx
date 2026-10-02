@@ -4,6 +4,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { GeneralQuestionTopic } from "../../shared/types";
+import { noRubyAttr } from "../../shared/utils/answerer-ruby";
 import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 interface GeneralQuestionTopicsProps {
@@ -62,7 +63,14 @@ export function GeneralQuestionTopics({ topics }: GeneralQuestionTopicsProps) {
                   <div>
                     <p className="text-xs font-semibold text-mirai-text-secondary mb-1">
                       答弁｜{topic.answerer_role}
-                      {topic.answerer_name ? `　${topic.answerer_name}` : ""}
+                      {topic.answerer_name && (
+                        <>
+                          {"　"}
+                          <span {...noRubyAttr(topic.answerer_role)}>
+                            {topic.answerer_name}
+                          </span>
+                        </>
+                      )}
                     </p>
                     <p className="text-sm text-mirai-text">
                       {topic.answer_summary}
