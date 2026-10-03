@@ -3,163 +3,109 @@ import type { GeneralQuestion } from "../types";
 import { assignCategory, buildTopicGroups } from "./build-topic-groups";
 
 describe("assignCategory", () => {
-  it("保育所 → 子育て・教育", () => {
-    expect(assignCategory("保育所の待機児童対策").label).toBe("子育て・教育");
-  });
-  it("耐震 → 防災・安全", () => {
-    expect(assignCategory("木造密集市街地の耐震化促進").label).toBe(
-      "防災・安全"
-    );
-  });
-  it("予算編成・財政運営 → 行財政・経済", () => {
-    expect(assignCategory("予算編成・財政運営と基金の積極活用").label).toBe(
-      "行財政・経済"
-    );
-  });
-  it("中小企業・取適法 → 行財政・経済", () => {
-    expect(
-      assignCategory("取適法施行を踏まえた価格転嫁・中小企業支援の取組").label
-    ).toBe("行財政・経済");
-  });
-  it("区債マネジメント → 行財政・経済", () => {
-    expect(
-      assignCategory("将来世代を守るための区債マネジメントのルール化").label
-    ).toBe("行財政・経済");
-  });
-  it("いじめ → 子育て・教育", () => {
-    expect(
-      assignCategory("いじめ防止対策（プロジェクトチーム新設）").label
-    ).toBe("子育て・教育");
-  });
-  it("がん検査 → 健康・医療", () => {
-    expect(assignCategory("膵臓がんの早期発見に向けた検査").label).toBe(
-      "健康・医療"
-    );
-  });
-  it("補聴器助成 → 健康・医療", () => {
-    expect(assignCategory("18歳以上の軽中等度難聴者への補聴器助成").label).toBe(
-      "健康・医療"
-    );
-  });
-  it("危機管理 → 防災・安全", () => {
-    expect(
-      assignCategory("危機管理基本方針と事件等緊急事態対処計画").label
-    ).toBe("防災・安全");
-  });
-  it("成年後見 → 高齢者・福祉", () => {
-    expect(
-      assignCategory("成年後見制度における市民後見人の育成と報酬助成").label
-    ).toBe("高齢者・福祉");
-  });
-  it("回遊性 → 交通・まちづくり", () => {
-    expect(assignCategory("天神北エリアの回遊性向上").label).toBe(
-      "交通・まちづくり"
-    );
-  });
-  // 追加キーワードは1語ずつ検証する（複数語を含む文言だと、
-  // どれか1つのマッピングを消しても気づけないため）
-  it("リサイクル → 環境・脱炭素", () => {
-    expect(assignCategory("資源物の持ち去りとリサイクルへの影響").label).toBe(
-      "環境・脱炭素"
-    );
-  });
-  it("資源循環 → 環境・脱炭素", () => {
-    expect(assignCategory("プラスチックの資源循環の推進").label).toBe(
-      "環境・脱炭素"
-    );
-  });
-  it("再資源化 → 環境・脱炭素", () => {
-    expect(assignCategory("掲示板の再資源化に向けた検討").label).toBe(
-      "環境・脱炭素"
-    );
-  });
-  it("選挙 → 行財政・経済", () => {
-    expect(assignCategory("若年層への選挙啓発の強化").label).toBe(
-      "行財政・経済"
-    );
-  });
-  it("投票 → 行財政・経済", () => {
-    expect(assignCategory("大学への期日前投票所の設置").label).toBe(
-      "行財政・経済"
-    );
-  });
-  it("動植物園 → スポーツ・文化", () => {
-    expect(assignCategory("動植物園のリニューアル").label).toBe(
-      "スポーツ・文化"
-    );
-  });
-  it("駅周辺・自転車 → 交通・まちづくり（足立区向けキーワード）", () => {
-    expect(assignCategory("六町駅周辺の自転車走行環境と駐輪場").label).toBe(
-      "交通・まちづくり"
-    );
-    expect(assignCategory("牛田駅の踏切対策").label).toBe("交通・まちづくり");
-  });
-
-  it("糖尿病・健診 → 健康・医療（足立区向けキーワード）", () => {
-    expect(assignCategory("糖尿病対策の成果").label).toBe("健康・医療");
-    expect(assignCategory("特定健診の受診率").label).toBe("健康・医療");
-  });
-
-  it("ごみ・電池 → 環境・脱炭素（足立区向けキーワード）", () => {
-    expect(assignCategory("小型充電式電池の回収").label).toBe("環境・脱炭素");
-  });
-
-  it("歴史・文化財 → スポーツ・文化（足立区向けキーワード）", () => {
-    expect(assignCategory("歴史ある旧家の保存").label).toBe("スポーツ・文化");
-  });
-
-  it("足立区版で追加したキーワードで分類される", () => {
-    expect(assignCategory("産後ケアの拡充").label).toBe("子育て・教育");
-    expect(assignCategory("難病患者の交流の場").label).toBe("健康・医療");
-    expect(assignCategory("綾瀬エリアの治安と自転車盗対策").label).toBe(
-      "防災・安全"
-    );
-    expect(assignCategory("羽田空港の新飛行ルート").label).toBe(
-      "交通・まちづくり"
-    );
-    expect(assignCategory("東綾瀬公園温水プールの改修").label).toBe(
-      "スポーツ・文化"
-    );
-    expect(assignCategory("物価高支援給付金の個人給付").label).toBe(
-      "行財政・経済"
-    );
-    expect(assignCategory("ヤングケアラーへの支援").label).toBe("子育て・教育");
-    expect(assignCategory("認知症の人と家族の支援").label).toBe("高齢者・福祉");
-    expect(assignCategory("葬祭施設の設置基準の見直し").label).toBe(
-      "交通・まちづくり"
-    );
-    expect(assignCategory("銭湯の支援").label).toBe("スポーツ・文化");
-    expect(assignCategory("外国籍住民との地域共生").label).toBe(
-      "地域・国際交流"
-    );
-    expect(assignCategory("区の管理職不足と職員の兼務").label).toBe(
-      "行財政・経済"
-    );
-    expect(assignCategory("こども誰でも通園制度").label).toBe("子育て・教育");
-    expect(assignCategory("部活動の地域展開").label).toBe("子育て・教育");
-    expect(assignCategory("ひきこもり支援").label).toBe("高齢者・福祉");
-    expect(assignCategory("旧小学校跡地の活用").label).toBe("子育て・教育");
-    expect(assignCategory("区有地の跡地活用").label).toBe("交通・まちづくり");
-    expect(assignCategory("地域の水害への備え").label).toBe("防災・安全");
-    expect(assignCategory("足立の花火の改革").label).toBe("スポーツ・文化");
-    expect(assignCategory("ペットのふんの放置").label).toBe("地域・国際交流");
-    expect(assignCategory("公文書管理条例の制定").label).toBe("行財政・経済");
-    expect(assignCategory("地震による液状化への備え").label).toBe("防災・安全");
-    expect(assignCategory("硬式野球ができる環境").label).toBe("スポーツ・文化");
-    expect(assignCategory("運転免許の自主返納").label).toBe("交通・まちづくり");
-    expect(assignCategory("指定管理者制度の見直し").label).toBe("行財政・経済");
+  it.each([
+    ["保育所の待機児童対策", "子育て・保育"],
+    ["産後ケアの拡充", "子育て・保育"],
+    ["こども誰でも通園制度", "子育て・保育"],
+    ["児童館の授乳スペース整備", "子育て・保育"],
+    ["いじめ防止対策（プロジェクトチーム新設）", "教育・学校"],
+    ["部活動の地域展開", "教育・学校"],
+    ["学校統廃合計画の見直し", "教育・学校"],
+    ["通常学級に在籍する児童への支援", "教育・学校"],
+    ["ヤングケアラーへの支援", "若者・ユース"],
+    ["困難を抱える若者への支援", "若者・ユース"],
+    ["認知症の人と家族の支援", "高齢者・介護"],
+    ["成年後見制度における市民後見人の育成と報酬助成", "高齢者・介護"],
+    ["地域包括支援センターの委託料", "高齢者・介護"],
+    ["ひきこもり支援", "福祉・サポート"],
+    ["障がい者の18歳の壁への対応", "福祉・サポート"],
+    ["生活保護世帯の支援", "福祉・サポート"],
+    ["膵臓がんの早期発見に向けた検査", "健康・医療"],
+    ["18歳以上の軽中等度難聴者への補聴器助成", "健康・医療"],
+    ["糖尿病対策の成果", "健康・医療"],
+    ["特定健診の受診率", "健康・医療"],
+    ["難病患者の交流の場", "健康・医療"],
+    ["麻しん対策の強化", "健康・医療"],
+    ["木造密集市街地の耐震化促進", "防災・安全"],
+    ["危機管理基本方針と事件等緊急事態対処計画", "防災・安全"],
+    ["綾瀬エリアの治安と自転車盗対策", "防災・安全"],
+    ["地震による液状化への備え", "防災・安全"],
+    ["地域の水害への備え", "防災・安全"],
+    ["六町駅周辺の自転車走行環境と駐輪場", "道路・交通"],
+    ["牛田駅の踏切対策", "道路・交通"],
+    ["羽田空港の新飛行ルート", "道路・交通"],
+    ["運転免許の自主返納", "道路・交通"],
+    ["足タクの利用促進", "道路・交通"],
+    ["天神北エリアの回遊性向上", "再開発・まちづくり"],
+    ["葬祭施設の設置基準の見直し", "再開発・まちづくり"],
+    ["区有地の跡地活用", "再開発・まちづくり"],
+    ["旧小学校跡地の活用", "再開発・まちづくり"],
+    ["公共施設等総合管理計画に基づく更新", "公共施設"],
+    ["指定管理者制度の見直し", "公共施設"],
+    ["資源物の持ち去りとリサイクルへの影響", "環境・ごみ・みどり"],
+    ["プラスチックの資源循環の推進", "環境・ごみ・みどり"],
+    ["掲示板の再資源化に向けた検討", "環境・ごみ・みどり"],
+    ["小型充電式電池の回収", "環境・ごみ・みどり"],
+    ["北千住駅前における次世代型ゴミ箱の設置", "環境・ごみ・みどり"],
+    ["予算編成・財政運営と基金の積極活用", "税金・家計・財政"],
+    ["将来世代を守るための区債マネジメントのルール化", "税金・家計・財政"],
+    ["物価高支援給付金の個人給付", "税金・家計・財政"],
+    [
+      "取適法施行を踏まえた価格転嫁・中小企業支援の取組",
+      "商店街・しごと・観光",
+    ],
+    ["若年層への選挙啓発の強化", "行政改革・デジタル"],
+    ["大学への期日前投票所の設置", "行政改革・デジタル"],
+    ["区の管理職不足と職員の兼務", "行政改革・デジタル"],
+    ["公文書管理条例の制定", "行政改革・デジタル"],
+    ["駅前マイナンバーカードセンターの設置", "行政改革・デジタル"],
+    ["動植物園のリニューアル", "文化・スポーツ"],
+    ["歴史ある旧家の保存", "文化・スポーツ"],
+    ["東綾瀬公園温水プールの改修", "文化・スポーツ"],
+    ["アーバンスポーツの環境整備", "文化・スポーツ"],
+    ["銭湯の支援", "文化・スポーツ"],
+    ["足立の花火の改革", "文化・スポーツ"],
+    ["硬式野球ができる環境", "文化・スポーツ"],
+    ["外国籍住民との地域共生", "地域・多文化共生"],
+    ["ペットのふんの放置", "地域・多文化共生"],
+    ["学校でのDX活用と教育データ連携", "教育・学校"],
+    ["SNSリスクから子どもを守る総合的な対策", "子どもの安全・権利"],
+    ["こども性暴力防止法の施行に向けた区の準備", "子どもの安全・権利"],
+    ["子どもと接する外部指導員の性犯罪歴の確認と研修", "子どもの安全・権利"],
+    ["子どもや障がい者への性被害の防止と盗撮カメラ対策", "子どもの安全・権利"],
+    ["児童虐待への対応と通話AIシステムの導入", "子どもの安全・権利"],
+    ["子どもの自殺対策（SOSの出し方教育）", "子どもの安全・権利"],
+    ["児童養護施設とこどもショートステイの拡充", "子どもの安全・権利"],
+    ["共同親権の導入に伴う支援制度と周知", "子どもの安全・権利"],
+    [
+      "学校開放の剣道教室で起きた傷害事件と子どもの安全対策",
+      "子どもの安全・権利",
+    ],
+    ["旧こども家庭支援センター跡地活用事業の推進体制", "再開発・まちづくり"],
+    ["中高生世代の自殺対策の推進", "子どもの安全・権利"],
+    [
+      "居場所機能の拡充とあだち協創フロント・若年者支援協議会の議論の反映",
+      "若者・ユース",
+    ],
+    ["若年層を中心とした自殺対策の強化", "若者・ユース"],
+    [
+      "学校適正配置が地域コミュニティー・子どもの育つ環境に及ぼす影響への認識",
+      "教育・学校",
+    ],
+    ["若年層への選挙啓発の強化", "行政改革・デジタル"],
+    ["高齢者虐待の防止と高齢者の食の場への支援", "高齢者・介護"],
+    ["区の広報とSNS発信の強化", "行政改革・デジタル"],
+  ] as const)("%s → %s", (title, label) => {
+    expect(assignCategory(title).label).toBe(label);
   });
 
   it("マッチしない → その他", () => {
     expect(assignCategory("特になし").label).toBe("その他");
   });
 
-  it("行財政・経済は末尾にあり、既存カテゴリの判定を奪わない", () => {
-    // 「中小企業のDXによる生産性向上」は経済キーワードを含むが、
-    // 同時に交通・まちづくり等の語を含まない限り行財政・経済へ。
-    // 一方、教育キーワードを含むものは先に子育て・教育へ分類される。
-    expect(assignCategory("学校でのDX活用と教育データ連携").label).toBe(
-      "子育て・教育"
+  it("優先判定の語（省エネ・スポーツなど）は、後ろのカテゴリの語より先に判定される", () => {
+    expect(assignCategory("公共建築物の省エネ化").label).toBe(
+      "環境・ごみ・みどり"
     );
   });
 });
@@ -200,20 +146,20 @@ describe("buildTopicGroups", () => {
   it("トピックをカテゴリ別に分類する", () => {
     const groups = buildTopicGroups([mockQuestion]);
     const labels = groups.map((g) => g.categoryLabel);
-    expect(labels).toContain("子育て・教育");
+    expect(labels).toContain("子育て・保育");
     expect(labels).toContain("防災・安全");
   });
 
   it("各グループにentryが含まれる", () => {
     const groups = buildTopicGroups([mockQuestion]);
-    const childCare = groups.find((g) => g.categoryLabel === "子育て・教育");
+    const childCare = groups.find((g) => g.categoryLabel === "子育て・保育");
     expect(childCare?.entries).toHaveLength(1);
     expect(childCare?.entries[0].questioner.id).toBe("q-001");
   });
 
   it("カードはトピック名をtitleに使う", () => {
     const groups = buildTopicGroups([mockQuestion]);
-    const childCare = groups.find((g) => g.categoryLabel === "子育て・教育");
+    const childCare = groups.find((g) => g.categoryLabel === "子育て・保育");
     const entry = childCare?.entries[0];
     expect(entry?.title).toBe("保育所の待機児童対策");
   });
@@ -309,10 +255,10 @@ describe("buildTopicGroups", () => {
     const groups = buildTopicGroups([q]);
     const labels = groups.map((g) => g.categoryLabel);
     expect(labels).toContain("防災・安全");
-    expect(labels).toContain("交通・まちづくり");
+    expect(labels).toContain("道路・交通");
 
     const bousai = groups.find((g) => g.categoryLabel === "防災・安全");
-    const kotsu = groups.find((g) => g.categoryLabel === "交通・まちづくり");
+    const kotsu = groups.find((g) => g.categoryLabel === "道路・交通");
     expect(bousai?.entries).toHaveLength(1);
     expect(kotsu?.entries).toHaveLength(1);
   });
@@ -323,7 +269,7 @@ describe("buildTopicGroups", () => {
 
   it("各カードはトピックのindexをtopicIndexに持つ", () => {
     const groups = buildTopicGroups([mockQuestion]);
-    const childCare = groups.find((g) => g.categoryLabel === "子育て・教育");
+    const childCare = groups.find((g) => g.categoryLabel === "子育て・保育");
     const bousai = groups.find((g) => g.categoryLabel === "防災・安全");
     expect(childCare?.entries[0].topicIndex).toBe(0);
     expect(bousai?.entries[0].topicIndex).toBe(1);
