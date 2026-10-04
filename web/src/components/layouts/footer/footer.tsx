@@ -107,7 +107,15 @@ function FooterDisclaimer() {
 function FooterOperator() {
   return (
     <p className="text-[12px] font-medium text-slate-700 text-center mb-2">
-      運営：{siteConfig.operator.name}
+      運営：
+      <a
+        href={siteConfig.operator.xUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline underline-offset-2 hover:text-slate-900"
+      >
+        {siteConfig.operator.name}
+      </a>
     </p>
   );
 }

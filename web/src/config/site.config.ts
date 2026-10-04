@@ -51,6 +51,8 @@ export const siteConfig = {
   operator: {
     /** 運営者（＝当団体。利用規約・プライバシーポリシー・コピーライト表記に使用） */
     name: "ワクワクみらい政策ラボ" as string,
+    /** 運営者のXアカウント（フッターの「運営：」からのリンク先） */
+    xUrl: "https://x.com/0909mirai_lab" as string,
     /** 開発者（トップ・FAQの「開発者（◯◯）にご連絡」表記に使用） */
     developerName: "みる" as string,
     /** 問い合わせ先（開発者のXアカウント） */
