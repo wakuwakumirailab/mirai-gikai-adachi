@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Wallet } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layouts/container";
@@ -65,13 +65,19 @@ export default async function BudgetListPage({ params }: BudgetListPageProps) {
 
   return (
     <Container className="py-10 pb-28">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-mirai-text">各部の重点施策</h1>
-        <p className="mt-2 text-sm text-mirai-text-secondary">
+      <header className="mb-8 flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
+          <Wallet className="size-3.5" />
+          {toFiscalYearLabel(session.name)}
+        </span>
+        <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
+          各部の重点施策
+        </h1>
+        <p className="text-sm leading-relaxed text-mirai-text-secondary">
           {toFiscalYearLabel(session.name)}{" "}
           の各部予算の方向性と主要施策をまとめています。
         </p>
-      </div>
+      </header>
 
       <BudgetOverviewList overviews={overviews} sessionSlug={session_slug} />
 

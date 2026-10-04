@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Wallet } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { getSessionsWithBudget } from "@/features/budget-overview/server/loaders/get-sessions-with-budget";
@@ -14,12 +14,18 @@ export default async function BudgetIndexPage() {
 
   return (
     <Container className="py-10">
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-mirai-text">過去の予算一覧</h1>
-        <p className="mt-2 text-sm text-mirai-text-secondary">
+      <header className="mb-8 flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
+        <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-primary-accent">
+          <Wallet className="size-3.5" />
+          予算
+        </span>
+        <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
+          過去の予算一覧
+        </h1>
+        <p className="text-sm leading-relaxed text-mirai-text-secondary">
           各定例会の各部予算の方向性と主要施策をご覧いただけます。
         </p>
-      </div>
+      </header>
 
       {sessions.length === 0 ? (
         <p className="text-mirai-text-secondary text-sm py-8 text-center">
