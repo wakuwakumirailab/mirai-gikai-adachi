@@ -3,6 +3,7 @@ import { About } from "@/components/top/about";
 import { ArchiveBanner } from "@/components/top/archive-banner";
 import { GeneralQuestionsBanner } from "@/components/top/general-questions-banner";
 import { Hero } from "@/components/top/hero";
+import { LatestUpdateNotice } from "@/components/top/latest-update-notice";
 import { SiteDisclaimerNotice } from "@/components/top/site-disclaimer-notice";
 import { TeamMirai } from "@/components/top/team-mirai";
 import { siteConfig } from "@/config/site.config";
@@ -61,6 +62,7 @@ export default async function Home() {
       <Hero />
 
       <SiteDisclaimerNotice />
+      <LatestUpdateNotice />
 
       {/* 本日の定例会セクション＋今回の定例会の議案＋一般質問（ベージュ背景でひとつながりに） */}
       <div className="bg-mirai-surface-warm">

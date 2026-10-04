@@ -12,7 +12,10 @@ import {
 import { RubyToggle } from "@/lib/rubyful";
 import { TextSizeToggle } from "@/lib/text-size";
 
-const NAV_LINKS = [{ href: "/archive", label: "過去の資料" }] as const;
+const NAV_LINKS = [
+  { href: "/archive", label: "過去の資料" },
+  { href: "/release-notes", label: "更新情報" },
+] as const;
 
 export function HamburgerMenu() {
   return (
