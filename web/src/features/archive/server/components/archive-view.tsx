@@ -7,160 +7,66 @@ import {
   groupSessionsByYear,
 } from "@/features/council-sessions/shared/utils/group-sessions-by-year";
 
-type Props = {
-  pastSessions: CouncilSession[];
-  pastBudgetSessions: CouncilSession[];
-  pastQuestionSessions: CouncilSession[];
-  /** bill_contents が0件（未整備）の定例会IDの集合 */
-  sessionsWithoutContent: Set<string>;
+type SessionListProps = {
+  sessions: CouncilSession[];
+  /** 各定例会の遷移先（例: bills / questions） */
+  linkSuffix: "bills" | "questions";
+  emptyText: string;
+  /** bill_contents が0件（未整備）の定例会IDの集合（議案のみ） */
+  sessionsWithoutContent?: Set<string>;
 };
 
-function toBudgetLabel(sessionName: string): string {
-  const match = sessionName.match(/令和(\d+)年/);
-  if (match) {
-    return `令和${match[1]}年度 各部の重点施策`;
-  }
-  return `${sessionName} 各部の重点施策`;
-}
-
-export function ArchiveView({
-  pastSessions,
-  pastBudgetSessions,
-  pastQuestionSessions,
+/** 定例会を年ごとにまとめた一覧（過去の議案・過去の代表・一般質問で共通） */
+export function ArchiveSessionList({
+  sessions,
+  linkSuffix,
+  emptyText,
   sessionsWithoutContent,
-}: Props) {
-  const sessionsByYear = groupSessionsByYear(pastSessions);
-  const budgetSessionsByYear = groupSessionsByYear(pastBudgetSessions);
-  const questionSessionsByYear = groupSessionsByYear(pastQuestionSessions);
+}: SessionListProps) {
+  const sessionsByYear = groupSessionsByYear(sessions);
 
-  const years = Array.from(
-    new Set([
-      ...sessionsByYear.map((g) => g.year),
-      ...budgetSessionsByYear.map((g) => g.year),
-      ...questionSessionsByYear.map((g) => g.year),
-    ])
-  ).sort((a, b) => b - a);
-
-  if (years.length === 0) {
-    return (
-      <p className="text-sm text-mirai-text-muted">
-        過去の資料はまだ掲載されていません。
-      </p>
-    );
+  if (sessionsByYear.length === 0) {
+    return <p className="text-sm text-mirai-text-muted">{emptyText}</p>;
   }
 
   return (
     <div className="flex flex-col gap-10">
-      {years.map((year) => {
-        const sessions =
-          sessionsByYear.find((g) => g.year === year)?.sessions ?? [];
-        const budgetSessions =
-          budgetSessionsByYear.find((g) => g.year === year)?.sessions ?? [];
-        const questionSessions =
-          questionSessionsByYear.find((g) => g.year === year)?.sessions ?? [];
-
-        return (
-          <section key={year} className="flex flex-col gap-6">
-            <h2 className="border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
-              {year}年
-            </h2>
-
-            {sessions.length > 0 && (
-              <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-bold text-mirai-text-secondary">
-                  定例会・議案
-                </h3>
-                <ul className="flex flex-col divide-y divide-mirai-border">
-                  {sessions.map((session) => {
-                    if (!session.slug) return null;
-                    const noContent = sessionsWithoutContent.has(session.id);
-                    return (
-                      <li key={session.id}>
-                        <Link
-                          href={`/sessions/${session.slug}/bills`}
-                          className="group flex items-center justify-between gap-2 rounded-lg px-2 py-3 transition-colors hover:bg-mirai-surface-grouped"
-                        >
-                          <div className="flex flex-col gap-0.5">
-                            <span className="font-bold text-mirai-text">
-                              {session.name}
-                              {noContent && (
-                                <span className="ml-2 rounded-full bg-mirai-surface-muted px-2 py-0.5 text-xs font-medium text-mirai-text-muted align-middle">
-                                  解説データ未整備
-                                </span>
-                              )}
-                            </span>
-                            <span className="text-xs text-mirai-text-secondary">
-                              {formatSessionPeriod(session)}
-                            </span>
-                          </div>
-                          <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-
-            {budgetSessions.length > 0 && (
-              <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-bold text-mirai-text-secondary">
-                  予算
-                </h3>
-                <ul className="flex flex-col divide-y divide-mirai-border">
-                  {budgetSessions.map((session) => {
-                    if (!session.slug) return null;
-                    return (
-                      <li key={session.id}>
-                        <Link
-                          href={`/budget/${session.slug}`}
-                          className="group flex items-center justify-between gap-2 rounded-lg px-2 py-3 transition-colors hover:bg-mirai-surface-grouped"
-                        >
-                          <span className="font-bold text-mirai-text">
-                            {toBudgetLabel(session.name)}
+      {sessionsByYear.map(({ year, sessions: yearSessions }) => (
+        <section key={year} className="flex flex-col gap-3">
+          <h2 className="border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
+            {year}年
+          </h2>
+          <ul className="flex flex-col divide-y divide-mirai-border">
+            {yearSessions.map((session) => {
+              if (!session.slug) return null;
+              const noContent = sessionsWithoutContent?.has(session.id);
+              return (
+                <li key={session.id}>
+                  <Link
+                    href={`/sessions/${session.slug}/${linkSuffix}`}
+                    className="group flex items-center justify-between gap-2 rounded-lg px-2 py-3 transition-colors hover:bg-mirai-surface-grouped"
+                  >
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-bold text-mirai-text">
+                        {session.name}
+                        {noContent && (
+                          <span className="ml-2 rounded-full bg-mirai-surface-muted px-2 py-0.5 text-xs font-medium text-mirai-text-muted align-middle">
+                            解説データ未整備
                           </span>
-                          <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-
-            {questionSessions.length > 0 && (
-              <div className="flex flex-col gap-3">
-                <h3 className="text-sm font-bold text-mirai-text-secondary">
-                  代表・一般質問
-                </h3>
-                <ul className="flex flex-col divide-y divide-mirai-border">
-                  {questionSessions.map((session) => {
-                    if (!session.slug) return null;
-                    return (
-                      <li key={session.id}>
-                        <Link
-                          href={`/sessions/${session.slug}/questions`}
-                          className="group flex items-center justify-between gap-2 rounded-lg px-2 py-3 transition-colors hover:bg-mirai-surface-grouped"
-                        >
-                          <div className="flex flex-col gap-0.5">
-                            <span className="font-bold text-mirai-text">
-                              {session.name}
-                            </span>
-                            <span className="text-xs text-mirai-text-secondary">
-                              {formatSessionPeriod(session)}
-                            </span>
-                          </div>
-                          <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-          </section>
-        );
-      })}
+                        )}
+                      </span>
+                      <span className="text-xs text-mirai-text-secondary">
+                        {formatSessionPeriod(session)}
+                      </span>
+                    </div>
+                    <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

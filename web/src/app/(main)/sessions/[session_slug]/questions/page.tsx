@@ -67,8 +67,8 @@ export default async function SessionQuestionsPage({
     !session.is_active &&
     !!session.end_date &&
     new Date(session.end_date) < getJapanTime();
-  const backHref = isPastSession ? "/archive" : "/assembly";
-  const backLabel = isPastSession ? "過去の資料に戻る" : "議会に戻る";
+  const backHref = isPastSession ? "/archive/questions" : "/assembly";
+  const backLabel = isPastSession ? "過去の代表・一般質問に戻る" : "議会に戻る";
 
   return (
     <Container className="py-8">
@@ -119,10 +119,12 @@ export default async function SessionQuestionsPage({
         )}
 
         <Link
-          href="/archive"
+          href="/archive/questions"
           className="group flex items-center justify-between gap-2 rounded-2xl border border-mirai-border bg-white px-5 py-4 hover:border-primary/50 hover:shadow-md transition-all duration-200"
         >
-          <p className="font-bold text-mirai-text">過去の資料一覧へ</p>
+          <p className="font-bold text-mirai-text">
+            過去の代表・一般質問一覧へ
+          </p>
           <ChevronRight className="w-5 h-5 text-mirai-text-muted shrink-0" />
         </Link>
       </div>

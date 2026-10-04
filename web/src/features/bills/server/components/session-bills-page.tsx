@@ -62,11 +62,11 @@ export function SessionBillsPage({
       {/* ヘッダー */}
       <div className="flex flex-col gap-6">
         <Link
-          href={isPastSession ? "/archive" : "/assembly"}
+          href={isPastSession ? "/archive/bills" : "/assembly"}
           className="inline-flex w-fit items-center gap-1 text-sm text-mirai-text-secondary hover:text-primary-accent"
         >
           <ChevronLeft className="h-4 w-4" />
-          {isPastSession ? "過去の資料に戻る" : "議会に戻る"}
+          {isPastSession ? "過去の議案に戻る" : "議会に戻る"}
         </Link>
 
         <div className="flex flex-col gap-3 rounded-2xl bg-gradient-to-br from-mirai-gradient-start to-mirai-gradient-end px-6 py-6">
@@ -176,10 +176,10 @@ export function SessionBillsPage({
 
       {/* 過去の資料へのリンク */}
       <Link
-        href="/archive"
+        href="/archive/bills"
         className="group flex items-center justify-between gap-2 rounded-2xl border border-mirai-border bg-white px-5 py-4 hover:border-primary/50 hover:shadow-md transition-all duration-200"
       >
-        <p className="font-bold text-mirai-text">過去の資料一覧へ</p>
+        <p className="font-bold text-mirai-text">過去の議案一覧へ</p>
         <ChevronRight className="w-5 h-5 text-mirai-text-muted shrink-0" />
       </Link>
     </div>

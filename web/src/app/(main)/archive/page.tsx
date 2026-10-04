@@ -1,45 +1,61 @@
 import type { Metadata } from "next";
 import {
   Archive,
+  CalendarDays,
   ChevronLeft,
-  ChevronRight,
   ClipboardList,
+  FileText,
+  MessageSquare,
+  Wallet,
 } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/layouts/container";
 import { siteConfig } from "@/config/site.config";
-import { getAllPastSessions } from "@/features/council-sessions/server/loaders/get-all-past-sessions";
-import { getSessionsWithBudget } from "@/features/budget-overview/server/loaders/get-sessions-with-budget";
-import { ArchiveView } from "@/features/archive/server/components/archive-view";
-import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/get-difficulty-level";
-import { countPublishedBillsByDietSession } from "@/features/bills/server/repositories/bill-repository";
-import { getSessionsWithGeneralQuestions } from "@/features/general-questions/server/loaders/get-sessions-with-general-questions";
 
 export const metadata: Metadata = {
   title: `過去の資料 | ${siteConfig.siteName}`,
-  description: `${siteConfig.councilName}の過去の定例会・議案、過去の予算を年度別に確認できます。`,
+  description: `${siteConfig.councilName}の過去の議案、代表・一般質問、予算、請願・陳情を確認できます。`,
 };
 
-export default async function ArchivePage() {
-  const [pastSessions, budgetSessions, questionSessions, difficultyLevel] =
-    await Promise.all([
-      getAllPastSessions(),
-      getSessionsWithBudget(),
-      getSessionsWithGeneralQuestions(),
-      getDifficultyLevel(),
-    ]);
+const ARCHIVE_LINKS = [
+  {
+    href: "/archive/bills",
+    icon: CalendarDays,
+    label: "過去の議案",
+    description: "終了した定例会と、そこで審議された議案を年ごとに確認できます",
+  },
+  {
+    href: "/archive/questions",
+    icon: MessageSquare,
+    label: "過去の代表・一般質問",
+    description: "終了した定例会で行われた代表・一般質問を年ごとに確認できます",
+  },
+  {
+    href: "/budget",
+    icon: Wallet,
+    label: "過去の予算",
+    description: "各定例会の各部予算の方向性と主要施策を確認できます",
+  },
+  {
+    href: "/petitions",
+    icon: FileText,
+    label: "請願・陳情",
+    description: "過去に審査された分も含め、すべての請願・陳情を確認できます",
+  },
+  ...(siteConfig.features.jimuJigyo
+    ? [
+        {
+          href: "/jimu-jigyo",
+          icon: ClipboardList,
+          label: "事務事業評価",
+          description:
+            "区が実施する事業のKPI・予算・効率の動向を年度ごとに分析します",
+        },
+      ]
+    : []),
+];
 
-  const contentCounts = await Promise.all(
-    pastSessions.map((session) =>
-      countPublishedBillsByDietSession(session.id, difficultyLevel)
-    )
-  );
-  const sessionsWithoutContent = new Set(
-    pastSessions
-      .filter((_, i) => contentCounts[i] === 0)
-      .map((session) => session.id)
-  );
-
+export default function ArchivePage() {
   return (
     <Container className="py-8">
       <div className="flex flex-col gap-8">
@@ -57,44 +73,29 @@ export default async function ArchivePage() {
             過去の資料
           </span>
           <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
-            過去の定例会・議案、過去の予算
+            過去の議案・質問・予算
           </h1>
           <p className="text-sm leading-relaxed text-mirai-text-secondary">
-            終了した定例会と、そこで審議された議案・予算を年度別にまとめています。
+            終了した定例会の議案や代表・一般質問、過去の予算、請願・陳情をまとめています。
           </p>
         </header>
 
-        <ArchiveView
-          pastSessions={pastSessions}
-          pastBudgetSessions={budgetSessions}
-          pastQuestionSessions={questionSessions}
-          sessionsWithoutContent={sessionsWithoutContent}
-        />
-
-        {siteConfig.features.jimuJigyo && (
-          <section className="flex flex-col gap-3">
-            <h2 className="border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
-              事務事業評価
-            </h2>
-            <Link
-              href="/jimu-jigyo"
-              className="group flex items-center justify-between gap-4 rounded-lg border border-border bg-card px-5 py-4 transition-colors hover:border-primary"
-            >
-              <div className="flex items-start gap-3">
-                <ClipboardList className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
-                <div>
-                  <p className="font-bold text-mirai-text">
-                    事務事業評価を年度別に見る
-                  </p>
-                  <p className="mt-0.5 text-sm text-mirai-text-secondary">
-                    区が実施する事業のKPI・予算・効率の動向を年度ごとに分析します
-                  </p>
-                </div>
-              </div>
-              <ChevronRight className="h-5 w-5 shrink-0 text-mirai-text-muted transition-transform group-hover:translate-x-0.5" />
-            </Link>
-          </section>
-        )}
+        <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {ARCHIVE_LINKS.map(({ href, icon: Icon, label, description }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="flex h-full flex-col gap-2 rounded-2xl border border-mirai-border bg-white p-5 transition-all duration-200 hover:border-primary/50 hover:shadow-md"
+              >
+                <Icon className="size-5 text-primary-accent" />
+                <span className="font-bold text-mirai-text">{label}</span>
+                <span className="text-xs leading-relaxed text-mirai-text-secondary">
+                  {description}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </Container>
   );
