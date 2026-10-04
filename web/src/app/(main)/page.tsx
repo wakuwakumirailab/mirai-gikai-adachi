@@ -16,10 +16,9 @@ import { HomeChatClient } from "@/features/chat/client/components/home-chat-clie
 import { CurrentCouncilSession } from "@/features/council-sessions/client/components/current-council-session";
 import { getCurrentCouncilSession } from "@/features/council-sessions/server/loaders/get-current-council-session";
 import { getLatestSessionWithQuestions } from "@/features/general-questions/server/loaders/get-latest-session-with-questions";
-import { PressConferenceArchiveSection } from "@/features/press-conferences/client/components/press-conference-archive-section";
+import { getSessionQuestionsBannerData } from "@/features/general-questions/server/loaders/get-session-questions-summary";
 import { PressConferenceNoticeBanner } from "@/features/press-conferences/client/components/press-conference-notice-banner";
 import { getLatestPressConference } from "@/features/press-conferences/server/loaders/get-latest-press-conference";
-import { getPressConferences } from "@/features/press-conferences/server/loaders/get-press-conferences";
 import { getJapanTime } from "@/lib/utils/date";
 
 export default async function Home() {
@@ -31,17 +30,18 @@ export default async function Home() {
     currentDifficulty,
     latestQuestionsSlug,
     latestPressConference,
-    pressConferences,
   ] = await Promise.all([
     getCurrentCouncilSession(getJapanTime()),
     getDifficultyLevel(),
     getLatestSessionWithQuestions(),
     getLatestPressConference(),
-    getPressConferences(),
   ]);
 
   // 一般質問バナーは議案と同じく開会中の定例会を優先し、閉会中は一般質問のある直近の会期へ
   const questionsSlug = currentSession?.slug ?? latestQuestionsSlug;
+  const questionsBannerData = questionsSlug
+    ? await getSessionQuestionsBannerData(questionsSlug)
+    : null;
 
   const currentSessionBills = currentSession
     ? await getCurrentSessionBills(currentSession.id)
@@ -62,7 +62,7 @@ export default async function Home() {
 
       <SiteDisclaimerNotice />
 
-      {/* 本日の定例会セクション＋今回の定例会の議案（ベージュ背景でひとつながりに） */}
+      {/* 本日の定例会セクション＋今回の定例会の議案＋一般質問（ベージュ背景でひとつながりに） */}
       <div className="bg-mirai-surface-warm">
         <CurrentCouncilSession session={currentSession} />
 
@@ -75,32 +75,32 @@ export default async function Home() {
             />
           </Container>
         )}
+
+        {/* 一般質問バナー（議案と同じ背景） */}
+        {questionsSlug && (
+          <Container className={currentSession ? "pb-5" : "pt-4 pb-5"}>
+            <GeneralQuestionsBanner
+              sessionSlug={questionsSlug}
+              data={questionsBannerData}
+            />
+          </Container>
+        )}
       </div>
 
       {/* 区長記者会見バナー */}
       {latestPressConference && (
-        <Container className="pt-4">
+        <Container className="pt-4 pb-6">
           <PressConferenceNoticeBanner
             pressConference={latestPressConference}
           />
         </Container>
       )}
 
-      {/* 一般質問バナー */}
-      {questionsSlug && (
-        <Container className="pt-6 pb-6">
-          <GeneralQuestionsBanner sessionSlug={questionsSlug} />
-        </Container>
-      )}
-
-      {/* Archive セクション（区長記者会見・事務事業評価のアーカイブ＋過去の資料への導線） */}
+      {/* Archive セクション（過去の資料への導線） */}
       <div className="bg-mirai-surface-muted pt-6 pb-10">
         <Container>
           <div className="flex flex-col gap-8">
             <ArchiveBanner />
-            <PressConferenceArchiveSection
-              pressConferences={pressConferences}
-            />
           </div>
         </Container>
       </div>
