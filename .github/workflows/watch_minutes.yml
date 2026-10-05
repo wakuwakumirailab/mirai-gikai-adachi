@@ -2,10 +2,10 @@ name: Watch Minutes
 
 # 足立区議会サイトに新しい会議録（速報版・正式版）が出ていないかを確認し、
 # 見つかったら GitHub Issue を作る（Issue 作成時に GitHub からメールが届く）。
-# 平日の朝9時(JST)に1回だけ実行する。手動実行も可能。
+# 平日の16時(JST)に1回だけ実行する（職員の作業が進んだ午後に、当日の公開分を拾うため）。手動実行も可能。
 on:
   schedule:
-    - cron: "0 0 * * 1-5"
+    - cron: "0 7 * * 1-5"
   workflow_dispatch:
 
 permissions:
