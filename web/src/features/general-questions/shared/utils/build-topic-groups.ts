@@ -79,6 +79,8 @@ const CATEGORY_MAP: Array<{
       "修学旅行",
       "学校適正配置",
       "学校統廃合",
+      "学習環境",
+      "情報活用能力",
     ],
   },
   {
@@ -87,9 +89,15 @@ const CATEGORY_MAP: Array<{
     keywords: ["18歳の壁", "ひきこもり", "障がい者", "障がい児", "障害"],
   },
   {
+    label: "高齢者・介護",
+    iconName: "HeartHandshake",
+    keywords: ["認知症とともに"],
+  },
+  {
     label: "子育て・保育",
     iconName: "Baby",
     keywords: [
+      "熱中症予防支援事業",
       "保育",
       "待機児童",
       "産後",
