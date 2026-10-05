@@ -31,7 +31,10 @@ function ChatBubbleQuestion({ text }: { text: string }) {
   return (
     <div className="flex items-end justify-end gap-2">
       <div className={`max-w-[75%] ${QUESTION_BUBBLE}`}>
-        <p className="text-sm leading-relaxed">{text}</p>
+        <p className="text-sm leading-relaxed">
+          <span className="sr-only">質問：</span>
+          {text}
+        </p>
       </div>
       <div className={QUESTION_AVATAR}>
         <User className="h-4 w-4" />
@@ -56,6 +59,7 @@ function ChatBubbleAnswer({
       </div>
       <div className="max-w-[75%]">
         <p className="mb-1 text-xs text-mirai-text-secondary">
+          <span className="sr-only">答弁：</span>
           {role}
           {name && (
             <>
@@ -86,9 +90,9 @@ export function QuestionChatView({ topics }: QuestionChatViewProps) {
           id={`topic-${i}`}
           className="flex flex-col gap-3 scroll-mt-20"
         >
-          <p className="text-center text-xs font-medium text-mirai-text-secondary bg-mirai-surface-muted rounded-full px-3 py-1 mx-auto">
+          <h2 className="text-center text-xs font-medium text-mirai-text-secondary bg-mirai-surface-muted rounded-full px-3 py-1 mx-auto">
             {topic.title}
-          </p>
+          </h2>
           <ChatBubbleQuestion text={topic.question_summary} />
           {topic.answer_summary ? (
             <ChatBubbleAnswer

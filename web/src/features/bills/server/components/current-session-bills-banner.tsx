@@ -41,9 +41,9 @@ export function CurrentSessionBillsBanner({
     >
       <div className="flex items-center gap-2">
         <Gavel className="size-4 text-primary-accent" />
-        <p className="font-bold text-mirai-text">
+        <h2 className="font-bold text-mirai-text">
           今回の定例会の議案（{bills.length}件）
-        </p>
+        </h2>
         <ChevronRight className="ml-auto size-5 text-mirai-text-muted shrink-0" />
       </div>
 

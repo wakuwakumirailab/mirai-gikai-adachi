@@ -10,7 +10,7 @@ export function ArchiveBanner() {
       <div className="flex items-start gap-3">
         <Archive className="w-6 h-6 text-primary shrink-0 mt-0.5" />
         <div>
-          <p className="font-bold text-mirai-text">過去の資料</p>
+          <h2 className="font-bold text-mirai-text">過去の資料</h2>
           <p className="mt-0.5 text-sm text-mirai-text-secondary">
             終了した定例会・議案、過去の予算を年度別に確認できます
           </p>

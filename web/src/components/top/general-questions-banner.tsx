@@ -25,11 +25,11 @@ export function GeneralQuestionsBanner({
     >
       <div className="flex items-center gap-2">
         <MessageSquare className="size-4 text-primary-accent" />
-        <p className="font-bold text-mirai-text">
+        <h2 className="font-bold text-mirai-text">
           {showSummary
             ? `${data.sessionLabel} 代表・一般質問`
             : "代表・一般質問"}
-        </p>
+        </h2>
         <ChevronRight className="ml-auto size-5 text-mirai-text-muted shrink-0" />
       </div>
 
