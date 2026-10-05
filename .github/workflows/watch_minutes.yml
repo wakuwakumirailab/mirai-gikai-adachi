@@ -1,0 +1,57 @@
+name: Watch Minutes
+
+# 足立区議会サイトに新しい会議録（速報版・正式版）が出ていないかを確認し、
+# 見つかったら GitHub Issue を作る（Issue 作成時に GitHub からメールが届く）。
+# 平日の朝9時(JST)に1回だけ実行する。手動実行も可能。
+on:
+  schedule:
+    - cron: "0 0 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+
+      - name: Check council site
+        run: node scripts/watch-minutes/check.mjs > added.json
+
+      - name: Create issue for new minutes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          COUNT=$(jq '.added | length' added.json)
+          if [ "$COUNT" -eq 0 ]; then
+            echo "新しい会議録はありません"
+            exit 0
+          fi
+          {
+            echo "足立区議会サイトに新しい会議録が公開されました。内容の反映が必要か確認してください。"
+            echo
+            jq -r '.added[] | "- [\(.label)](\(.url))"' added.json
+            echo
+            echo "※ 速報版 → 一般質問・委員会・議案解説の作成／更新、正式版 → 速報版からの切り替え（source_stage=final）の目安です。"
+          } > body.md
+          gh issue create --title "新しい会議録が公開されました（${COUNT}件）" --body-file body.md
+
+      - name: Commit updated state
+        run: |
+          if git diff --quiet -- scripts/watch-minutes/state.json; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/watch-minutes/state.json
+          git commit -m "chore: 会議録の確認状況を更新 [skip ci]"
+          git push
