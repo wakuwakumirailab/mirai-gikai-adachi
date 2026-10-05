@@ -6,6 +6,12 @@
       "runtimeExecutable": "pnpm",
       "runtimeArgs": ["exec", "dotenv", "-e", ".env", "--", "pnpm", "--filter", "web", "run", "dev"],
       "port": 3002
+    },
+    {
+      "name": "web-webpack",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["exec", "dotenv", "-e", ".env", "--", "pnpm", "--filter", "web", "exec", "next", "dev", "--port", "3002"],
+      "port": 3002
     }
   ]
 }
