@@ -16,9 +16,9 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
-    date: "2026-10-04",
+    date: "2026-10-05",
     tag: "機能",
-    text: "更新情報のページを公開しました。",
+    text: "みらい議会＠足立区を公開しました。",
   },
 ];
 
