@@ -28,6 +28,7 @@ export const upcomingPlans: string[] = [
   "議員のページに、議員の発言のまとめを追加します。",
   "議案の過去のデータを追加します。",
   "区長記者会見の過去のデータを追加します。",
+  "募集中のパブリックコメントに、意見を書きやすくする機能を追加します。",
 ];
 
 export function getLatestUpdateDate(): string | null {
