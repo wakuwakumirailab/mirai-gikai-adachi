@@ -1,4 +1,9 @@
 import "server-only";
+import {
+  ANSWER_BUBBLE,
+  QUESTION_BUBBLE,
+  QUESTION_SPEAKER_LABEL,
+} from "../../shared/utils/bubble-styles";
 
 type SpeakerTurn = {
   speaker: string;
@@ -43,17 +48,11 @@ export function RawTranscriptView({ rawText }: { rawText: string }) {
             className={isQ ? "flex justify-end" : "flex"}
           >
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-3 ${
-                isQ
-                  ? "bg-primary text-primary-foreground rounded-br-sm"
-                  : "bg-card border border-border text-mirai-text rounded-bl-sm"
-              }`}
+              className={`max-w-[85%] ${isQ ? QUESTION_BUBBLE : ANSWER_BUBBLE}`}
             >
               <p
                 className={`mb-1 text-xs font-medium ${
-                  isQ
-                    ? "text-primary-foreground/70"
-                    : "text-mirai-text-secondary"
+                  isQ ? QUESTION_SPEAKER_LABEL : "text-mirai-text-secondary"
                 }`}
               >
                 {turn.speaker}

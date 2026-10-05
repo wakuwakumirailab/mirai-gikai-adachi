@@ -4,6 +4,11 @@ import { MessageCircle, User } from "lucide-react";
 import { useEffect } from "react";
 import type { GeneralQuestionTopic } from "../../shared/types";
 import { noRubyAttr } from "../../shared/utils/answerer-ruby";
+import {
+  ANSWER_BUBBLE,
+  QUESTION_AVATAR,
+  QUESTION_BUBBLE,
+} from "../../shared/utils/bubble-styles";
 import { PENDING_ANSWER_TEXT } from "../../shared/utils/source-stage";
 
 /**
@@ -25,10 +30,10 @@ function useScrollToHashTopic() {
 function ChatBubbleQuestion({ text }: { text: string }) {
   return (
     <div className="flex items-end justify-end gap-2">
-      <div className="max-w-[75%] bg-primary text-primary-foreground rounded-2xl rounded-br-sm px-4 py-3">
+      <div className={`max-w-[75%] ${QUESTION_BUBBLE}`}>
         <p className="text-sm leading-relaxed">{text}</p>
       </div>
-      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+      <div className={QUESTION_AVATAR}>
         <User className="h-4 w-4" />
       </div>
     </div>
@@ -59,7 +64,7 @@ function ChatBubbleAnswer({
             </>
           )}
         </p>
-        <div className="rounded-2xl rounded-bl-sm bg-card border border-border px-4 py-3">
+        <div className={ANSWER_BUBBLE}>
           <p className="text-sm leading-relaxed text-mirai-text">{text}</p>
         </div>
       </div>
