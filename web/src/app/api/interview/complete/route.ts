@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import { updateReportPublicSetting } from "@/features/interview-report/server/repositories/interview-report-repository";
 import { completeInterviewSession } from "@/features/interview-session/server/services/complete-interview-session";
 import { verifySessionOwnership } from "@/features/interview-session/server/utils/verify-session-ownership";
+import { featureDisabledResponse } from "@/lib/security/feature-disabled-response";
 
 export async function POST(req: Request) {
+  const disabled = featureDisabledResponse("aiInterview");
+  if (disabled) return disabled;
+
   const { sessionId, isPublic } = await req.json();
 
   if (!sessionId) {

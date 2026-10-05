@@ -5,6 +5,7 @@ import {
   handleChatRequest,
 } from "@/features/chat/server/services/handle-chat-request";
 import { ChatError, ChatErrorCode } from "@/features/chat/shared/types/errors";
+import { featureDisabledResponse } from "@/lib/security/feature-disabled-response";
 import { registerNodeTelemetry } from "@/lib/telemetry/register";
 
 async function _mockResponse(_req: Request) {
@@ -48,6 +49,9 @@ async function _mockResponse(_req: Request) {
 }
 
 export async function POST(req: Request) {
+  const disabled = featureDisabledResponse("aiChat");
+  if (disabled) return disabled;
+
   // Vercel node環境でinstrumentationが自動で起動しない問題対応
   // 明示的にtelemetryを初期化
   await registerNodeTelemetry();

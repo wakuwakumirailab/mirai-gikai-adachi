@@ -1,8 +1,12 @@
 import { getChatSupabaseUser } from "@/features/chat/server/utils/supabase-server";
 import { handleInterviewChatRequest } from "@/features/interview-session/server/services/handle-interview-chat-request";
+import { featureDisabledResponse } from "@/lib/security/feature-disabled-response";
 import { registerNodeTelemetry } from "@/lib/telemetry/register";
 
 export async function POST(req: Request) {
+  const disabled = featureDisabledResponse("aiInterview");
+  if (disabled) return disabled;
+
   // Vercel node環境でinstrumentationが自動で起動しない問題対応
   // 明示的にtelemetryを初期化
   await registerNodeTelemetry();
