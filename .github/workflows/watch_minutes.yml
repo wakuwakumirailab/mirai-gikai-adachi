@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: "0 7 * * 1-5"
   workflow_dispatch:
+    inputs:
+      test_issue:
+        description: "通知メールの確認用に、テストのIssueを1件作る"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,6 +31,15 @@ jobs:
 
       - name: Check council site
         run: node scripts/watch-minutes/check.mjs > added.json
+
+      - name: Create test issue (manual run only)
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.test_issue }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "【テスト】新しい会議録が公開されました（通知メール確認用）" \
+            --body "通知メールの確認用のテストIssueです。確認できたら閉じてください。"
 
       - name: Create issue for new minutes
         env:
