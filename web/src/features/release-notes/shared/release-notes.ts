@@ -16,6 +16,11 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    date: "2026-10-08",
+    tag: "データ",
+    text: "令和8年第3回定例会の議案のうち、9月25日に可決された16件の結果と、第97号・第102号の解説を追加しました。",
+  },
+  {
     date: "2026-10-05",
     tag: "機能",
     text: "みらい議会＠足立区を公開しました。",
