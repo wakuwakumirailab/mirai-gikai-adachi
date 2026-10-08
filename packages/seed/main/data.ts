@@ -312,7 +312,7 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-3", billNumber: "第101号", name: "東渕江小学校改築工事請負契約の変更について", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第102号", name: "足立区多文化共生推進計画審議会条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
   { sessionSlug: "r8-3", billNumber: "第103号", name: "足立区景観条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "議員提出第3号", name: "オウム真理教（アレフ・ひかりの輪・山田らの集団）に対する観察処分の期間更新を求める意見書", publishedAt: "2026-09-25", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "令和9年1月に期限を迎える、オウム真理教（アレフなど）への観察処分について、引き続き継続するよう、国（法務大臣、公安調査庁長官、公安審査委員会委員長）に求める意見書です。議会運営委員会の全議員が提出者となり、令和8年9月25日の本会議で、委員会への付託を省略して、異議なく可決されました。" },
+  { sessionSlug: "r8-3", billNumber: "議員提出第3号", name: "オウム真理教（アレフ・ひかりの輪・山田らの集団）に対する観察処分の期間更新を求める意見書", publishedAt: "2026-09-25", status: "approved", statusNote: null, billType: "bill" },
 ];
 
 // 請願・陳情データ（足立区議会公式サイト「請願・陳情の検索」より取得。
