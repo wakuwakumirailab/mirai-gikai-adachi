@@ -22,13 +22,13 @@ export function PressConferenceNoticeBanner({ pressConference }: Props) {
       href={`/press-conferences/${pressConference.slug}`}
       className="group block rounded-2xl overflow-hidden border border-mirai-border hover:border-primary/50 hover:shadow-md transition-all duration-200"
     >
-      {/* お知らせヘッダー */}
-      <div className="bg-gradient-to-r from-mirai-gradient-start to-mirai-gradient-end px-5 py-3 flex items-center justify-between">
-        <h2 className="flex items-center gap-2 text-primary-accent font-bold text-sm">
+      {/* お知らせヘッダー（文字を大きくしても、タイトルと日付が途中で折れないよう、幅が足りないときは日付が下の行に回る） */}
+      <div className="bg-gradient-to-r from-mirai-gradient-start to-mirai-gradient-end px-5 py-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <h2 className="flex items-center gap-2 whitespace-nowrap text-primary-accent font-bold text-sm">
           <Megaphone className="w-4 h-4" />
           区長記者会見 最新情報
         </h2>
-        <div className="flex items-center gap-1.5 text-xs text-primary-accent">
+        <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-primary-accent">
           <CalendarDays className="w-3.5 h-3.5" />
           {formattedDate}
         </div>
