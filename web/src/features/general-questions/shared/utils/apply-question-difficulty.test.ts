@@ -5,6 +5,7 @@ import { applyQuestionDifficulty } from "./apply-question-difficulty";
 const base: GeneralQuestion = {
   id: "q1",
   council_session_id: "s1",
+  question_type: "general",
   questioner_name: "テスト議員",
   questioner_party: null,
   questioner_number: 1,
