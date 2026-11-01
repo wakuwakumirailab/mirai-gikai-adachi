@@ -8,6 +8,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import type { BudgetTheme, BudgetInitiative } from "../../shared/types";
+import { formatBudgetAmount } from "../../shared/utils/format-budget-amount";
 import { BudgetInitiativeBadge } from "./budget-initiative-badge";
 
 type BudgetThemeWithInitiatives = BudgetTheme & {
@@ -27,6 +28,11 @@ function ThemeItem({ theme }: { theme: BudgetThemeWithInitiatives }) {
         <div className="flex items-start justify-between gap-3 p-4 bg-mirai-surface-grouped rounded-lg hover:bg-mirai-surface-muted transition-colors">
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-mirai-text">{theme.title}</h3>
+            {formatBudgetAmount(theme.budget_amount) && (
+              <p className="mt-0.5 text-xs text-mirai-text-secondary">
+                事業の合計：{formatBudgetAmount(theme.budget_amount)}
+              </p>
+            )}
             {theme.ai_summary && (
               <p className="mt-1 text-sm text-mirai-text-secondary">
                 {theme.ai_summary}
@@ -58,6 +64,11 @@ function ThemeItem({ theme }: { theme: BudgetThemeWithInitiatives }) {
                   }
                 />
               </div>
+              {formatBudgetAmount(initiative.budget_amount) && (
+                <p className="mt-1 text-sm font-medium text-mirai-text">
+                  予算額：{formatBudgetAmount(initiative.budget_amount)}
+                </p>
+              )}
               {initiative.description && (
                 <p className="mt-1 text-sm text-mirai-text-secondary">
                   {initiative.description}

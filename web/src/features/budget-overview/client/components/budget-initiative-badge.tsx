@@ -13,7 +13,7 @@ const BADGE_CONFIG: Record<
   new: {
     label: "新規",
     className:
-      "bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded",
+      "bg-primary-accent text-white text-xs font-semibold px-2 py-0.5 rounded",
   },
   expanded: {
     label: "拡充",

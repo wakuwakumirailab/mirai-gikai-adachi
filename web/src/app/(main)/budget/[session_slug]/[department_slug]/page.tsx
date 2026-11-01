@@ -5,6 +5,7 @@ import { getDifficultyLevel } from "@/features/bill-difficulty/server/loaders/ge
 import { getCouncilSessionBySlug } from "@/features/council-sessions/server/loaders/get-council-session-by-slug";
 import { getBudgetOverviewDetail } from "@/features/budget-overview/server/loaders/get-budget-overview-detail";
 import { BudgetOverviewDetail } from "@/features/budget-overview/server/components/budget-overview-detail";
+import { applyBudgetDetailDifficulty } from "@/features/budget-overview/shared/utils/apply-budget-difficulty";
 import { BudgetThemeAccordion } from "@/features/budget-overview/client/components/budget-theme-accordion";
 import { BudgetChatClient } from "@/features/budget-overview/client/components/budget-chat-client";
 import { siteConfig } from "@/config/site.config";
@@ -28,10 +29,10 @@ export async function generateMetadata({
   if (!overview) return { title: "予算概要が見つかりません" };
 
   return {
-    title: `${overview.department_name} 重点施策 | ${session.name}`,
+    title: `${overview.department_name} 主な施策 | ${session.name}`,
     description:
       overview.direction ??
-      `${session.name} ${overview.department_name}の重点施策と予算概要`,
+      `${session.name} ${overview.department_name}の主な施策と予算`,
   };
 }
 
@@ -48,18 +49,26 @@ export default async function BudgetDetailPage({
     notFound();
   }
 
-  const overview = await getBudgetOverviewDetail(session.id, department_slug);
-  if (!overview) {
+  const rawOverview = await getBudgetOverviewDetail(
+    session.id,
+    department_slug
+  );
+  if (!rawOverview) {
     notFound();
   }
+  const overview = applyBudgetDetailDifficulty(rawOverview, currentDifficulty);
 
   return (
     <Container className="py-10 pb-28">
-      <BudgetOverviewDetail overview={overview} sessionSlug={session_slug} />
+      <BudgetOverviewDetail
+        overview={overview}
+        sessionSlug={session_slug}
+        sessionName={session.name}
+      />
 
       <div>
         <h2 className="text-lg font-bold text-mirai-text mb-4">
-          重点施策・テーマ
+          主な施策（テーマ別）
         </h2>
         <BudgetThemeAccordion themes={overview.themes} />
       </div>

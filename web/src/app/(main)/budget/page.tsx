@@ -23,7 +23,7 @@ export default async function BudgetIndexPage() {
           過去の予算一覧
         </h1>
         <p className="text-sm leading-relaxed text-mirai-text-secondary">
-          各定例会の各部予算の方向性と主要施策をご覧いただけます。
+          各年度の予算の特色と、主な施策を、分野別にご覧いただけます。
         </p>
       </header>
 

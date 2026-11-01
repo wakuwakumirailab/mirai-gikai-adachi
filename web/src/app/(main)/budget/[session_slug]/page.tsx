@@ -10,6 +10,11 @@ import { findPreviousCouncilSession } from "@/features/council-sessions/server/r
 import { getBudgetOverviews } from "@/features/budget-overview/server/loaders/get-budget-overviews";
 import { hasPublishedOverviewsBySession } from "@/features/budget-overview/server/repositories/budget-repository";
 import { BudgetOverviewList } from "@/features/budget-overview/server/components/budget-overview-list";
+import { BudgetYearSummarySection } from "@/features/budget-overview/server/components/budget-year-summary-section";
+import { BudgetSupplementarySection } from "@/features/budget-overview/server/components/budget-supplementary-section";
+import { budgetSupplementaries } from "@/features/budget-overview/shared/budget-supplementary";
+import { budgetYearSummaries } from "@/features/budget-overview/shared/budget-year-summaries";
+import { applyBudgetOverviewDifficulty } from "@/features/budget-overview/shared/utils/apply-budget-difficulty";
 import { BudgetChatClient } from "@/features/budget-overview/client/components/budget-chat-client";
 import { siteConfig } from "@/config/site.config";
 
@@ -30,8 +35,8 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${session.name} 各部の重点施策`,
-    description: `${session.name}の各部予算の重点施策・方向性をわかりやすく解説します。`,
+    title: `${toFiscalYearLabel(session.name)} 分野別の主な施策`,
+    description: `${toFiscalYearLabel(session.name)}の予算の主な施策を、分野別にわかりやすく解説します。`,
   };
 }
 
@@ -71,15 +76,40 @@ export default async function BudgetListPage({ params }: BudgetListPageProps) {
           {toFiscalYearLabel(session.name)}
         </span>
         <h1 className="text-xl font-bold leading-snug text-mirai-text sm:text-2xl">
-          各部の重点施策
+          分野別の主な施策
         </h1>
         <p className="text-sm leading-relaxed text-mirai-text-secondary">
-          {toFiscalYearLabel(session.name)}{" "}
-          の各部予算の方向性と主要施策をまとめています。
+          {toFiscalYearLabel(session.name)}
+          の特色と、主な施策を、分野ごとにまとめています。
         </p>
       </header>
 
-      <BudgetOverviewList overviews={overviews} sessionSlug={session_slug} />
+      {budgetYearSummaries[session_slug] && (
+        <BudgetYearSummarySection
+          summary={budgetYearSummaries[session_slug]}
+          difficulty={currentDifficulty}
+        />
+      )}
+
+      {budgetSupplementaries[session_slug] && (
+        <BudgetSupplementarySection
+          supplementary={budgetSupplementaries[session_slug]}
+          difficulty={currentDifficulty}
+        />
+      )}
+
+      <h2 className="mb-4 border-b border-mirai-border pb-2 text-lg font-bold text-mirai-text">
+        分野別の主な施策
+      </h2>
+      <p className="mb-4 text-xs leading-relaxed text-mirai-text-secondary">
+        区が「主要施策」として紹介している事業を、分野ごとに並べています。予算全体ではありません。
+      </p>
+      <BudgetOverviewList
+        overviews={overviews.map((o) =>
+          applyBudgetOverviewDifficulty(o, currentDifficulty)
+        )}
+        sessionSlug={session_slug}
+      />
 
       {/* 前年度予算セクション */}
       {prevSessionWithBudget && (
@@ -113,7 +143,7 @@ export default async function BudgetListPage({ params }: BudgetListPageProps) {
         <BudgetChatClient
           currentDifficulty={currentDifficulty}
           budget={{
-            departmentName: `${session.name} 各部`,
+            departmentName: `${session.name} 分野別`,
             themes: overviews.map((o) => ({
               title: o.department_name,
               aiSummary: o.direction,

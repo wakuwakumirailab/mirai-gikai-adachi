@@ -266,6 +266,7 @@ export type Database = {
           budget_amount: number | null
           created_at: string
           description: string | null
+          description_easy: string | null
           id: string
           sort_order: number
           theme_id: string
@@ -277,6 +278,7 @@ export type Database = {
           budget_amount?: number | null
           created_at?: string
           description?: string | null
+          description_easy?: string | null
           id?: string
           sort_order?: number
           theme_id: string
@@ -288,6 +290,7 @@ export type Database = {
           budget_amount?: number | null
           created_at?: string
           description?: string | null
+          description_easy?: string | null
           id?: string
           sort_order?: number
           theme_id?: string
@@ -311,6 +314,7 @@ export type Database = {
           department_name: string
           department_slug: string
           direction: string | null
+          direction_easy: string | null
           id: string
           prev_budget: number | null
           publish_status: string
@@ -325,6 +329,7 @@ export type Database = {
           department_name: string
           department_slug: string
           direction?: string | null
+          direction_easy?: string | null
           id?: string
           prev_budget?: number | null
           publish_status?: string
@@ -339,6 +344,7 @@ export type Database = {
           department_name?: string
           department_slug?: string
           direction?: string | null
+          direction_easy?: string | null
           id?: string
           prev_budget?: number | null
           publish_status?: string
@@ -360,6 +366,7 @@ export type Database = {
       budget_themes: {
         Row: {
           ai_summary: string | null
+          ai_summary_easy: string | null
           budget_amount: number | null
           created_at: string
           id: string
@@ -370,6 +377,7 @@ export type Database = {
         }
         Insert: {
           ai_summary?: string | null
+          ai_summary_easy?: string | null
           budget_amount?: number | null
           created_at?: string
           id?: string
@@ -380,6 +388,7 @@ export type Database = {
         }
         Update: {
           ai_summary?: string | null
+          ai_summary_easy?: string | null
           budget_amount?: number | null
           created_at?: string
           id?: string
