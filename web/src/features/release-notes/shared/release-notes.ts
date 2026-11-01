@@ -16,6 +16,11 @@ export type ReleaseNote = {
 
 export const releaseNotes: ReleaseNote[] = [
   {
+    date: "2026-11-01",
+    tag: "データ",
+    text: "令和8年第3回定例会の審議結果を更新しました。",
+  },
+  {
     date: "2026-10-13",
     tag: "改善",
     text: "軽微な修正を行いました。",
