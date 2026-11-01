@@ -283,13 +283,13 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-2", billNumber: "第76号", name: "（仮称）千住大川端地区（A工区）開発における道路整備に関する負担協定（令和8年度 土壌汚染対策等工事）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "procedural", proceduralSummary: "千住大川端地区A工区の道路整備に伴う土壌汚染対策等工事について、東京製鐵など開発事業者3社が区に上限3億5,000万円を負担する協定を締結します。本会議の採決は賛成33・反対7で、共産党と無所属の一部議員が反対しました。" },
   { sessionSlug: "r8-2", billNumber: "第77号", name: "令和8年度足立区一般会計補正予算（第3号）", publishedAt: "2026-07-07", status: "approved", statusNote: null, billType: "bill" },
 
-  // 令和8年第3回定例会（r8-3、2026-09-14〜2026-10-20）。委員会審査はこれから
-  // （総務9/17・区民9/18・産業環境9/24・建設/文教10月・決算特別委員会9/28〜）のため、
-  // 審議未了 = submitted。わかりやすい解説（bill_contents）は委員会審査後に別途追加する。
-  { sessionSlug: "r8-3", billNumber: "第78号", name: "令和7年度足立区一般会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第79号", name: "令和7年度足立区国民健康保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第80号", name: "令和7年度足立区介護保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第81号", name: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  // 令和8年第3回定例会（r8-3、2026-09-14〜2026-10-20）。10月20日に閉会し、全議案の議決が確定した。
+  // 決算（第78〜81号）は「認定」、その他は原案可決。追加提出分（第104〜107号・議員提出第4〜6号）の
+  // publishedAt は議決日。わかりやすい解説（bill_contents）は順次追加する。
+  { sessionSlug: "r8-3", billNumber: "第78号", name: "令和7年度足立区一般会計歳入歳出決算", publishedAt: "2026-09-14", status: "approved", statusNote: "認定", billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第79号", name: "令和7年度足立区国民健康保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "approved", statusNote: "認定", billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第80号", name: "令和7年度足立区介護保険特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "approved", statusNote: "認定", billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第81号", name: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算", publishedAt: "2026-09-14", status: "approved", statusNote: "認定", billType: "bill" },
   { sessionSlug: "r8-3", billNumber: "第82号", name: "令和8年度足立区一般会計補正予算(第4号）", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
   { sessionSlug: "r8-3", billNumber: "第83号", name: "令和8年度足立区国民健康保険特別会計補正予算（第1号）", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
   { sessionSlug: "r8-3", billNumber: "第84号", name: "令和8年度足立区介護保険特別会計補正予算（第2号）", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
@@ -300,23 +300,30 @@ export const realBillsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-3", billNumber: "第89号", name: "花畑地域学習センター大規模改修その他工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第90号", name: "花畑地域学習センター大規模改修機械設備工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第91号", name: "東伊興住区センター分館大規模改修工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
-  { sessionSlug: "r8-3", billNumber: "第92号", name: "足立区印鑑条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第93号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
-  { sessionSlug: "r8-3", billNumber: "第94号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
-  { sessionSlug: "r8-3", billNumber: "第95号", name: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第96号", name: "特別区道路線の認定について", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第92号", name: "足立区印鑑条例の一部を改正する条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第93号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第94号", name: "債権の放棄について", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第95号", name: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第96号", name: "特別区道路線の認定について", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第97号", name: "足立区長等の給料の特例に関する条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第98号", name: "梅島小学校外壁改修工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第99号", name: "千住大橋防災船着場整備工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第100号", name: "花畑地域学習センター大規模改修電気設備工事請負契約", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第101号", name: "東渕江小学校改築工事請負契約の変更について", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "procedural" },
   { sessionSlug: "r8-3", billNumber: "第102号", name: "足立区多文化共生推進計画審議会条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
-  { sessionSlug: "r8-3", billNumber: "第103号", name: "足立区景観条例の一部を改正する条例", publishedAt: "2026-09-14", status: "submitted", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第103号", name: "足立区景観条例の一部を改正する条例", publishedAt: "2026-09-14", status: "approved", statusNote: null, billType: "bill" },
   { sessionSlug: "r8-3", billNumber: "議員提出第3号", name: "オウム真理教（アレフ・ひかりの輪・山田らの集団）に対する観察処分の期間更新を求める意見書", publishedAt: "2026-09-25", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第104号", name: "令和8年度足立区国民健康保険特別会計補正予算（第2号）", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "第105号", name: "足立福祉事務所西部福祉課・押皿谷住区センター大規模改修工事請負契約", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第106号", name: "足立福祉事務所西部福祉課・押皿谷住区センター大規模改修電気設備工事請負契約", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "第107号", name: "理科教育設備物品の購入について", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "procedural" },
+  { sessionSlug: "r8-3", billNumber: "議員提出第4号", name: "固定資産税・都市計画税の軽減措置の継続及び制度の恒久化を求める意見書", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "議員提出第5号", name: "中・軽度知的障がい者の医療費負担軽減を求める意見書", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "bill" },
+  { sessionSlug: "r8-3", billNumber: "議員提出第6号", name: "日暮里・舎人ライナーの混雑緩和策に東京都が積極的に取り組むよう強く求める意見書", publishedAt: "2026-10-20", status: "approved", statusNote: null, billType: "bill" },
 ];
 
 // 請願・陳情データ（足立区議会公式サイト「請願・陳情の検索」より取得。
-// 令和7年度・令和8年度の会期に付託されたもの、計27件）
+// 令和7年度・令和8年度の会期に付託されたもの、計41件）
 // 受理番号は西暦の暦年でカウントされるため、令和7年2月受理分（07-1・07-2）は
 // 議案データと同じく令和6年度以前の会期に付託されており、今回取り込んだ
 // 8会期（令和7年度・令和8年度分）の範囲外のため対象外としている。
@@ -336,12 +343,12 @@ export const realPetitionsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-1", billNumber: "08-1", name: "学校をより安全で安心な環境にするための陳情", publishedAt: "2026-02-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
   { sessionSlug: "r8-1", billNumber: "08-2", name: "区民の平等性を著しく欠く「区民葬儀における新たな助成制度」に関する陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
   { sessionSlug: "r8-1", billNumber: "08-3", name: "竹の塚、梅田両地域学習センターホール舞台へのスロープまたは昇降機設置を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
-  { sessionSlug: "r8-1", billNumber: "08-4", name: "地盤変状の発生区域における地区計画運用と安全な土地利用判断の整理を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "建設委員会" },
+  { sessionSlug: "r8-1", billNumber: "08-4", name: "地盤変状の発生区域における地区計画運用と安全な土地利用判断の整理を求める陳情", publishedAt: "2026-03-24", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "建設委員会" },
   { sessionSlug: "r8-1", billNumber: "08-5", name: "竹の塚中学校と渕江中学校の統合を中止し両校の存続を求める陳情", publishedAt: "2026-03-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
   { sessionSlug: "r8-2", billNumber: "08-6", name: "中央本町地域など区中央エリアにおける地域コミュニティ再生への支援等を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "区民委員会" },
   { sessionSlug: "r8-2", billNumber: "08-7", name: "「工場運営企業と周辺住民の共生のための条例」の制定を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "産業環境委員会" },
-  { sessionSlug: "r8-2", billNumber: "08-8", name: "mRNAワクチン（レプリコンワクチンを含む）接種事業中止の意見書提出を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
-  { sessionSlug: "r8-2", billNumber: "08-9", name: "薬害級の健康被害を出している新型コロナワクチンの副反応の適切な情報収集のため、副反応疑い報告制度の更なる周知を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-8", name: "mRNAワクチン（レプリコンワクチンを含む）接種事業中止の意見書提出を求める陳情", publishedAt: "2026-06-24", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-2", billNumber: "08-9", name: "薬害級の健康被害を出している新型コロナワクチンの副反応の適切な情報収集のため、副反応疑い報告制度の更なる周知を求める陳情", publishedAt: "2026-06-24", status: "rejected", statusNote: "不採択", billType: "petition", committeeName: "厚生委員会" },
   { sessionSlug: "r8-2", billNumber: "08-10", name: "足立区立中学校における平和教育及び校外学習の政治的中立性と安全確保を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
   { sessionSlug: "r8-2", billNumber: "08-11", name: "花畑西小学校と桜花小学校の統廃合計画に反対する陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
   { sessionSlug: "r8-2", billNumber: "08-12", name: "花畑地区の学校統廃合計画（花畑中学校と花畑北中学校、花畑西小学校と桜花小学校）を中止し、4校の存続を求める陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
@@ -350,6 +357,20 @@ export const realPetitionsSeed: RealBillSeed[] = [
   { sessionSlug: "r8-2", billNumber: "08-15", name: "防災体制の是正へ向けての陳情", publishedAt: "2026-06-24", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "災害・オウム対策調査特別委員会" },
   { sessionSlug: "r8-2", billNumber: "08-16", name: "公的支援事業における政治的公平性の確保に関する陳情", publishedAt: "2026-07-07", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "総務委員会" },
   { sessionSlug: "r8-2", billNumber: "08-17", name: "東京女子医大足立医療センターにおける地域医療機能の検証及び区民への情報公開の充実を求める陳情", publishedAt: "2026-07-07", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-18", name: "アナログは福祉。デジタル必須・強制されないアナログな生活の権利の保障を求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "総務委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-19", name: "固定資産税及び都市計画税の軽減措置の継続について意見書の提出に関する請願", publishedAt: "2026-09-16", status: "approved", statusNote: "採択", billType: "petition", committeeName: "総務委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-20", name: "憲法改正と武器輸出を止めるよう足立区から国に対し意見書の提出を求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "総務委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-21", name: "中軽度知的障がい者の医療費負担軽減を早急に実施するよう、東京都に意見書提出することを求める陳情", publishedAt: "2026-09-16", status: "approved", statusNote: "採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-22", name: "排泄に課題を抱える障がい者のため、日常生活用具に排泄予測支援機器を追加認定するよう求める陳情", publishedAt: "2026-09-16", status: "approved", statusNote: "採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-23", name: "障がい者への日常生活用具の給付種目に、排泄管理支援用具として排泄予測支援機器を追加認定し、知的障がい者も給付対象とすることを求める陳情", publishedAt: "2026-09-16", status: "approved", statusNote: "採択", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-24", name: "綾瀬駅西口におけるユニバーサルデザインの推進及びエレベーター等の整備を求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "建設委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-25", name: "小・中学校における情報モラル教育及びいじめ対応体制の充実を求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-26", name: "発達障がい児・者の家族支援の充実に向けた、東京都が主体となるペアレントメンタ―養成講座の実施を東京都に働きかけるよう求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "文教委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-27", name: "タクシー・バス等を活用した災害時地域支援体制の構築及び緊急脱出用具の普及を求める陳情", publishedAt: "2026-09-16", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "災害・オウム対策調査特別委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-28", name: "第10期介護保険料を引き上げしないよう求める陳情", publishedAt: "2026-10-20", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-29", name: "福祉事務所における生活保護受給者の転居手続に関して標準化を求める陳情", publishedAt: "2026-10-20", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-30", name: "公共の場で野生動物への餌やりや、それに類する行為を禁止し、違反者に罰則を科すことができる条例の制定についての陳情", publishedAt: "2026-10-20", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "厚生委員会" },
+  { sessionSlug: "r8-3", billNumber: "08-31", name: "福祉主導によるグリーンスローモビリティの運用で、全足立区的な移動福祉支援を求める陳情", publishedAt: "2026-10-20", status: "in_committee", statusNote: "継続審査中", billType: "petition", committeeName: "総合交通対策調査特別委員会" },
 ];
 
 export function createBills(
@@ -1423,13 +1444,284 @@ export const realFactionStancesSeed: RealFactionStanceSeed[] = [
     type: "against",
     memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
   },
+
+  // 令和8年第3回定例会（9/14〜10/20）。反対があった議案のみ記録（全会一致の議案は記録しない）
+  // 第78号議案（令和8年第3回定例会 【審議結果一覧】Kg117_sanpi より。議長（伊藤）は採決に加わらない。欠席者は含めない）
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: ["白石", "吉岡", "渡辺", "かねだ", "鹿浜", "工藤", "ただ", "くじらい", "杉本", "しぶや", "岡田"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉", "たがた", "いいくら", "長井", "岡安", "くぼた", "佐々木", "吉田", "さの", "石毛", "水野", "太田"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["へんみ", "加地", "富田"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "against",
+    memberNames: ["おぐら"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "髙橋", "野沢", "川村"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋"],
+  },
+  {
+    billName: "令和7年度足立区一般会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第80号議案（令和8年第3回定例会 【審議結果一覧】Kg117_sanpi より。議長（伊藤）は採決に加わらない。欠席者は含めない）
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: ["白石", "吉岡", "渡辺", "かねだ", "鹿浜", "工藤", "ただ", "くじらい", "杉本", "しぶや", "岡田"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉", "たがた", "いいくら", "長井", "岡安", "くぼた", "佐々木", "吉田", "さの", "石毛", "水野", "太田"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢", "川村"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
+  },
+  {
+    billName: "令和7年度足立区介護保険特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第81号議案（令和8年第3回定例会 【審議結果一覧】Kg117_sanpi より。議長（伊藤）は採決に加わらない。欠席者は含めない）
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: ["白石", "吉岡", "渡辺", "かねだ", "鹿浜", "工藤", "ただ", "くじらい", "杉本", "しぶや", "岡田"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉", "たがた", "いいくら", "長井", "岡安", "くぼた", "佐々木", "吉田", "さの", "石毛", "水野", "太田"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["へんみ", "加地", "富田"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "against",
+    memberNames: ["おぐら"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "髙橋", "野沢", "川村"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋"],
+  },
+  {
+    billName: "令和7年度足立区後期高齢者医療特別会計歳入歳出決算",
+    billPublishedAt: "2026-09-14",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第84号議案（令和8年第3回定例会 【審議結果一覧】Kg117_sanpi より。議長（伊藤）は採決に加わらない。欠席者は含めない）
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: ["白石", "吉岡", "渡辺", "かねだ", "鹿浜", "工藤", "ただ", "くじらい", "杉本", "しぶや", "岡田"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉", "たがた", "いいくら", "長井", "岡安", "くぼた", "佐々木", "吉田", "さの", "石毛", "水野", "太田"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["へんみ", "加地", "富田"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "野沢", "川村"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋", "髙橋"],
+  },
+  {
+    billName: "令和8年度足立区介護保険特別会計補正予算（第2号）",
+    billPublishedAt: "2026-09-14",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
+
+  // 第95号議案（令和8年第3回定例会 【審議結果一覧】Kg117_sanpi より。議長（伊藤）は採決に加わらない。欠席者は含めない）
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "jimin-adachi",
+    type: "for",
+    memberNames: ["白石", "吉岡", "渡辺", "かねだ", "鹿浜", "工藤", "ただ", "くじらい", "杉本", "しぶや", "岡田"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "komei",
+    type: "for",
+    memberNames: ["小泉", "たがた", "いいくら", "長井", "岡安", "くぼた", "佐々木", "吉田", "さの", "石毛", "水野", "太田"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "zezehihi-no-kai",
+    type: "for",
+    memberNames: ["おぐら", "へんみ", "加地", "富田"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "tomin-first",
+    type: "for",
+    memberNames: ["中島", "佐藤"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "for",
+    memberNames: ["市川", "髙橋", "野沢", "川村"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "mushozoku",
+    type: "against",
+    memberNames: ["土屋"],
+  },
+  {
+    billName: "足立区千住旭町地区地区計画の区域内における建築物の制限に関する条例の一部を改正する条例",
+    billPublishedAt: "2026-09-14",
+    factionName: "kyosan",
+    type: "against",
+    memberNames: ["ぬかが", "はたの", "山中", "横田", "小林", "西の原"],
+  },
 ];
 
 export function createFactionStances(
   insertedBills: { id: string; name: string; published_at: string | null }[],
-  insertedFactions: { id: string; name: string }[]
+  insertedFactions: { id: string; name: string }[],
+  seedList: RealFactionStanceSeed[] = realFactionStancesSeed
 ): FactionStanceInsert[] {
-  return realFactionStancesSeed.map((s) => {
+  return seedList.map((s) => {
     const bill = insertedBills.find(
       (b) =>
         b.name === s.billName &&
