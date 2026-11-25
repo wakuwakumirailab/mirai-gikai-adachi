@@ -63,7 +63,11 @@ export async function BillDetailHeader({
           <h1 className="text-2xl font-bold mb-3">{displayTitle}</h1>
         )}
         <div className="flex flex-row gap-4">
-          <BillStatusBadge status={bill.status} className="w-fit" />
+          <BillStatusBadge
+            status={bill.status}
+            statusNote={bill.status_note}
+            className="w-fit"
+          />
           <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
             {bill.published_at && (
               <time>{formatDateJST(bill.published_at)} 提出</time>

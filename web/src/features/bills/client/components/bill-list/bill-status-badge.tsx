@@ -3,10 +3,15 @@ import type { BillStatusEnum } from "../../../shared/types";
 
 interface BillStatusBadgeProps {
   status: BillStatusEnum;
+  /** 議決結果の注記。決算の「認定」は「可決」ではなく注記どおりに表示する */
+  statusNote?: string | null;
   className?: string;
 }
 
-function getCardStatusLabel(status: BillStatusEnum): string {
+function getCardStatusLabel(
+  status: BillStatusEnum,
+  statusNote?: string | null
+): string {
   switch (status) {
     case "submitted":
       return "上程済み";
@@ -15,7 +20,7 @@ function getCardStatusLabel(status: BillStatusEnum): string {
     case "plenary_session":
       return "本会議採決中";
     case "approved":
-      return "可決";
+      return statusNote === "認定" ? "認定" : "可決";
     case "rejected":
       return "否決";
     case "reported":
@@ -25,7 +30,11 @@ function getCardStatusLabel(status: BillStatusEnum): string {
   }
 }
 
-export function BillStatusBadge({ status, className }: BillStatusBadgeProps) {
+export function BillStatusBadge({
+  status,
+  statusNote,
+  className,
+}: BillStatusBadgeProps) {
   const getStatusVariant = (s: BillStatusEnum) => {
     switch (s) {
       case "submitted":
@@ -44,7 +53,7 @@ export function BillStatusBadge({ status, className }: BillStatusBadgeProps) {
 
   return (
     <Badge variant={getStatusVariant(status)} className={className}>
-      {getCardStatusLabel(status)}
+      {getCardStatusLabel(status, statusNote)}
     </Badge>
   );
 }

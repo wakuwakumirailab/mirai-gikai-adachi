@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import type { DifficultyLevelEnum } from "@/features/bill-difficulty/shared/types";
 import { CACHE_TAGS } from "@/lib/cache-tags";
 import type { BillWithContent } from "../../shared/types";
+import { sortBillsByNumber } from "../../shared/utils/sort-bills-by-number";
 import {
   findPublishedBillsByDietSession,
   findTagsByBillIds,
@@ -34,7 +35,7 @@ const _getCachedSessionBills = unstable_cache(
     const billIds = data.map((item) => item.id);
     const tagsByBillId = await findTagsByBillIds(billIds);
 
-    return data.map((item) => {
+    return sortBillsByNumber(data).map((item) => {
       const { bill_contents, ...bill } = item;
       return {
         ...bill,

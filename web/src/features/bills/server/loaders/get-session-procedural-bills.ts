@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import { CACHE_TAGS } from "@/lib/cache-tags";
+import { compareBillNumber } from "../../shared/utils/sort-bills-by-number";
 import { findProceduralBillsByCouncilSession } from "../repositories/bill-repository";
 
 /**
@@ -13,7 +14,11 @@ export async function getSessionProceduralBills(councilSessionId: string) {
 
 const _getCachedSessionProceduralBills = unstable_cache(
   async (councilSessionId: string) => {
-    return findProceduralBillsByCouncilSession(councilSessionId);
+    const bills = await findProceduralBillsByCouncilSession(councilSessionId);
+    // 議案番号の若い順に並べる
+    return [...bills].sort((a, b) =>
+      compareBillNumber(a.bill_number, b.bill_number)
+    );
   },
   ["session-procedural-bills"],
   {
