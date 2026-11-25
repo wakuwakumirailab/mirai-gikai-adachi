@@ -49,6 +49,31 @@ export async function findCurrentCouncilSession(
 }
 
 /**
+ * 指定日までに開会した直近の定例会を取得
+ * （閉会中のホームで、最新の議会の内容を表示するために使う）
+ */
+export async function findLatestStartedCouncilSession(
+  targetDate: string
+): Promise<CouncilSession | null> {
+  const supabase = createAdminClient();
+
+  const { data, error } = await supabase
+    .from("council_sessions")
+    .select("*")
+    .lte("start_date", targetDate)
+    .order("start_date", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Failed to fetch latest started council session:", error);
+    return null;
+  }
+
+  return data;
+}
+
+/**
  * 全定例会を新しい順に取得（アクティブなものを除く、公開済み議案が1件以上あるもののみ）
  * 会期末日が指定日より前（＝既に閉会済み）のもののみを対象とする。
  * 開会中の会期（議案登録済みだが未閉会）は、閉会するまでここには出さない

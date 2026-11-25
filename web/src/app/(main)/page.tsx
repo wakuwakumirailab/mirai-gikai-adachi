@@ -16,6 +16,7 @@ import type { BillWithContent } from "@/features/bills/shared/types";
 import { HomeChatClient } from "@/features/chat/client/components/home-chat-client";
 import { CurrentCouncilSession } from "@/features/council-sessions/client/components/current-council-session";
 import { getCurrentCouncilSession } from "@/features/council-sessions/server/loaders/get-current-council-session";
+import { getLatestCouncilSession } from "@/features/council-sessions/server/loaders/get-latest-council-session";
 import { getLatestSessionWithQuestions } from "@/features/general-questions/server/loaders/get-latest-session-with-questions";
 import { getSessionQuestionsBannerData } from "@/features/general-questions/server/loaders/get-session-questions-summary";
 import { PressConferenceNoticeBanner } from "@/features/press-conferences/client/components/press-conference-notice-banner";
@@ -28,11 +29,13 @@ export default async function Home() {
   // ゆくゆくタグ機能がマージされたらBFFに統合する
   const [
     currentSession,
+    latestSession,
     currentDifficulty,
     latestQuestionsSlug,
     latestPressConference,
   ] = await Promise.all([
     getCurrentCouncilSession(getJapanTime()),
+    getLatestCouncilSession(getJapanTime()),
     getDifficultyLevel(),
     getLatestSessionWithQuestions(),
     getLatestPressConference(),
@@ -44,8 +47,10 @@ export default async function Home() {
     ? await getSessionQuestionsBannerData(questionsSlug)
     : null;
 
-  const currentSessionBills = currentSession
-    ? await getCurrentSessionBills(currentSession.id)
+  // 閉会中は、直近に開会した定例会の議案を表示する
+  const billsSession = currentSession ?? latestSession;
+  const currentSessionBills = billsSession
+    ? await getCurrentSessionBills(billsSession.id)
     : [];
 
   const toBillChatContext = (bill: BillWithContent) => {
@@ -66,21 +71,25 @@ export default async function Home() {
 
       {/* 本日の定例会セクション＋今回の定例会の議案＋一般質問（ベージュ背景でひとつながりに） */}
       <div className="bg-mirai-surface-warm">
-        <CurrentCouncilSession session={currentSession} />
+        <CurrentCouncilSession
+          session={currentSession}
+          latestSession={latestSession}
+        />
 
-        {/* わかりやすい解説の有無に関わらず表示 */}
-        {currentSession && (
+        {/* わかりやすい解説の有無に関わらず表示（閉会中は直近の定例会） */}
+        {billsSession && (
           <Container className="pt-4 pb-5">
             <CurrentSessionBillsBanner
-              session={currentSession}
+              session={billsSession}
               bills={currentSessionBills}
+              isClosed={currentSession == null}
             />
           </Container>
         )}
 
         {/* 一般質問バナー（議案と同じ背景） */}
         {questionsSlug && (
-          <Container className={currentSession ? "pb-5" : "pt-4 pb-5"}>
+          <Container className={billsSession ? "pb-5" : "pt-4 pb-5"}>
             <GeneralQuestionsBanner
               sessionSlug={questionsSlug}
               data={questionsBannerData}

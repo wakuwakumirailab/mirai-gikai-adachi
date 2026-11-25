@@ -20,12 +20,15 @@ interface CurrentSessionBillsBannerProps {
   session: CouncilSession;
   bills: CurrentSessionBill[];
   previewCount?: number;
+  /** 閉会中（直近に開会した定例会の議案を表示している）場合 true */
+  isClosed?: boolean;
 }
 
 export function CurrentSessionBillsBanner({
   session,
   bills,
   previewCount = 5,
+  isClosed = false,
 }: CurrentSessionBillsBannerProps) {
   if (bills.length === 0) {
     return null;
@@ -42,7 +45,8 @@ export function CurrentSessionBillsBanner({
       <div className="flex items-center gap-2">
         <Gavel className="size-4 text-primary-accent" />
         <h2 className="font-bold text-mirai-text">
-          今回の定例会の議案（{bills.length}件）
+          {isClosed ? `${session.name}の議案` : "今回の定例会の議案"}（
+          {bills.length}件）
         </h2>
         <ChevronRight className="ml-auto size-5 text-mirai-text-muted shrink-0" />
       </div>
@@ -66,9 +70,11 @@ export function CurrentSessionBillsBanner({
         )}
       </div>
 
-      <p className="text-xs text-mirai-text-muted">
-        わかりやすい解説は委員会審査後に順次公開します
-      </p>
+      {!isClosed && (
+        <p className="text-xs text-mirai-text-muted">
+          わかりやすい解説は委員会審査後に順次公開します
+        </p>
+      )}
     </Link>
   );
 }

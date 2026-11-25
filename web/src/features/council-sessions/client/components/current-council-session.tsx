@@ -4,6 +4,8 @@ import type { CouncilSession } from "../../shared/types";
 
 type CurrentCouncilSessionProps = {
   session: CouncilSession | null;
+  /** 閉会中に、直近に開会した定例会として表示する */
+  latestSession?: CouncilSession | null;
 };
 
 /**
@@ -13,7 +15,10 @@ type CurrentCouncilSessionProps = {
  * スマホで文字を大きくしても、見出しが縮んで1文字ずつ折れないようにする
  * （見出しは折り返さず、幅が足りないときはバッジのほうが下の行に回る）。
  */
-export function CurrentCouncilSession({ session }: CurrentCouncilSessionProps) {
+export function CurrentCouncilSession({
+  session,
+  latestSession = null,
+}: CurrentCouncilSessionProps) {
   return (
     <div className="w-full bg-mirai-surface-warm px-6 py-6">
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-5">
@@ -37,6 +42,17 @@ export function CurrentCouncilSession({ session }: CurrentCouncilSessionProps) {
             </span>
           </div>
         </div>
+        {session == null && latestSession != null && (
+          <p className="flex flex-wrap gap-x-3 text-sm leading-[1.5] md:shrink-0 md:flex-col md:gap-x-0">
+            <span>直近の定例会：{latestSession.name}</span>
+            <span>
+              {formatDateWithDots(latestSession.start_date)}〜
+              {latestSession.end_date
+                ? formatDateWithDots(latestSession.end_date)
+                : ""}
+            </span>
+          </p>
+        )}
         {session != null && (
           <p className="flex flex-wrap gap-x-3 text-sm leading-[1.5] md:shrink-0 md:flex-col md:gap-x-0">
             <span>{session.name}</span>
